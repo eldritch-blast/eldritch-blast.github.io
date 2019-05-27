@@ -180,6 +180,24 @@ li:before {
             border-radius: 50%
         }
     }
+    > .str:before {
+        content: "Str ";
+    }
+    > .dex:before {
+        content: "Dex ";
+    }
+    > .con:before {
+        content: "Con ";
+    }
+    > .int:before {
+        content: "Int ";
+    }
+    > .wis:before {
+        content: "Wis ";
+    }
+    > .cha:before {
+        content: "Cha ";
+    }
 }
 
 //// Proficiencies

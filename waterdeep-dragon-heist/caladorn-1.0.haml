@@ -1,0 +1,190 @@
+- name = "Caladorn Manthar"
+- hp = 9
+- levels = { rogue: 1 }
+- hd = { rogue: 'd8' }
+- ability_scores = {str: 10, dex: 16, con: 13, int: 10, wis: 12, cha: 14}
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Human
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (0 / 300 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score #{v}
+          .mod #{'%+d' % ((v - 10) / 2)}
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % ((levels.values.sum - 1) / 4 + 2)
+      .save Dex, Int
+      .skill Athletics, Deception, History, Perception, Persuasion, Sleight of Hand, Stealth
+      .tool Gaming set (cards), Thieves' tools
+      .language Common, Elvish, Undercommon, Illuskan, Thieves' Cant
+      .weapon simple weapons, hand crossbow, longsword, rapier, shortsword
+      .armor light
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b #{hp}
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      -#equip
+      .equipment-set.half
+        .head.b Standard Equipment
+        .small Rapier, dagger, leather armor
+        .ac
+          .head.b AC
+          .value 15
+        .move
+          .head.b Move
+          .value 30
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + 5
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d8 + 3
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 5
+        .head.b Bonus Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + 5
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d4
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 5
+        %ul.small
+          %li Can throw dagger, range 20/60
+      -#equip
+      .equipment-set.half
+        .head.b Ranged Equipment
+        .small Shortbow, leather armor
+        .ac
+          .head.b AC
+          .value 14
+        .move
+          .head.b Move
+          .value 30
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + 5
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + 3
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 80 / 320
+        %ul.small
+          %li Disadvantage if enemy within 5 ft.
+
+    .flex.tall.column.narrow
+      -#sneak-attack
+      .feature
+        .head.b Sneak Attack +1d6
+        %p.small
+          Once per turn, deal bonus damage on an attack with a finesse or ranged weapon. Requires advantage, or another enemy of the target within 5 ft. of it and no disadvantage.
+      -#expertise
+      .feature
+        .head.b Expertise
+        %p.small
+          Double proficiency bonus on
+          %span.b Athletics
+          and
+          %span.b Perception
+          checks.
+      -#dual wield
+      .feature
+        .head.b Dual Wielder
+        %ul.small
+          %li +1 AC when dual wielding.
+          %li Can dual wield non-light weapons.
+          %li Can draw or stow two weapons at a time.
+
+  .inventory.grid
+    .head.b Inventory
+    %div Fine clothes
+    %div Hooded lantern
+    %div 1,000 ball bearings
+    %div Rapier
+    %div Signet ring
+    %div Flask of oil (2)
+    %div Bell
+    %div Dagger (2)
+    %div Scroll of pedigree
+    %div Candle (5)
+    %div 10 ft. string
+    %div Leather armor
+    %div
+    %div
+    %div Skin of fine wine
+    %div Tinderbox
+    %div Hammer
+    %div Shortbow
+    %div
+    %div
+    %div Backpack
+    %div 50 ft. hemp rope
+    %div Pitons (10)
+    %div Arrows (20)
+    %div
+    %div
+    %div Rations (5 days)
+    %div Waterskin
+    %div Crowbar
+    %div
+    %div
+    %div
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 20
+      .value.sp
+      .value.cp

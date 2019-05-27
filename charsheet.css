@@ -138,6 +138,18 @@ li:before {
       width: 2rem;
       border: 2px solid #999;
       border-radius: 50%; }
+  .ability-scores > .str:before {
+    content: "Str "; }
+  .ability-scores > .dex:before {
+    content: "Dex "; }
+  .ability-scores > .con:before {
+    content: "Con "; }
+  .ability-scores > .int:before {
+    content: "Int "; }
+  .ability-scores > .wis:before {
+    content: "Wis "; }
+  .ability-scores > .cha:before {
+    content: "Cha "; }
 
 .proficiencies {
   flex: 3;
@@ -269,4 +281,4 @@ li:before {
       padding: 0.2rem;
       min-height: 3rem; }
 
-/*# sourceMappingURL=charsheet.scss.css.map */
+/*# sourceMappingURL=charsheet.css.map */
