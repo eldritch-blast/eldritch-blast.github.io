@@ -1,0 +1,17 @@
+id = "aid"
+[metadata]
+action = "action"
+lists = ["cleric", "paladin"]
+src = "211  Players Handbook"
+[text]
+at_higher_levels = ["When you cast this spell using a spell slot of 3rd level or higher, a target’s hit points increase by an additional 5 for each slot level above 2nd."]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["Your spell bolsters your allies with toughness and resolve.", "Choose up to three creatures within range. Each target’s hit point maximum and current hit points increase by 5 for the duration."]
+duration = "8 hours"
+level = 2
+material = "a tiny strip of white cloth"
+name = "Aid"
+range = "30 feet"
+ritual = false
+school = "abjuration"

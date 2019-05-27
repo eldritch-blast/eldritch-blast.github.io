@@ -1,0 +1,15 @@
+id = "earthbind"
+[metadata]
+action = "action"
+lists = ["druid", "sorcerer", "warlock", "wizard"]
+src = "17  from EE Players Companion"
+[text]
+casting_time = "1 action"
+components = ["V"]
+description = ["Choose one creature you can see within range. Yellow strips of magical energy loop around the creature. The target must succeed on a Strength saving throw or its flying speed (if any) is reduced to 0 feet for the spell’s duration. An airborne creature affected by this spell descends at 60 feet per round until it reaches the ground or the spell ends."]
+duration = "Concentration, up to 1 minute"
+level = 2
+name = "Earthbind"
+range = "300 feet"
+ritual = false
+school = "transmutation"

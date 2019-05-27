@@ -1,0 +1,15 @@
+id = "lesser-restoration"
+[metadata]
+action = "action"
+lists = ["bard", "cleric", "druid", "paladin", "ranger"]
+src = "255  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S"]
+description = ["You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned."]
+duration = "Instantaneous"
+level = 2
+name = "Lesser Restoration"
+range = "touch"
+ritual = false
+school = "abjuration"

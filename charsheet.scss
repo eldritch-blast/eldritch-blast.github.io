@@ -27,6 +27,9 @@ $dark-grey: #777;
 
 body {
     box-sizing: border-box;
+    > div {
+        margin-bottom: 0.8rem;
+    }
 }
 h1 {
     font-weight: normal;
@@ -131,6 +134,13 @@ span.title {
     height: 0.8rem;
     margin-top: -0.2em;
     vertical-align: middle;
+    position: relative;
+}
+.checkbox.checked:after {
+    content: "\2714";
+    position: absolute;
+    bottom: 0;
+    left: 2px;
 }
 
 //// Scratch area
@@ -416,6 +426,40 @@ li:before {
             text-align: center;
             float: right;
             font-weight: normal;
+        }
+    }
+}
+
+//// Spell List
+.spell-list {
+    .column {
+        width: calc(50% - 0.4rem);
+        > .spell:nth-child(odd) {
+            background-color: $light-grey;
+        }
+        > .head:not(:first-child) {
+            margin-top: 0.5rem;
+        }
+    }
+    .spell {
+        font-size: 14px;
+        font-style: normal;
+        > div {
+            display: inline-block;
+        }
+        > .prepared {
+            background-color: white;
+        }
+        > .title {
+            width: 55%;
+        }
+        > .level:before {
+            content: "\1f7c4";
+            padding: 0 0.2rem;
+        }
+        > .level:after {
+            content: "\1f7c4";
+            padding: 0 0.2rem;
         }
     }
 }

@@ -1,0 +1,15 @@
+id = "glibness"
+[metadata]
+action = "action"
+lists = ["bard", "warlock"]
+src = "245  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V"]
+description = ["Until the spell ends, when you make a Charisma check, you can replace the number you roll with a 15. Additionally, no matter what you say, magic that would determine if you are telling the truth indicates that you are being truthful."]
+duration = "1 hour"
+level = 8
+name = "Glibness"
+range = "self"
+ritual = false
+school = "transmutation"

@@ -1,0 +1,16 @@
+id = "mordenkainens-sword"
+[metadata]
+action = "action"
+lists = ["bard", "wizard"]
+src = "262  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M", "w"]
+description = ["You create a sword-shaped plane of force that hovers within range. It lasts for the duration.", "When the sword appears, you make a melee spell attack against a target of your choice within 5 feet of the sword. On a hit. the target takes 3d10 force damage. Until the spell ends, you can use a bonus action on each of your turns to move the sword up to 20 feet to a spot you can see and repeat this attack against the same target or a different one."]
+duration = "Concentration, up to 1 minute"
+level = 7
+material = "a miniature platinum sword with a grip and pommel of copper and zinc, worth 250 gp"
+name = "Mordenkainen’s Sword"
+range = "60 feet"
+ritual = false
+school = "evocation"

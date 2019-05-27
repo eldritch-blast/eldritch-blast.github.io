@@ -1,0 +1,15 @@
+id = "heal"
+[metadata]
+action = "action"
+lists = ["cleric", "druid"]
+src = "250  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S"]
+description = ["Choose a creature that you can see within range. A surge of positive energy washes through the creature, causing it to regain 70 hit points. The spell also ends blindness, deafness, and any diseases affecting the target. This spell has no effect on constructs or undead. ", "When you cast this spell using aspell slot of 7th level or higher, the amount of healing increases by 10 for each slot level above 6th."]
+duration = "Instantaneous"
+level = 6
+name = "Heal"
+range = "60 feet"
+ritual = false
+school = "evocation"

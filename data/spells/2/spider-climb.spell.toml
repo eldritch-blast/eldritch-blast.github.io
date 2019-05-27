@@ -1,0 +1,16 @@
+id = "spider-climb"
+[metadata]
+action = "action"
+lists = ["sorcerer", "warlock", "wizard"]
+src = "277  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["Until the spell ends, one willing creature you touch gains the ability to move up, down, and across vertical surfaces and upside down along ceilings, while leaving its hands free. The target also gains a climbing speed equal to its walking speed."]
+duration = "Concentration, up to 1 hour"
+level = 2
+material = "a drop of bitumen and a spider"
+name = "Spider Climb"
+range = "touch"
+ritual = false
+school = "transmutation"

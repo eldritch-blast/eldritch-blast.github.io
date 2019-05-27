@@ -1,0 +1,16 @@
+id = "revivify"
+[metadata]
+action = "action"
+lists = ["cleric", "paladin"]
+src = "272  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M", "w"]
+description = ["You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can’t return to life a creature that has died of old age, nor can it restore any missing body parts."]
+duration = "Instantaneous"
+level = 3
+material = "diamonds worth 300 gp, which the spell consumes"
+name = "Revivify"
+range = "touch"
+ritual = false
+school = "necromancy"

@@ -1,0 +1,15 @@
+id = "expeditious-retreat"
+[metadata]
+action = "bonus"
+lists = ["sorcerer", "warlock", "wizard"]
+src = "238  Players Handbook"
+[text]
+casting_time = "1 bonus action"
+components = ["V", "S"]
+description = ["This spell allows you to move at an incredible pace. When you cast this spell, and then as a bonus action on each of your turns until the spell ends, you can take the Dash action."]
+duration = "Concentration, up to 10 minutes"
+level = 1
+name = "Expeditious Retreat"
+range = "self"
+ritual = false
+school = "transmutation"

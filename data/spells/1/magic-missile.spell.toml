@@ -1,0 +1,28 @@
+id = "magic-missile"
+
+[metadata]
+action = "action"
+lists = ["sorcerer", "wizard"]
+src = "257  Players Handbook"
+[metadata.target]
+type = "creature"
+count = 3
+scaling = { with = "spell level", add = 1 }
+restriction = { visible = true }
+[metadata.effect]
+id = "magic-missile-damage"
+type = "damage"
+damage_type = "force"
+damage_dice = "1d4+1"
+
+[text]
+at_higher_levels = ["When you cast this spell using a spell slot of 2nd level or higher, the spell creates one more dart for each slot level above 1st."]
+casting_time = "1 action"
+components = ["V", "S"]
+description = ["You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously and you can direct them to hit one creature or several."]
+duration = "Instantaneous"
+level = 1
+name = "Magic Missile"
+range = "120 feet"
+ritual = false
+school = "evocation"

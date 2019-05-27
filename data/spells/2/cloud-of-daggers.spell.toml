@@ -1,0 +1,16 @@
+id = "cloud-of-daggers"
+[metadata]
+action = "action"
+lists = ["bard", "sorcerer", "warlock", "wizard"]
+src = "222  Players Handbook"
+[text]
+at_higher_levels = ["When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 2d4 for each slot level above 2nd."]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["You fill the air with spinning daggers in a cube 5 feet on each side, centered on a point you choose within range. A creature takes 4d4 slashing damage when it enters the spell’s area for the first time on a turn or starts its turn there. "]
+duration = "Concentration, up to 1 minute"
+level = 2
+name = "Cloud of Daggers"
+range = "60 feet"
+ritual = false
+school = "conjuration"

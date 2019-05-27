@@ -1,0 +1,16 @@
+id = "bane"
+[metadata]
+action = "action"
+lists = ["bard", "cleric"]
+src = "216  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["Up to three creatures of your choice that you can see within range must make Charisma saving throws. Whenever a target that fails this saving throw makes an attack roll or a saving throw before the spell ends, the target must roll a d4 and subtract the number rolled from the attack roll or saving throw.", "When you cast this spell using a spelslot of 2nd level or higher, you can target one aditional creature for each slot level above 1st."]
+duration = "Concentration, up to 1 minute"
+level = 1
+material = "A drop of blood"
+name = "Bane"
+range = "30 feet"
+ritual = false
+school = "enchantment"

@@ -1,0 +1,15 @@
+id = "poison-spray"
+[metadata]
+action = "action"
+lists = ["druid", "sorcerer", "warlock", "wizard"]
+src = "266  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S"]
+description = ["You extend your hand toward a creature you can see within range and project a puff of noxious gas from your palm. The creature must succeed on a Constitution saving throw or take 1d12 poison damage.", "This spell’s damage increases by 1d12 when you reach 5th level (2d12), 11th level (3d12), 17th level (4d12)."]
+duration = "Instantaneous"
+level = 0
+name = "Poison Spray"
+range = "10 feet"
+ritual = false
+school = "conjuration"

@@ -18,6 +18,8 @@
     display: none; } }
 body {
   box-sizing: border-box; }
+  body > div {
+    margin-bottom: 0.8rem; }
 
 h1 {
   font-weight: normal;
@@ -100,7 +102,14 @@ span.title {
   width: 0.8rem;
   height: 0.8rem;
   margin-top: -0.2em;
-  vertical-align: middle; }
+  vertical-align: middle;
+  position: relative; }
+
+.checkbox.checked:after {
+  content: "\2714";
+  position: absolute;
+  bottom: 0;
+  left: 2px; }
 
 .scratch {
   display: flex;
@@ -276,7 +285,7 @@ li:before {
   grid-template-rows: 1.5rem repeat(6, 2.2rem); }
   .inventory .head {
     grid-column: 2 / span 6; }
-  .inventory > div:not(.money):not(.head) {
+  .inventory > .item {
     grid-column: span 2;
     border-bottom: 1px solid black;
     min-height: 0.8rem;
@@ -307,5 +316,27 @@ li:before {
     text-align: center;
     float: right;
     font-weight: normal; }
+
+.spell-list .column {
+  width: calc(50% - 0.4rem); }
+  .spell-list .column > .spell:nth-child(odd) {
+    background-color: #ddd; }
+  .spell-list .column > .head:not(:first-child) {
+    margin-top: 0.5rem; }
+.spell-list .spell {
+  font-size: 14px;
+  font-style: normal; }
+  .spell-list .spell > div {
+    display: inline-block; }
+  .spell-list .spell > .prepared {
+    background-color: white; }
+  .spell-list .spell > .title {
+    width: 55%; }
+  .spell-list .spell > .level:before {
+    content: "\1f7c4";
+    padding: 0 0.2rem; }
+  .spell-list .spell > .level:after {
+    content: "\1f7c4";
+    padding: 0 0.2rem; }
 
 /*# sourceMappingURL=charsheet.css.map */

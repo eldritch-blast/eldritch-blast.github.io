@@ -1,0 +1,16 @@
+id = "tashas-hideous-laughter"
+[metadata]
+action = "action"
+lists = ["bard", "wizard"]
+src = "280  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["A creature of your choice that you can see within range perceives everything as hilariously funny and falls into fits of laughter if this spell affects it. The target must succeed on a Wisdom saving throw or fall prone, becoming incapacitated and unable to stand up for the duration. A creature with an Intelligence score of 4 or less isn’t affected.", "At the end of each of its turns, and each time it takes damage, the target can make another Wisdom saving throw. The target has advantage on the saving throw ifit’s triggered by damage. On a success, the spell ends."]
+duration = "Concentration, up to 1 minute"
+level = 1
+material = "tiny tarts and a feather that is waved in the air"
+name = "Tasha’s Hideous Laughter"
+range = "30 feet"
+ritual = false
+school = "enchantment"

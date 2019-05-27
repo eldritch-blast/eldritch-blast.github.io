@@ -1,0 +1,16 @@
+id = "spike-growth"
+[metadata]
+action = "action"
+lists = ["druid", "ranger"]
+src = "277  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M", "e"]
+description = ["The ground in a 20-foot radius centered on a point within range twists and sprouts hard spikes and thorns. The area becomes difficult terrain for the duration. When a creature moves into or within the area, it takes 2d4 piercing damage for every 5 feet it travels.", "The transformation of the ground is camouflaged to look natural. Any creature that can’t see the area at the time the spell is case must make a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous before entering it."]
+duration = "Concentration, up to 10 minutes"
+level = 2
+material = "seven sharp thorns or seven small twigs, each sharpened to a point"
+name = "Spike Growth"
+range = "150 feet"
+ritual = false
+school = "transmutation"

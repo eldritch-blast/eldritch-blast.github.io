@@ -1,0 +1,16 @@
+id = "locate-animals-or-plants"
+[metadata]
+action = "action"
+lists = ["bard", "druid", "ranger"]
+src = "256  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["Describe or name a specific kind of beast or plant. Concentrating on the voice of nature in your surroundings, you learn the direction and distance to the closest creature or plant of that kind within 5 miles, if any are present."]
+duration = "Instantaneous"
+level = 2
+material = "a bit of fur from a bloodhound"
+name = "Locate Animals or Plants"
+range = "self"
+ritual = true
+school = "divination"

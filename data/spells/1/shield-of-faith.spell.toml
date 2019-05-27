@@ -1,0 +1,16 @@
+id = "shield-of-faith"
+[metadata]
+action = "bonus"
+lists = ["cleric", "paladin"]
+src = "275  Players Handbook"
+[text]
+casting_time = "1 bonus action"
+components = ["V", "S", "M"]
+description = ["A shimmering field appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration."]
+duration = "Concentration, up to 10 minutes"
+level = 1
+material = "a small parchment with a bit of holy text written on it"
+name = "Shield of Faith"
+range = "60 feet"
+ritual = false
+school = "abjuration"

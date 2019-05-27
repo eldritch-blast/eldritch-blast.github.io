@@ -1,0 +1,15 @@
+id = "misty-step"
+[metadata]
+action = "bonus"
+lists = ["sorcerer", "warlock", "wizard"]
+src = "260  Players Handbook"
+[text]
+casting_time = "1 bonus action"
+components = ["V"]
+description = ["Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see."]
+duration = "Instantaneous"
+level = 2
+name = "Misty Step"
+range = "self"
+ritual = false
+school = "conjuration"

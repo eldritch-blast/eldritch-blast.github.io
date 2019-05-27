@@ -1,0 +1,17 @@
+id = "bless"
+[metadata]
+action = "action"
+lists = ["cleric", "paladin"]
+src = "219  Players Handbook"
+[text]
+at_higher_levels = ["When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st."]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw. "]
+duration = "Concentration, up to 1 minute"
+level = 1
+material = "a sprinkling of holy water"
+name = "Bless"
+range = "30 feet"
+ritual = false
+school = "enchantment"

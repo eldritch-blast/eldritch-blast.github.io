@@ -1,0 +1,16 @@
+id = "mage-armor"
+[metadata]
+action = "action"
+lists = ["sorcerer", "wizard"]
+src = "256  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["You touch a willing creature who isn’t wearing armor, and a protective magical force surrounds it until the spell ends. The target’s base AC becomes 13 + its Dexterity modifier. The spell ends it if the target dons armor or if you dismiss the spell as an action."]
+duration = "8 hours"
+level = 1
+material = "a piece of cured leather"
+name = "Mage Armor"
+range = "touch"
+ritual = false
+school = "abjuration"

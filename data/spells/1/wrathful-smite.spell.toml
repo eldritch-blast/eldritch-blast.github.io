@@ -1,0 +1,15 @@
+id = "wrathful-smite"
+[metadata]
+action = "bonus"
+lists = ["paladin"]
+src = "289  Players Handbook"
+[text]
+casting_time = "1 bonus action"
+components = ["V"]
+description = ["The next time you hit with a melee weapon attack during this spell’s duration, your attack deals an extra 1d6 psychic damage.", "Additionally, if the target is a creature, it must make a Wisdom saving throw or be frightened of you until the spell ends. As an action, the creature can make a Wisdom check against your spell save DC to steel its resolve and end this spell."]
+duration = "Concentration, up to 1 minute"
+level = 1
+name = "Wrathful Smite"
+range = "self"
+ritual = false
+school = "evocation"

@@ -1,0 +1,15 @@
+id = "comprehend-languages"
+[metadata]
+action = "action"
+lists = ["bard", "sorcerer", "warlock", "wizard"]
+src = "224  Players Handbook"
+[text]
+casting_time = "1 action"
+components = ["V", "S", "M"]
+description = ["For the duration, you understand the literal meaning of any spoken language that you hear.", "You also understand any spoken language that you hear. You also understand any written language that you see, but you must be touching the surface of which the words are written. It takes about 1 minute to read one page of text.", "This spell doesn’t decode secret messages in a text or glyph, such as an arcane sigil, that isn’t part of a written language."]
+duration = "1 hour"
+level = 1
+name = "Comprehend Languages"
+range = "self"
+ritual = true
+school = "divination"

@@ -1,0 +1,16 @@
+id = "shillelagh"
+[metadata]
+action = "bonus"
+lists = ["druid"]
+src = "275  Players Handbook"
+[text]
+casting_time = "1 bonus action"
+components = ["V", "S", "M", "a", "a"]
+description = ["The wood of a club or quarterstaff you are holding is imbued with nature’s power.", "For the duration, you can use your spellcasting ability instead of Strength for the attack and damage rolls of melee attacks using that weapon, and the weapon’s damage die becomes a d8. The weapon also becomes magical, if it isn’t already. The spell ends if you cast it again or if you let go of the weapon"]
+duration = "1 minute"
+level = 0
+material = "mistletoe, a shamrock leaf, and a club or quarterstaff"
+name = "Shillelagh"
+range = "touch"
+ritual = false
+school = "transmutation"
