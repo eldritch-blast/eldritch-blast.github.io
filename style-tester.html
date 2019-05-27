@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<head>
+    <title>Style Elements</title>
+    <link rel="stylesheet" type="text/css" href="charsheet.scss.css" />
+</head>
+<body>
+    <h1>Level 1 Heading</h1>
+    <div class="scratch">
+        <div class="title">Scratch</div>
+        <div></div>
+    </div>
+    <div>
+        checkbox: <div class="checkbox"></div>
+    </div>
+
+    <ul>
+        <li>First item</li>
+        <li>Second item</li>
+    </ul>
+
+    <div>
+        <p style="width: 500px;">
+            This is a paragraph. I've shortened with width to 500px so that we can see what happens with wrapping. It's also in a div, to demonstrate that a paragraph that's the immediate child of its container is not indented.
+        </p>
+        <p style="width: 500px;">
+            Subsequent paragraphs are indented, rather than offset with margins.
+        </p>
+        <p style="width: 500px;">
+            <span class="title">Inline Title.</span> This paragraph exists to show off some text styles, such as <span class="b">b</span>, <span class="small">small</span>, <span class="spell">spell</span>, and <span class="bg">bg</span>.
+        </p>
+    </div>
+
+    <div class="ability-scores">
+        <div>
+            Ability Score
+            <div class="value">10</div>
+            <div class="mod">+0</div>
+        </div>
+    </div>
+    <div class="proficiencies" style="width: 50%">
+        <div class="head b"><div class="bonus">+2</div></div>
+        <div class="save">Dex, Int</div>
+        <div class="skill">Athletics, Deception, History, Perception, Persuasion, Sleight of Hand, Stealth</div>
+        <div class="tool">Gaming set (cards), Thieves' tools</div>
+        <div class="language">Common, Elvish, Undercommon, Illuskan, Thieves' Cant</div>
+        <div class="weapon">simple weapons, hand crossbow, longsword, rapier, shortsword</div>
+        <div class="armor">light</div>
+    </div>
+
+    <div class="resource" style="width: 100px">
+        <div class="head b">Resource</div>
+        <div class="label">1<sup>st</sup></div>
+        <div class="uses">
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+        </div>
+        <div class="label">2<sup>nd</sup></div>
+        <div class="uses">
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+            <div class="checkbox"></div>
+        </div>
+    </div>
+
+    <div class="feature" style="width: 50%">
+        <div class="head">
+            <span class="b">Channel Divinity</span>
+            <div class="uses">
+                <span class="small">short rest</span>
+                <div class="checkbox"></div>
+            </div>
+        </div>
+        <div>
+            <span class="title">Turn Undead.</span> &#x2726; <span class="b">Action</span>
+            <p>
+                Requires holy symbol and verbal prayer. Each visible undead  in 30 ft. is turned for 1 minute or until it takes damage (Wis save negates).
+            </p>
+            <p>
+                A turned creature can’t take reactions and can only Dash or try to escape from an effect that prevents it from moving. It must try to move as far away as possible and can’t willingly move within 30 ft. If it has nowhere to go, it may Dodge.
+            </p>
+        </div>
+        <div>
+            <span class="title">Invoke Duplicity</span> &#x2726; <span class="b">Action</span>
+            <p>
+                Create a perfect illusion of yourself that lasts for 1 minute, in an unoccupied space you can see within 30 ft. As a bonus action, you can move the illusion up to 30 ft. to a space you can see, but it must remain with 120 ft. of you.
+            </p>
+            <p>
+                You can cast spells as if you were in the illusion’s space, but you must use your own senses. When both you and your illusion are within 5 ft. of a creature that can see the illusion, you have advantage on attack rolls against that creature.
+            </p>
+        </div>
+    </div>
+
+    <div class="equipment-set" style="width: 33%">
+        <div class="head b">Standard Equipment</div>
+        <div class="small">Rapier, dagger, leather armor</div>
+        <div class="ac">
+            <div class="head b">AC</div>
+            <div class="value">15</div>
+        </div>
+        <div class="move">
+            <div class="head b">Move</div>
+            <div class="value">30</div>
+        </div>
+        <div class="b">Attack Action</div>
+        <div class="attack roll">
+            <div class="b bg">Roll</div>
+            <div class="value">d20 + 5</div>
+        </div>
+        <div class="attack damage">
+            <div class="b bg">Damage</div>
+            <div class="value">1d8 + 3 <span class="small">piercing</span></div>
+        </div>
+        <div class="attack range">
+            <div class="b bg">Range</div>
+            <div class="value">5 ft.</div>
+        </div>
+        <div class="b">Bonus Action</div>
+        <div class="attack roll">
+            <div class="b bg">Roll</div>
+            <div class="value">d20 + 5</div>
+        </div>
+        <div class="attack damage">
+            <div class="b bg">Damage</div>
+            <div class="value">1d4 <span class="small">piercing</span></div>
+        </div>
+        <div class="attack range">
+            <div class="b bg">Range</div>
+            <div class="value">5 ft.</div>
+        </div>
+        <ul class="small">
+            <li>Can throw dagger, range 20/60</li>
+        </ul>
+    </div>
+
+    <div class="flex tall" style="width: 33%; float:right;">
+        <div class="bg half">Tall Flex 1</div>
+        <div class="bg half">Tall Flex 2</div>
+        <div class="bg half">Tall Flex 3</div>
+        <div class="bg">Tall Flex 4</div>
+        <div class="bg">Tall Flex 5</div>
+    </div>
+    <div class="flex" style="width: 66%">
+        <div class="bg">Wide Flex 1</div>
+        <div class="bg half">Wide Flex 2</div>
+        <div class="bg half">Wide Flex 3</div>
+        <div class="bg">Wide Flex 4</div>
+        <div class="bg">Wide Flex 5</div>
+    </div>
+
+    <div class="inventory grid">
+        <div class="head b">Inventory</div>
+        <div>Rapier</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div>Dagger (2)</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="money">
+            <div class="label b bg">pp</div>
+            <div class="label b bg">gp</div>
+            <div class="label b bg">sp</div>
+            <div class="label b bg">cp</div>
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+            <div class="value"></div>
+        </div>
+    </div>
+</body>
