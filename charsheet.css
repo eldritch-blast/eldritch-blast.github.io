@@ -6,12 +6,16 @@
 
   .new-page {
     page-break-before: always;
-    margin-top: 0.5rem; } }
+    margin-top: 0.25in;
+    overflow: hidden; } }
 @media screen {
   body {
     font-family: Georgia, serif;
     margin: 2rem;
-    width: 8in; } }
+    width: 8in; }
+
+  .new-page {
+    display: none; } }
 body {
   box-sizing: border-box; }
 
@@ -101,7 +105,8 @@ span.title {
 .scratch {
   display: flex;
   flex-direction: column;
-  text-align: center; }
+  text-align: center;
+  line-height: 1.5; }
   .scratch div:not(.title) {
     border: 1px solid black;
     border-radius: 3px;
@@ -194,8 +199,7 @@ li:before {
     content: "\1f480"; }
 
 .hp {
-  flex: 1;
-  line-height: 1.5; }
+  flex: 1; }
   .hp > div {
     margin-bottom: 0.8rem; }
   .hp .scratch > div:not(.title) {
@@ -223,9 +227,19 @@ li:before {
   flex-direction: column; }
   .feature > div:nth-child(n+3) {
     margin-top: 0.8rem; }
+  .feature .head {
+    position: relative; }
   .feature .head .uses {
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
     text-align: right; }
+  .feature .uses.short-rest:before {
+    font-size: 14px;
+    content: "short rest "; }
+  .feature .uses.long-rest:before {
+    font-size: 14px;
+    content: "long rest "; }
 
 .equipment-set {
   display: grid;
@@ -256,7 +270,10 @@ li:before {
     grid-column: 7 / span 3; }
 
 .inventory {
-  line-height: 1.4; }
+  line-height: 1.4;
+  align-items: end;
+  grid-gap: 0 0.8rem;
+  grid-template-rows: 1.5rem repeat(6, 2.2rem); }
   .inventory .head {
     grid-column: 2 / span 6; }
   .inventory > div:not(.money):not(.head) {
@@ -265,6 +282,7 @@ li:before {
     min-height: 0.8rem;
     font-size: 12px; }
   .inventory .money {
+    align-self: stretch;
     grid-column: 9 / span 4;
     grid-row: 1 / span 3;
     display: grid;
@@ -280,5 +298,14 @@ li:before {
     .inventory .money > .value {
       padding: 0.2rem;
       min-height: 3rem; }
+
+.spellcasting .stat {
+  padding: 0 0.3rem;
+  line-height: 1.4; }
+  .spellcasting .stat .value {
+    width: 2rem;
+    text-align: center;
+    float: right;
+    font-weight: normal; }
 
 /*# sourceMappingURL=charsheet.css.map */

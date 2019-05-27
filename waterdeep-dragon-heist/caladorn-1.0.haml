@@ -3,6 +3,8 @@
 - levels = { rogue: 1 }
 - hd = { rogue: 'd8' }
 - ability_scores = {str: 10, dex: 16, con: 13, int: 10, wis: 12, cha: 14}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
 !!!
 %head
   %title #{name}
@@ -18,12 +20,12 @@
     .ability-scores.flex.tall
       - ability_scores.each do |k, v|
         %div{class: k}
-          .score #{v}
-          .mod #{'%+d' % ((v - 10) / 2)}
+          .score=v
+          .mod='%+d' % mods[k]
     -#proficiencies
     .proficiencies
       .head.b
-        .bonus='%+d' % ((levels.values.sum - 1) / 4 + 2)
+        .bonus='%+d' % prof
       .save Dex, Int
       .skill Athletics, Deception, History, Perception, Persuasion, Sleight of Hand, Stealth
       .tool Gaming set (cards), Thieves' tools
@@ -34,7 +36,7 @@
     .health
       .head
         Max HP:
-        %span.b #{hp}
+        %span.b=hp
       .hit-dice.resource
         .head Hit Dice
         - levels.each do |k, v|
@@ -74,11 +76,11 @@
         .head.b Attack Action
         .attack.roll
           .b.bg Roll
-          .value d20 + 5
+          .value d20 + #{mods[:dex] + prof}
         .attack.damage
           .b.bg Damage
           .value
-            1d8 + 3
+            1d8 + #{mods[:dex]}
             %span.small piercing
         .attack.range
           .b.bg Range
@@ -86,7 +88,7 @@
         .head.b Bonus Action
         .attack.roll
           .b.bg Roll
-          .value d20 + 5
+          .value d20 + #{mods[:dex] + prof}
         .attack.damage
           .b.bg Damage
           .value
@@ -110,11 +112,11 @@
         .head.b Attack Action
         .attack.roll
           .b.bg Roll
-          .value d20 + 5
+          .value d20 + #{mods[:dex] + prof}
         .attack.damage
           .b.bg Damage
           .value
-            1d6 + 3
+            1d6 + #{mods[:dex]}
             %span.small piercing
         .attack.range
           .b.bg Range
@@ -147,38 +149,38 @@
 
   .inventory.grid
     .head.b Inventory
-    %div Fine clothes
-    %div Hooded lantern
-    %div 1,000 ball bearings
-    %div Rapier
-    %div Signet ring
-    %div Flask of oil (2)
-    %div Bell
-    %div Dagger (2)
-    %div Scroll of pedigree
-    %div Candle (5)
-    %div 10 ft. string
-    %div Leather armor
-    %div
-    %div
-    %div Skin of fine wine
-    %div Tinderbox
-    %div Hammer
-    %div Shortbow
-    %div
-    %div
-    %div Backpack
-    %div 50 ft. hemp rope
-    %div Pitons (10)
-    %div Arrows (20)
-    %div
-    %div
-    %div Rations (5 days)
-    %div Waterskin
-    %div Crowbar
-    %div
-    %div
-    %div
+    .item Fine clothes
+    .item Hooded lantern
+    .item 1,000 ball bearings
+    .item Rapier
+    .item Signet ring
+    .item Flask of oil (2)
+    .item Bell
+    .item Dagger (2)
+    .item Scroll of pedigree
+    .item Candle (5)
+    .item 10 ft. string
+    .item Leather armor
+    .item
+    .item
+    .item Skin of fine wine
+    .item Tinderbox
+    .item Hammer
+    .item Shortbow
+    .item
+    .item
+    .item Backpack
+    .item 50 ft. hemp rope
+    .item Pitons (10)
+    .item Arrows (20)
+    .item
+    .item
+    .item Rations (5 days)
+    .item Waterskin
+    .item Crowbar
+    .item
+    .item
+    .item
     .money
       .label.b.bg pp
       .label.b.bg gp
