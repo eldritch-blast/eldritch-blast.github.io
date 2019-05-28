@@ -89,12 +89,14 @@ HAML
   end
 end
 
+if spells.include?('non-combat')
 haml << <<HAML
     .head.b Non-Combat Spells
 HAML
 
-spells['non-combat'].sort_by { |spell| [spell['text']['level'], spell['text']['name']] }.each do |spell|
-  haml << spell_to_haml(spell, extras.include?(spell['id']))
+  spells['non-combat'].sort_by { |spell| [spell['text']['level'], spell['text']['name']] }.each do |spell|
+    haml << spell_to_haml(spell, extras.include?(spell['id']))
+  end
 end
 
 File.open(out, 'w+') do |f|

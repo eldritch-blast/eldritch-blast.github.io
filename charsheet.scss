@@ -462,7 +462,8 @@ li:before {
             background-color: white;
         }
         > .title {
-            width: 55%;
+            width: 52%;
+            padding-left: 0.2rem;
         }
         > .level:before {
             content: "\1f7c4";
@@ -471,6 +472,48 @@ li:before {
         > .level:after {
             content: "\1f7c4";
             padding: 0 0.2rem;
+        }
+    }
+}
+
+//// Companion
+.companion {
+    > div:not(:first-child) {
+        padding: 0.2rem;
+    }
+    > div:not(:last-child) {
+        border-bottom: 1px solid black;
+    }
+    .combat-stats {
+        > div:before {
+            font-weight: bold;
+        }
+        .ac:before {
+            content: "Armor Class ";
+        }
+        .hp:before {
+            content: "Hit Points ";
+        }
+        .move:before {
+            content: "Speed ";
+        }
+    }
+    .ability-scores > div {
+        line-height: 1.4;
+        font-size: inherit;
+        margin: 0;
+        text-align: inherit;
+        width: 15%;
+    }
+    .other-stats {
+        > div:before {
+            font-weight: bold;
+        }
+        .skills:before {
+            content: "Skills ";
+        }
+        .senses:before {
+            content: "Senses ";
         }
     }
 }

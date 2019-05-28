@@ -340,12 +340,38 @@ li:before {
   .spell-list .spell > .prepared {
     background-color: white; }
   .spell-list .spell > .title {
-    width: 55%; }
+    width: 52%;
+    padding-left: 0.2rem; }
   .spell-list .spell > .level:before {
     content: "\1f7c4";
     padding: 0 0.2rem; }
   .spell-list .spell > .level:after {
     content: "\1f7c4";
     padding: 0 0.2rem; }
+
+.companion > div:not(:first-child) {
+  padding: 0.2rem; }
+.companion > div:not(:last-child) {
+  border-bottom: 1px solid black; }
+.companion .combat-stats > div:before {
+  font-weight: bold; }
+.companion .combat-stats .ac:before {
+  content: "Armor Class "; }
+.companion .combat-stats .hp:before {
+  content: "Hit Points "; }
+.companion .combat-stats .move:before {
+  content: "Speed "; }
+.companion .ability-scores > div {
+  line-height: 1.4;
+  font-size: inherit;
+  margin: 0;
+  text-align: inherit;
+  width: 15%; }
+.companion .other-stats > div:before {
+  font-weight: bold; }
+.companion .other-stats .skills:before {
+  content: "Skills "; }
+.companion .other-stats .senses:before {
+  content: "Senses "; }
 
 /*# sourceMappingURL=charsheet.css.map */
