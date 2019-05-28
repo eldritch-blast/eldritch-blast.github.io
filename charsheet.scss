@@ -313,8 +313,29 @@ li:before {
 .points {
     .scratch {
         float: right;
-        width: 40%;
+        width: 44%;
         margin-left: 0.3rem;
+        .title {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    }
+}
+
+//// Table
+.table {
+    display: table;
+    table-layout: fixed;
+    .c {
+        text-align: center;
+        display: table-cell;
+        width: 50%;
+    }
+    .row {
+        display: table-row;
+    }
+    .row:nth-child(even) {
+        background-color: $light-grey;
     }
 }
 
@@ -323,9 +344,6 @@ li:before {
     width: 100%;
     display: flex;
     flex-direction: column;
-    > div:nth-child(n+3) {
-        margin-top: 0.8rem;
-    }
     .head {
         position: relative;
     }

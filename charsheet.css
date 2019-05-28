@@ -233,15 +233,31 @@ li:before {
 
 .points .scratch {
   float: right;
-  width: 40%;
+  width: 44%;
   margin-left: 0.3rem; }
+  .points .scratch .title {
+    font-size: 14px;
+    line-height: 1.4; }
+
+.table {
+  display: table;
+  table-layout: fixed; }
+  .table .c {
+    text-align: center;
+    display: table-cell;
+    width: 50%; }
+  .table .row {
+    display: table-row; }
+  .table .row:nth-child(even) {
+    background-color: #ddd; }
+
+.feature > .table {
+  margin-top: 0.5rem; }
 
 .feature {
   width: 100%;
   display: flex;
   flex-direction: column; }
-  .feature > div:nth-child(n+3) {
-    margin-top: 0.8rem; }
   .feature .head {
     position: relative; }
   .feature .head .uses {
