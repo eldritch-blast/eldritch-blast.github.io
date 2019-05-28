@@ -64,7 +64,7 @@
 
     .flex.column.wide
       -#equip
-      .equipment-set.half
+      .equipment-set.half.block
         .head.b Melee Equipment
         .small Dagger, shield, studded leather
         .ac
@@ -88,7 +88,7 @@
         %ul.small
           %li Can throw dagger, range 20/60
       -#equip
-      .equipment-set.half
+      .equipment-set.half.block
         .head.b Ranged Equipment
         .small Light crossbow, studded leather
         .ac
@@ -112,7 +112,7 @@
         %ul.small
           %li Disadvantage if enemy within 5 ft.
       -#channel-divinity
-      .feature
+      .feature.block
         .head
           %span.b Channel Divinity
           .uses.short-rest
@@ -141,7 +141,7 @@
 
     .flex.tall.column.narrow{style: 'margin-top:-3rem;'}
       -#cleric-spellcasting
-      .spellcasting
+      .spellcasting.block
         .head.b Cleric Spellcasting
         .stat.b
           Spellcasting Ability:
@@ -152,7 +152,7 @@
         .stat.b
           Saving Throw DC:
           .value=8 + prof + mods[:wis]
-      .flex
+      .flex.block
         .head.b Spell Slots
         .slots.resource.half
           .label
@@ -169,10 +169,10 @@
           .uses
             - 3.times do |i|
               .checkbox
-      .scratch
+      .scratch.block
         .title.b Concentration
         %div
-      .feature
+      .feature.block
         .head.b Preparation
         %p.small
           You always have
@@ -182,11 +182,11 @@
           and
           %span.spell pass without trace
           prepared. After a long rest, you can prepare any #{levels[:cleric] + mods[:wis]} spells from the cleric spell list.
-      .feature
+      .feature.block
         .head.b Ritual Casting
         %p.small
           You can cast a prepared cleric spell with the ritual tag as a ritual.
-      .feature
+      .feature.block
         .head.b Blessing of the Trickster
         %p.small
           %span.b Action.
@@ -194,7 +194,7 @@
 
   .new-page
 
-  .inventory.grid
+  .inventory.grid.block
     .head.b Inventory
     .item Fine clothes
     .item Holy Amulet
@@ -238,7 +238,7 @@
       .value.sp 4
       .value.cp 5
 
-  .spell-list.flex
+  .spell-list.flex.block
     .spell-actions.column
       .head.b Spell Actions
       .spell

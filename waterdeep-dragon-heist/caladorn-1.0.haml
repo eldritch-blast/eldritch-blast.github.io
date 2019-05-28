@@ -64,7 +64,7 @@
 
     .flex.column.wide
       -#equip
-      .equipment-set.half
+      .equipment-set.half.block
         .head.b Standard Equipment
         .small Rapier, dagger, leather armor
         .ac
@@ -100,7 +100,7 @@
         %ul.small
           %li Can throw dagger, range 20/60
       -#equip
-      .equipment-set.half
+      .equipment-set.half.block
         .head.b Ranged Equipment
         .small Shortbow, leather armor
         .ac
@@ -126,12 +126,12 @@
 
     .flex.tall.column.narrow
       -#sneak-attack
-      .feature
+      .feature.block
         .head.b Sneak Attack +1d6
         %p.small
           Once per turn, deal bonus damage on an attack with a finesse or ranged weapon. Requires advantage, or another enemy of the target within 5 ft. of it and no disadvantage.
       -#expertise
-      .feature
+      .feature.block
         .head.b Expertise
         %p.small
           Double proficiency bonus on
@@ -140,14 +140,14 @@
           %span.b Perception
           checks.
       -#dual wield
-      .feature
+      .feature.block
         .head.b Dual Wielder
         %ul.small
           %li +1 AC when dual wielding.
           %li Can dual wield non-light weapons.
           %li Can draw or stow two weapons at a time.
 
-  .inventory.grid
+  .inventory.grid.block
     .head.b Inventory
     .item Fine clothes
     .item Hooded lantern

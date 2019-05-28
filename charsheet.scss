@@ -67,6 +67,9 @@ span.title {
 .bg {
     background-color: $light-grey;
 }
+.block {
+    margin-bottom: 0.8rem;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -98,10 +101,6 @@ span.title {
 }
 .btf {
     width: 100%;
-    // Children of both columns
-    > div > div {
-        margin-bottom: 0.8rem;
-    }
     .column.wide {
         width: calc(66.66666% - 0.4rem);
     }
@@ -263,7 +262,7 @@ li:before {
         .d8:before {
             content: "d8";
         }
-        .d6:before {
+        .d10:before {
             content: "d10";
         }
         .d12:before {
@@ -437,6 +436,9 @@ li:before {
             font-weight: normal;
         }
     }
+}
+.slots.resource {
+    line-height: 1.5;
 }
 
 //// Spell List

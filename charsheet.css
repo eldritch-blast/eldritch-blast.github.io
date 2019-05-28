@@ -55,6 +55,9 @@ span.title {
 .bg {
   background-color: #ddd; }
 
+.block {
+  margin-bottom: 0.8rem; }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -83,8 +86,6 @@ span.title {
 
 .btf {
   width: 100%; }
-  .btf > div > div {
-    margin-bottom: 0.8rem; }
   .btf .column.wide {
     width: calc(66.66666% - 0.4rem); }
   .btf .column.narrow {
@@ -198,7 +199,7 @@ li:before {
     content: "d6"; }
   .health .hit-dice .d8:before {
     content: "d8"; }
-  .health .hit-dice .d6:before {
+  .health .hit-dice .d10:before {
     content: "d10"; }
   .health .hit-dice .d12:before {
     content: "d12"; }
@@ -322,16 +323,15 @@ li:before {
     float: right;
     font-weight: normal; }
 
+.slots.resource {
+  line-height: 1.5; }
+
 .spell-list .column {
   width: calc(50% - 0.4rem); }
   .spell-list .column > .spell:nth-child(odd) {
     background-color: #ddd; }
   .spell-list .column > .head:not(:first-child) {
     margin-top: 0.5rem; }
-.spell-list .cantrip-header {
-  background-color: #777;
-  color: white;
-  text-align: center; }
 .spell-list .spell {
   font-size: 14px;
   font-style: normal; }
