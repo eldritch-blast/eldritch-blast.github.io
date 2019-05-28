@@ -153,20 +153,16 @@
           Saving Throw DC:
           .value=8 + prof + mods[:wis]
       .flex
-        .list.half
-          .head.b Cantrips
-          .small Guidance
-          .small Resistance
-          .small Spare the Dying
-          .small Toll the Dead
+        .head.b Spell Slots
         .slots.resource.half
-          .head.b Spell Slots
           .label
             1
             %sup> st
           .uses
             - 4.times do |i|
               .checkbox
+
+        .slots.resource.half
           .label
             2
             %sup> nd
@@ -245,6 +241,30 @@
   .spell-list.flex
     .spell-actions.column
       .head.b Spell Actions
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Guidance
+        .level cantrip
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Resistance
+        .level cantrip
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Spare the Dying
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Toll the Dead
+        .level cantrip
+        .keywords.b 
       .spell
         .prepared
           .checkbox

@@ -310,6 +310,15 @@ li:before {
     }
 }
 
+//// Point Pool
+.points {
+    .scratch {
+        float: right;
+        width: 40%;
+        margin-left: 0.3rem;
+    }
+}
+
 //// Feature
 .feature {
     width: 100%;

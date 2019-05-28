@@ -230,6 +230,11 @@ li:before {
     grid-column: 2 / span 3;
     text-align: left; }
 
+.points .scratch {
+  float: right;
+  width: 40%;
+  margin-left: 0.3rem; }
+
 .feature {
   width: 100%;
   display: flex;
@@ -323,6 +328,10 @@ li:before {
     background-color: #ddd; }
   .spell-list .column > .head:not(:first-child) {
     margin-top: 0.5rem; }
+.spell-list .cantrip-header {
+  background-color: #777;
+  color: white;
+  text-align: center; }
 .spell-list .spell {
   font-size: 14px;
   font-style: normal; }

@@ -4,8 +4,8 @@ require 'toml-rb'
 
 list = ARGV[0]
 out = ARGV[1]
-first = ARGV[2]
-last = ARGV[3]
+first = ARGV[2].to_i
+last = ARGV[3].to_i
 extras = ARGV[4..-1]
 
 puts "Writing #{list} spell list to #{out}."
@@ -21,22 +21,25 @@ spells = []
       puts "parse error in #{spell}: #{ex}"
       exit
     end
-    spells << spell if spell['metadata']['lists'].include?(list) || extras.include?(spell['id'])
+    lists = spell['metadata']['lists']
+
+    spells << spell if extras.include?(spell['id']) || (spell['metadata']['lists'].include?(list) && level > 0)
   end
 end
 
 haml = ".spell-list.flex\n"
 
-def ord(level)
+def to_string(level)
+  return 'cantrip' if level == 0
   case level
   when 1
-    'st'
+    '1<sup>st</sup>'
   when 2
-    'nd'
+    '2<sup>nd</sup>'
   when 3
-    'rd'
+    '3<sup>rd</sup>'
   else
-    'th'
+    level.to_s + '<sup>th</sup>'
   end
 end
 
@@ -51,7 +54,7 @@ def spell_to_haml(spell, prepared)
       .prepared
         .checkbox#{'.checked' if prepared}
       .title #{name}
-      .level #{level}<sup>#{ord(level)}</sup>
+      .level #{to_string(level)}
       .keywords.b #{keywords.join(', ')}
 SPELL
 end
