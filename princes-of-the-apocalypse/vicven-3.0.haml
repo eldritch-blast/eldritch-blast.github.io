@@ -1,7 +1,7 @@
 - name = "Vicven Milner"
 - levels = { cleric: 3 }
 - hd = { cleric: 'd8' }
-- ability_scores = {str: 10, dex: 16, con: 13, int: 8, wis: 16, cha: 12}
+- ability_scores = {str: 10, dex: 14, con: 13, int: 9, wis: 16, cha: 14}
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.sum - 1) / 4 + 2)
 - hp = 8 + (levels[:cleric] - 1) * 5 + mods[:con] * levels[:cleric]
@@ -136,6 +136,17 @@
             Create a perfect illusion of yourself that lasts for 1 minute, in an unoccupied space you can see within 30 ft. As a bonus action, you can move the illusion up to 30 ft. to a space you can see, but it must remain with 120 ft. of you.
           %p
             You can cast spells as if you were in the illusion’s space, but you must use your own senses. When both you and your illusion are within 5 ft. of a creature that can see the illusion, you have advantage on attack rolls against that creature.
+      -#secod-chance
+      .feature
+        .head
+          %span.b Second Chance
+          .uses
+            - 1.times do |i|
+              .checkbox
+        %p.small
+          %span.b Reaction.
+          When a creature you can see hits you with an attack roll, you can use your reaction to force that creature to reroll. You can use this ability once per combat encounter.
+
 
     .flex.tall.column.narrow{style: 'margin-top:-3rem;'}
       -#cleric-spellcasting
