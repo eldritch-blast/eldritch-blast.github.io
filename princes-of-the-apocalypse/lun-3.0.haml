@@ -125,40 +125,42 @@
 
 
       -#colossus-slayer
-      .feature.block.half{style: 'margin-top: -6rem;'}
-        .head.b Colossus Slayer
-        %p.small
-          Once per turn, deal +1d8 bonus damage on a hit with a weapon attack against a target that is below its hit point maximum.
+      .half{style: 'margin-top: -6rem;'}
+        .feature.block
+          .head.b Colossus Slayer
+          %p.small
+            Once per turn, deal +1d8 bonus damage on a hit with a weapon attack against a target that is below its hit point maximum.
         -#favored-terrain
-        .feature.block.half
-        .head.b Favored Terrain: Grassland
-        %p.small
-          While traveling in your favored terrain, you gain the following benefits:
-        %ul.small
-          %li Difficult terrain doesn't slow your group's travel.
-          %li Your group can't become lost except by magical means.
-          %li You remain alert to danger even while engaged in another activity.
-          %li If you are traveling alone, you can move stealthily at a normal pace.
-          %li When you forage, you find twice as much food as normal.
-          %li While tracking creatures, you learn the number, sizes, and how long ago they passed.
+        .feature.block
+          .head.b Favored Terrain: Grassland
+          %p.small
+            While traveling in your favored terrain, you gain the following benefits:
+          %ul.small
+            %li Difficult terrain doesn't slow your group's travel.
+            %li Your group can't become lost except by magical means.
+            %li You remain alert to danger even while engaged in another activity.
+            %li If you are traveling alone, you can move stealthily at a normal pace.
+            %li When you forage, you find twice as much food as normal.
+            %li While tracking creatures, you learn the number, sizes, and how long ago they passed.
 
-      -#fighting-style
-      .feature.block.half
-        .head.b Fighting Style: Archery
-        %p.small
-          +2 to attack rolls with ranged weapons
+      .half
+        -#fighting-style
+        .feature.block
+          .head.b Fighting Style: Archery
+          %p.small
+            +2 to attack rolls with ranged weapons
         -#sharpshooter
-        .feature.block.half
-        .head.b Sharpshooter
-        %ul.small
-          %li Attacking at long range doesn't impose disadvantage
-          %li Your ranged weapon attacks ignore &#xbd; cover and &#xbe; cover.
-          %li Before you make an attack with a ranged weapon, you can choose to take a -5 penalty to the attack roll to add +10 damage.
+        .feature.block
+          .head.b Sharpshooter
+          %ul.small
+            %li Attacking at long range doesn't impose disadvantage
+            %li Your ranged weapon attacks ignore &#xbd; cover and &#xbe; cover.
+            %li Before you make an attack with a ranged weapon, you can choose to take a -5 penalty to the attack roll to add +10 damage.
         -#favored-enemy
-        .feature.block.half
-        .head.b Favored Enemy: Beasts
-        %p.small
-          Advantage on Wisdom (Survival) checks to track your favored enemies and Intelligence checks to recall information about them.
+        .feature.block
+          .head.b Favored Enemy: Beasts
+          %p.small
+            Advantage on Wisdom (Survival) checks to track your favored enemies and Intelligence checks to recall information about them.
 
     .flex.tall.column.narrow
       -#ranger-spellcasting
