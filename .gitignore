@@ -1,3 +1,5 @@
 .sass-cache/
 data/index.html
+unpublished/
+*spells.haml
 *.swp
