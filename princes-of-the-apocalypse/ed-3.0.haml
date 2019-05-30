@@ -3,8 +3,8 @@
 - hd = { wizard: 'd6' }
 - ability_scores = {str: 8, dex: 14, con: 16, int: 17, wis: 10, cha: 8}
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
-- prof = ((levels.values.sum - 1) / 4 + 2)
-- hp = 6 + (levels[:wizard] - 1) * 4 + mods[:con] * levels.values.sum
+- prof = ((levels.values.inject(&:sum) - 1) / 4 + 2)
+- hp = 6 + (levels[:wizard] - 1) * 4 + mods[:con] * levels.values.inject(&:sum)
 !!!
 %head
   %title #{name}
@@ -286,6 +286,19 @@
       .title Unseen Servant
       .level 1<sup>st</sup>
       .keywords.b ritual
+    .spell
+      .prepared
+        .checkbox
+      .title Flaming Sphere
+      .level 2<sup>nd</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Rope Trick
+      .level 2<sup>nd</sup>
+      .keywords.b
+
   .other-spells.column
     .head.b Non-Combat Spells
     .spell
