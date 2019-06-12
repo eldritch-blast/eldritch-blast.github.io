@@ -1,0 +1,267 @@
+- name = "Lun Bearforest"
+- levels = { ranger: 3 }
+- hd = { ranger: 'd10' }
+- ability_scores = {str: 10, dex: 16, con: 14, int: 10, wis: 14, cha: 10}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 + (levels[:ranger] - 1) * 6 + mods[:con] * levels[:ranger]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Human
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (1772 / 2700 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Dex
+      .skill Animal Handling, Athletics, Survival, Nature, Perception, Stealth
+      .tool Musical instrument (drums)
+      .language Common, Dwarvish
+      .weapon simple, martial
+      .armor light, medium, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      -#equip
+      .equipment-set.half.block
+        .head.b Standard Equipment
+        .small
+          Longbow, studded leather armor
+        .ac
+          .head.b AC
+          .value 15
+        .move
+          .head.b Move
+          .value 30
+        .head.b Ranged Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof + 2}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d8 + #{mods[:dex]}
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 150 / 600
+      -#equip
+      .equipment-set.half.block
+        .head.b Alternate Equipment
+        .small Dual shortswords, studded leather
+        .ac
+          .head.b AC
+          .value 15
+        .move
+          .head.b Move
+          .value 30
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:dex]}
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 5
+        .head.b Bonus Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 5
+        %ul.small
+          %li Must use Attack action to get bonus action attack with off-hand
+
+
+      -#colossus-slayer
+      .half{style: 'margin-top: -6rem;'}
+        .feature.block
+          .head.b Colossus Slayer
+          %p.small
+            Once per turn, deal +1d8 bonus damage on a hit with a weapon attack against a target that is below its hit point maximum.
+        -#favored-terrain
+        .feature.block
+          .head.b Favored Terrain: Grassland
+          %p.small
+            While traveling in your favored terrain, you gain the following benefits:
+          %ul.small
+            %li Difficult terrain doesn't slow your group's travel.
+            %li Your group can't become lost except by magical means.
+            %li You remain alert to danger even while engaged in another activity.
+            %li If you are traveling alone, you can move stealthily at a normal pace.
+            %li When you forage, you find twice as much food as normal.
+            %li While tracking creatures, you learn the number, sizes, and how long ago they passed.
+
+      .half
+        -#fighting-style
+        .feature.block
+          .head.b Fighting Style: Archery
+          %p.small
+            +2 to attack rolls with ranged weapons
+        -#sharpshooter
+        .feature.block
+          .head.b Sharpshooter
+          %ul.small
+            %li Attacking at long range doesn't impose disadvantage
+            %li Your ranged weapon attacks ignore &#xbd; cover and &#xbe; cover.
+            %li Before you make an attack with a ranged weapon, you can choose to take a -5 penalty to the attack roll to add +10 damage.
+        -#favored-enemy
+        .feature.block
+          .head.b Favored Enemy: Beasts
+          %p.small
+            Advantage on Wisdom (Survival) checks to track your favored enemies and Intelligence checks to recall information about them.
+
+    .flex.tall.column.narrow
+      -#ranger-spellcasting
+      .spellcasting.block
+        .head.b Ranger Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Wis
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:wis] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:wis]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 3.times do |i|
+              .checkbox
+        .slots.resource.half
+      .scratch.concentration.block
+        .title.b Concentration
+        %div
+      -#primeval-awareness
+      .feature.block
+        .head.b Primeval Awareness
+        %p.small
+          %span.b Action.
+          Expend one ranger spell slot. For 1 minute per level of the expended slot, you can sense whether any aberrations, celestials, dragons, elementals, fey, or undead are within 1 mile (or up to 6 miles in your favored terrain). You don't learn their location or number.
+      -#wanderer
+      .feature.block
+        .head.b Wanderer
+        %p.small
+          You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, terrain permitting.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Longbow
+    .item Staff
+    .item 50 ft. hemp rope
+    .item Arrows (4)
+    .item Shortsword (2)
+    .item Backpack
+    .item Hunting trap
+    .item Torch (10)
+    .item Studded leather armor
+    .item Bedroll
+    .item Bearskin cloak
+    .item Tinderbox
+    .item
+    .item
+    .item Waterskin
+    .item Rations (10)
+    .item Traveler's clothes
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 66
+      .value.sp 41
+      .value.cp 53
+
+  .spell-list.flex.block
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .title Cure Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+    .other-spells.column
+      .head.b Bonus Actions
+      .spell
+        .title Hunter's Mark
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .head.b Reactions
+      .spell
+        .title Absorb Elements
+        .level 1<sup>st</sup>
+        .keywords.b
+ 
