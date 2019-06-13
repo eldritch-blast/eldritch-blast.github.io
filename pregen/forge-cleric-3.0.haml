@@ -1,0 +1,484 @@
+- name = "Saeran Loredan"
+- levels = { cleric: 3 }
+- hd = { cleric: 'd8' }
+- ability_scores = {str: 16, dex: 8, con: 14, int: 10, wis: 16, cha: 10}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 8 + (levels[:cleric] - 1) * 5 + mods[:con] * levels[:cleric]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Human
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (900 / 2,700 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Wis, Cha
+      .skill Athletics, History, Insight, Persuasion, Religion
+      .tool Smith's tools, Tinker's tools
+      .language Common, Dwarvish, Gnomish
+      .weapon simple
+      .armor all armor, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      -#equip
+      .equipment-set.half.block
+        .head.b Melee Equipment
+        .small Mace, shield, chain mail
+        .ac
+          .head.b AC
+          .value 18
+        .move
+          .head.b Move
+          .value 30
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:str] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:str]}
+            %span.small bludgeoning
+        .attack.range
+          .b.bg Range
+          .value 5
+        %ul.small
+          %li Disadvantage on Dexterity (Stealth)
+      -#equip
+      .equipment-set.half.block
+        .head.b Spellcasting
+        .small Shield, chain mail
+        .ac
+          .head.b AC
+          .value 18
+        .move
+          .head.b Move
+          .value 30
+        .head.b Sacred Flame Cantrip
+        .attack.roll
+          .b.bg Roll
+          .value Dex save
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d8
+            %span.small radiant
+        .attack.range
+          .b.bg Range
+          .value 60
+      -#blessing-of-the-forge
+      .feature
+        .head
+          %span.b Blessing of the Forge
+          .uses.long-rest
+            .checkbox
+        .block.small
+          At the end of a long rest, you can touch one nonmagical suit of armor or weapon. The object becomes a magic item, granting +1 to AC if it's armor or +1 to attack and damage rolls if it's a weapon. The effect ends after your next long rest, or when you die.
+      -#channel-divinity
+      .feature
+        .head
+          %span.b Channel Divinity
+          .uses.short-rest
+            - 1.times do |i|
+              .checkbox
+        .block.small
+          %span.title
+            Turn Undead
+          &#x2726;
+          %span.b Action
+          %p
+            Requires holy symbol and verbal prayer. Each visible undead  in 30 ft. is turned for 1 minute or until it takes damage (Wis save negates).
+          %p
+            A turned creature can’t take reactions and can only Dash or try to escape from an effect that prevents it from moving. It must try to move as far away as possible and can’t willingly move within 30 ft. If it has nowhere to go, it may Dodge.
+        .block.small
+          %span.title
+            Artisan's Blessing
+          &#x2726;
+          %span.b Ritual
+          %p
+            You conduct an hour-long ritual that crafts a non-magical item that is partially metal: a simple or martial weapon, a suit of armor, ten pieces of ammunition, a set of tools, or another metal object. The creation is complete at the end of the hour, coalescing in an unoccupied space of your choice on a surface within 5 feet of your.
+          %p
+            The thing you create must be worth no more than 100 gp. The ritual consumes metal, which can include coins, with a value equal to the creation. The metal irretrievably coalesces and transforms into the creation at the ritual's end, magically forming even nonmetal parts of the creation.
+          %p
+            The ritual can create a duplicate of a nonmagical item that contains metal, such as a key, if you possess the original during the ritual.
+
+    .flex.tall.column.narrow
+      -#cleric-spellcasting
+      .spellcasting.block
+        .head.b Cleric Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Wis
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:wis] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:wis]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 4.times do |i|
+              .checkbox
+        .slots.resource.half
+          .label
+            2
+            %sup> nd
+          .uses
+            - 2.times do |i|
+              .checkbox
+      .scratch.block
+        .title.b Concentration
+        %div
+      .feature.block
+        .head.b Preparation
+        %p.small
+          You always have
+          %span.spell identify
+          and
+          %span.spell searing smite
+          prepared. After a long rest, you can prepare any #{levels[:cleric] + mods[:wis]} spells from the cleric spell list.
+      .feature.block
+        .head.b Ritual Casting
+        %p.small
+          You can cast a prepared cleric spell with the ritual tag as a ritual.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Chain mail
+    .item Holy Amulet
+    .item Smith's tools
+    .item Tinker's tools
+    .item Mace
+    .item Hemp Rope (50 ft.)
+    .item Torch (10)
+    .item
+    .item Shield
+    .item Tinderbox
+    .item
+    .item
+    .item
+    .item
+    .item Backpack
+    .item Bedroll
+    .item
+    .item
+    .item
+    .item
+    .item Waterskin
+    .item Hammer
+    .item
+    .item
+    .item
+    .item
+    .item Rations (10)
+    .item Common clothes
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 10
+      .value.sp
+      .value.cp
+
+  .spell-list.flex
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Guidance
+        .level cantrip
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Sacred Flame
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Bane
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Bless
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Command
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Create or Destroy Water
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Cure Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Magic
+        .level 1<sup>st</sup>
+        .keywords.b conc., ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Poison and Disease
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Guiding Bolt
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Inflict Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Protection from Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Purify Food and Drink
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Aid
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Blindness/Deafness
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Calm Emotions
+        .level 2<sup>nd</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Continual Flame
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Enhance Ability
+        .level 2<sup>nd</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Find Traps
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Gentle Repose
+        .level 2<sup>nd</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Heat Metal
+        .level 2<sup>nd</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Hold Person
+        .level 2<sup>nd</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Lesser Restoration
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Locate Object
+        .level 2<sup>nd</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Protection from Poison
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Silence
+        .level 2<sup>nd</sup>
+        .keywords.b conc., ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Warding Bond
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Zone of Truth
+        .level 2<sup>nd</sup>
+        .keywords.b 
+    .other-spells.column
+      .head.b Bonus Actions
+      .spell
+        .prepared
+          .checkbox
+        .title Healing Word
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Sanctuary
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Searing Smite
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Shield of Faith
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Magic Weapon
+        .level 2<sup>nd</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Spiritual Weapon
+        .level 2<sup>nd</sup>
+        .keywords.b 
+      .head.b Non-Combat Spells
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Mending
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Ceremony
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Identify
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Augury
+        .level 2<sup>nd</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Prayer of Healing
+        .level 2<sup>nd</sup>
+        .keywords.b 

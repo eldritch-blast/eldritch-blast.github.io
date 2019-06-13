@@ -11,7 +11,8 @@ class CharSheet
   def initialize(path)
     @path = path
     @filename = path.split('/').last
-    character, version = @filename.split('.')[0...-1].join('.').split('-')
+    character = @filename.split('-')[0...-1].join(' ')
+    version = @filename.split('-')[-1].split('.')[0..1].join('.')
     @character = character
     @version = version.to_f
   end
@@ -26,11 +27,23 @@ end
 
 links = []
 charsheets.group_by(&:character).each do |key, sheets|
-  `cp #{sheets.sort_by(&:version).last.path} #{dir}/#{key}.html`
+  `cp #{sheets.sort_by(&:version).last.path} #{dir}/#{key.downcase.gsub(' ', '-')}.html`
   html = "<h1><a href=\"#{key}.html\">#{key.capitalize}</a></h1>"
   html << "<h4>previous versions</h4>"
   html << sheets.sort_by(&:version).reverse.map { |sheet| "<p><a href=\"#{sheet.filename}\">#{sheet.version}\</a></p>" }.join
   links << html
+end
+
+if dir =~ /^pregen/
+  # we want a different index for pregen characters
+  links = []
+  charsheets.group_by(&:character).each do |key, sheets|
+    `cp #{sheets.sort_by(&:version).first.path} #{dir}/#{key.downcase.gsub(' ', '-')}.html`
+    html = "<h1><a href=\"#{key.downcase.gsub(' ', '-')}.html\">#{key.capitalize}</a></h1>"
+    html << "<h4>leveled versions</h4>"
+    html << sheets.sort_by(&:version).map { |sheet| "<p><a href=\"#{sheet.filename}\">#{sheet.version}\</a></p>" }.join
+    links << html
+  end
 end
 
 File.open(dir + '/index.html', 'w+') do |file|
