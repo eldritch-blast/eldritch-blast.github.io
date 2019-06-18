@@ -92,6 +92,15 @@ span.title {
 .flex.tall {
     flex-direction: column;
 }
+.flex > .column {
+    width: calc(50% - 0.4rem);
+}
+.flex >.column.wide {
+    width: calc(66.66666% - 0.4rem);
+}
+.flex >.column.narrow {
+    width: calc(33.33333% - 0.4rem);
+}
 .atf {
     width: 100%;
     margin-bottom: 0.8rem;
@@ -101,12 +110,9 @@ span.title {
 }
 .btf {
     width: 100%;
-    .column.wide {
-        width: calc(66.66666% - 0.4rem);
-    }
-    .column.narrow {
-        width: calc(33.33333% - 0.4rem);
-    }
+}
+.remove-bottom-margin {
+    margin-bottom: 0;
 }
 
 // Mixins
@@ -443,7 +449,7 @@ li:before {
 }
 
 //// Spellcasting
-.spellcasting {
+.spellcasting,.ki {
     .stat {
         padding: 0 0.3rem;
         line-height: 1.4;
@@ -458,11 +464,17 @@ li:before {
 .slots.resource {
     line-height: 1.5;
 }
+.ki {
+    .stat {
+        line-height: 2;
+    }
+    border-bottom: 1px solid black;
+    margin-bottom: 0.3rem;
+}
 
 //// Spell List
 .spell-list {
     .column {
-        width: calc(50% - 0.4rem);
         > .spell:nth-child(odd) {
             background-color: $light-grey;
         }

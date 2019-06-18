@@ -1,0 +1,324 @@
+- name = "Hamlin Erda"
+- levels = { rogue: 4 }
+- hd = { rogue: 'd8' }
+- ability_scores = {str: 8, dex: 18, con: 14, int: 16, wis: 8, cha: 12}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 8 + (levels[:rogue] - 1) * 5 + mods[:con] * levels[:rogue]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Forest Gnome
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (2,700 / 6,500 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Dex, Int
+      .skill Acrobatics, Deception, Investigation, Perception, Sleight of Hand, Stealth
+      .tool Thieves' tools, Disguise kit, Alchemist's supplies
+      .language Common, Thieves' Cant, Gnomish
+      .weapon all simple, longsword, hand crossbow, rapier, shortsword
+      .armor light
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      -#equip
+      .equipment-set.half.block
+        .head.b Ranged Equipment
+        .small
+          Light crossbow, leather armor
+        .ac
+          .head.b AC
+          .value=11 + mods[:dex]
+        .move
+          .head.b Move
+          .value 25
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d8 + #{mods[:dex]}
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 80 / 320
+      -#equip
+      .equipment-set.half.block
+        .head.b Melee Equipment
+        .small Shortsword, leather armor
+        .ac
+          .head.b AC
+          .value=11 + mods[:dex]
+        .move
+          .head.b Move
+          .value 25
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:dex]}
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 5
+
+      .half
+        -#cunning-action
+        .feature.block
+          .head.b Cunning Action
+          %p.small
+            You can Dash, Disengage, or Hide as a bonus action.
+        -#darkvision
+        .feature.block
+          .head.b Darkvision
+          %p.small
+            You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+        -#speak-with-small-beasts
+        .feature.block
+          .head.b Speak with Small Beasts
+          %p.small
+            You can communicate simple ideas with Small or smaller beasts through sounds and gestures.
+
+      .half
+        -#gnome-cunning
+        .feature.block
+          .head.b Gnome Cunning
+          %p.small
+            Advantage on Int, Wis, and Cha saving throws against magic.
+        -#expertise
+        .feature.block
+          .head.b Expertise
+          %p.small
+            Double proficiency bonus on ability checks using your
+            %span.b Thieves' tools
+            or
+            %span.b Stealth
+            proficiencies.
+        -#sneak-attack
+        .feature.block
+          .head.b Sneak Attack +2d6
+          %p.small
+            Once per turn, deal bonus damage on an attack with a finesse or ranged weapon. Requires advantage, or another enemy of the target within 5 ft. of it and no disadvantage.
+
+    .flex.tall.column.narrow
+      -#arcane-trickster-spellcasting
+      .spellcasting.block
+        .head.b Arcane Trickster Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Int
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:int] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:int]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 3.times do |i|
+              .checkbox
+        .slots.resource.half
+      .scratch.concentration.block
+        .title.b Concentration
+        %div
+      -#mage-hand-legerdemain
+      .feature.block
+        .head.b Mage Hand Legerdemain
+        %p.small
+          When you cast
+          %span.spell mage hand,
+          the hand is invisible, and you can perform additional tasks with it:
+          %ul.small
+            %li Stow one object in a container worn or carried by another creature.
+            %li Retrieve an object in a container worn or carried by another creature.
+            %li Use thieves' tools to pick locks and disarm traps at range.
+
+  .spell-list.flex.block
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .title Booming Blade
+        .level cantrip
+        .keywords.b 
+      .spell
+        .title Mage Hand
+        .level cantrip
+        .keywords.b 
+      .spell
+        .title Message
+        .level cantrip
+        .keywords.b 
+      .spell
+        .title Minor Illusion
+        .level cantrip
+        .keywords.b 
+      .spell
+        .title Charm Person
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .title Disguise Self
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .title Tasha's Hideous Laughter
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+    .other-spells.column
+      .head.b Non-Combat Spells
+      .spell
+        .title Find Familiar
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      %p.small
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Light crossbow
+    .item Crossbow bolt (20)
+    .item 50 ft. hemp rope
+    .item Backpack
+    .item Shortsword
+    .item Dagger (2)
+    .item Bedroll
+    .item Common clothes
+    .item Leather armor
+    .item Rations (10)
+    .item Waterskin
+    .item Candle (5)
+    .item
+    .item
+    .item Thieves' tools
+    .item Alchemist's tools
+    .item Tinderbox
+    .item Steel mirror
+    .item
+    .item
+    .item Sack
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 5
+      .value.sp
+      .value.cp
+
+  .flex.role-playing
+    .column.wide.background
+      .feature.block
+        .head.b Background: Charlatan
+        %p.small
+          You have always had a way with people. You know what makes them tick, you can tease out their hearts desires after a few minutes of conversation, and with a few leading questions you can read them like they were children's books. It's a useful talent, and one that you have learned to use for your advantage.
+        %p.small
+          You know what people want and you deliver, or rather, you promise to deliver. Common sense should steer pepole away from things that sound too good to be true, but common sense seems to be in short supply when you're around. You can make implausible sounding marvels sound like the real deal.
+        %p.small
+          %span.b Favorite Scheme:
+          I convince people that worthless junk is worth their hard-earned money.
+    .column.narrow.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I have a joke for every occasion, especially occasions where humor is inappropriate.
+      .feature.block
+        .head.b Ideal: Creativity
+        %p.small
+          I never run the same con twice.
+      .feature.block
+        .head.b Bond
+        %p.small
+          I have strong ties to the gnomish community, and would never con a fellow gnome.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I'm convinced that no one could ever fool me the way I fool others.
+
+  .flex.block
+    .companion.half.flex.tall
+      .head.b Bat Familiar
+      .combat-stats
+        .ac 12
+        .hp 1
+        .move 5 ft., fly 30 ft.
+      .ability-scores.flex
+        .str -4
+        .dex +2
+        .con -1
+        .int -4
+        .wis -1
+        .cha -3
+      .other-stats
+        .senses blindsight 60 ft.
+      .features
+        .echolocation
+          %span.b Echolocation.
+          The bat can't use its blindsight while deafened.
+        .keen-hearing
+          %span.b Keen Hearing.
+          The bat has advantage on Wisdom (Perception) checks that rely on hearing.

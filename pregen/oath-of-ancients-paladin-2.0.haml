@@ -1,0 +1,377 @@
+- name = "Mildro Greensleeves"
+- levels = { paladin: 2 }
+- hd = { paladin: 'd10' }
+- ability_scores = {str: 10, dex: 16, con: 14, int: 10, wis: 8, cha: 16}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 + (levels[:paladin] - 1) * 6 + mods[:con] * levels[:paladin]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Lightfoot Halfling
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (300 / 900 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Wis, Cha
+      .skill Athletics, Medicine, Nature, Persuasion
+      .tool Musical instrument (flute)
+      .language Common, Halfling, Sylvan
+      .weapon simple, martial
+      .armor all armor, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      -#equip
+      .equipment-set.half.block
+        .head.b Standard Equipment
+        .small Scimitar, shield, studded leather
+        .ac
+          .head.b AC
+          .value 17
+        .move
+          .head.b Move
+          .value 25
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:dex] + 2}
+            %span.small slashing
+        .attack.range
+          .b.bg Range
+          .value 5
+      -#equip
+      .equipment-set.half.block
+        .head.b Ranged Equipment
+        .small Shortbow, studded leather
+        .ac
+          .head.b AC
+          .value 15
+        .move
+          .head.b Move
+          .value 25
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:dex]}
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 80 / 320
+
+      .half
+        -#halfling-nimbleness
+        .feature.block
+          .head.b Halfling Nimbleness
+          %p.small
+            You can move through the space of creatures of a larger size than you.
+        -#naturally-stealthy
+        .feature.block
+          .head.b Naturally Stealthy
+          %p.small
+            You can attempt to hide when obscured by a creature at least one size larger than you.
+        -#fighting-style
+        .feature.block
+          .head.b Fighting Style: Dueling
+          %p.small
+            When you are wielding only a single melee weapon in one hand, you gain +2 to damage rolls with that weapon.
+
+      .half
+        -#lucky
+        .feature.block
+          .head.b Lucky
+          %p.small
+            When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.
+          -#brave
+        .feature.block
+          .head.b Brave
+          %p.small
+            You have advantage on saving throws against being frightened.
+
+      -#divine-sense
+      .feature.block
+        .head
+          %span.b Divine Sense
+          .uses.long-rest
+            - (1 + mods[:cha]).times do |i|
+              .checkbox
+        %p.small
+          %span.b Action.
+          Until the end of your next turn, you know the locatoin of any celestial, fiend, or undead creature within 60 ft. that is not behind total cover. You also detect any place or object that has been consecrated or desecrated.
+
+
+    .flex.tall.column.narrow
+      -#paladin-spellcasting
+      .spellcasting.block
+        .head.b Paladin Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Cha
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:cha] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:cha]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 2.times do |i|
+              .checkbox
+
+        .slots.resource.half
+      .scratch.concentration.block
+        .title.b Concentration
+        %div
+      .feature.block
+        .head.b Preparation
+        %p.small
+          After a long rest, you can prepare any #{(levels[:paladin] / 2) + mods[:cha]} spells from the paladin spell list.
+      -#divine-smite
+      .feature.block
+        .head.b Divine Smite
+        %p.small
+          When you hit a creature with a melee attack, you can expend one spell slot for an extra 2d8 radiant damage, or 3d8 vs. undead and fiends.
+      -#lay-on-hands
+      .feature.block
+        .head.b Lay on Hands
+        .points
+          .scratch
+            .title
+              HP Pool:
+              %span.b=levels[:paladin] * 5
+            %div
+          %p.small
+            %span.b Action.
+            You touch a creature and draw power from a pool of hit points to heal the creature. Your pool replenishes after a long rest.
+          %p.small
+            Alternatively, you can cure diseases and neutralize poisons affecting the target by expending 5 hit points per disease or poison.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Scimitar
+    .item Holy Amulet
+    .item Backpack
+    .item Waterskin
+    .item Shortbow
+    .item Traveler's clothes
+    .item Bedroll
+    .item Rations (10)
+    .item Studded leather armor
+    .item Tinderbox
+    .item Torches (10)
+    .item Traveler's clothes
+    .item Quiver
+    .item Arrow (20)
+    .item Shield
+    .item 50 ft. hemp rope
+    .item Hammer
+    .item Pitons (10)
+    .item Signet ring
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 10
+      .value.sp
+      .value.cp
+
+  .spell-list.flex
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .prepared
+          .checkbox
+        .title Bless
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Command
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Cure Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Magic
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Poison and Disease
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Heroism
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Protection from Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Purify Food and Drink
+        .level 1<sup>st</sup>
+        .keywords.b
+    .other-spells.column
+      .head.b Bonus Actions
+      .spell
+        .prepared
+          .checkbox
+        .title Compelled Duel
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Divine Favor
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Searing Smite
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Shield of Faith
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Thunderous Smite
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Wrathful Smite
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .head.b Non-Combat Spells
+      .spell
+        .prepared
+          .checkbox
+        .title Ceremony
+        .level 1<sup>st</sup>
+        .keywords.b
+
+  .flex.role-playing
+    .column.wide.background
+      .feature.block
+        .head.b Background: Knight of the Order
+        %p.small
+          You belong to the Knights of the Alder, an order sworn to protect the forests of the region surrounding Minhelras from the threats of evil fey and other monsters, as well as from environmental destruction by resource exploitation.
+        %p.small
+          You receive shelter and succor from members of your order and those who are sympathetic to its cause.
+    .column.narrow.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I can stare down a hell hound without flinching.
+      .feature.block
+        .head.b Ideal: Greater Good
+        %p.small
+          Our lot is to lay down our lives in defense of others.
+      .feature.block
+        .head.b Bond
+        %p.small
+          Those who fight beside me are those worth dying for.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          My hatred of my enemies is blind and unreasoning.
+

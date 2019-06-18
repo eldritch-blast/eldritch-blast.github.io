@@ -78,6 +78,15 @@ span.title {
 .flex.tall {
   flex-direction: column; }
 
+.flex > .column {
+  width: calc(50% - 0.4rem); }
+
+.flex > .column.wide {
+  width: calc(66.66666% - 0.4rem); }
+
+.flex > .column.narrow {
+  width: calc(33.33333% - 0.4rem); }
+
 .atf {
   width: 100%;
   margin-bottom: 0.8rem; }
@@ -86,10 +95,9 @@ span.title {
 
 .btf {
   width: 100%; }
-  .btf .column.wide {
-    width: calc(66.66666% - 0.4rem); }
-  .btf .column.narrow {
-    width: calc(33.33333% - 0.4rem); }
+
+.remove-bottom-margin {
+  margin-bottom: 0; }
 
 .head {
   border-bottom: 1px solid black;
@@ -251,9 +259,6 @@ li:before {
   .table .row:nth-child(even) {
     background-color: #ddd; }
 
-.feature > .table {
-  margin-top: 0.5rem; }
-
 .feature {
   width: 100%;
   display: flex;
@@ -330,10 +335,10 @@ li:before {
       padding: 0.2rem;
       min-height: 3rem; }
 
-.spellcasting .stat {
+.spellcasting .stat, .ki .stat {
   padding: 0 0.3rem;
   line-height: 1.4; }
-  .spellcasting .stat .value {
+  .spellcasting .stat .value, .ki .stat .value {
     width: 2rem;
     text-align: center;
     float: right;
@@ -342,12 +347,16 @@ li:before {
 .slots.resource {
   line-height: 1.5; }
 
-.spell-list .column {
-  width: calc(50% - 0.4rem); }
-  .spell-list .column > .spell:nth-child(odd) {
-    background-color: #ddd; }
-  .spell-list .column > .head:not(:first-child) {
-    margin-top: 0.5rem; }
+.ki {
+  border-bottom: 1px solid black;
+  margin-bottom: 0.3rem; }
+  .ki .stat {
+    line-height: 2; }
+
+.spell-list .column > .spell:nth-child(odd) {
+  background-color: #ddd; }
+.spell-list .column > .head:not(:first-child) {
+  margin-top: 0.5rem; }
 .spell-list .spell {
   font-size: 14px;
   font-style: normal; }

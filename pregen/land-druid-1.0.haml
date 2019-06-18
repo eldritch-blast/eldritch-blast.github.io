@@ -1,10 +1,10 @@
-- name = "Saeran Loredan"
-- levels = { cleric: 1 }
-- hd = { cleric: 'd8' }
-- ability_scores = {str: 16, dex: 8, con: 14, int: 10, wis: 16, cha: 10}
+- name = "Suthalion"
+- levels = { druid: 1 }
+- hd = { druid: 'd8' }
+- ability_scores = {str: 9, dex: 16, con: 10, int: 12, wis: 16, cha: 12}
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.sum - 1) / 4 + 2)
-- hp = 8 + (levels[:cleric] - 1) * 5 + mods[:con] * levels[:cleric]
+- hp = 8 + (levels[:druid] - 1) * 5 + mods[:con] * levels[:druid]
 !!!
 %head
   %title #{name}
@@ -12,7 +12,7 @@
 %body
   %h1 #{name}
   .info-bar
-    %span.subrace Human
+    %span.subrace Wood Elf
     %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
     %span.xp (0 / 300 xp)
   .flex.atf
@@ -26,12 +26,12 @@
     .proficiencies
       .head.b
         .bonus='%+d' % prof
-      .save Wis, Cha
-      .skill Athletics, History, Insight, Persuasion, Religion
-      .tool Smith's tools, Tinker's tools
-      .language Common, Dwarvish, Gnomish
-      .weapon simple
-      .armor all armor, shields
+      .save Int, Wis
+      .skill Athletics, Medicine, Nature, Perception, Survival
+      .tool Herbalism kit, Musical instrument (horn)
+      .language Common, Druidic, Elvish, Sylvan
+      .weapon shortsword, longsword, shortbow, longbow, club, dagger, dart, javelin, mace, quarterstaff, scimitar, sickle, sling, spear
+      .armor light, medium, shields
     -#health
     .health
       .head
@@ -66,69 +66,70 @@
       -#equip
       .equipment-set.half.block
         .head.b Melee Equipment
-        .small Mace, shield, chain mail
+        .small Shortsword, hide armor
         .ac
           .head.b AC
-          .value 18
+          .value 14
         .move
           .head.b Move
-          .value 30
+          .value 35
         .head.b Attack Action
         .attack.roll
           .b.bg Roll
-          .value d20 + #{mods[:str] + prof}
+          .value d20 + #{mods[:dex] + prof}
         .attack.damage
           .b.bg Damage
           .value
-            1d6 + #{mods[:str]}
-            %span.small bludgeoning
+            1d6 + #{mods[:dex]}
+            %span.small piercing
         .attack.range
           .b.bg Range
           .value 5
-        %ul.small
-          %li Disadvantage on Dexterity (Stealth)
       -#equip
       .equipment-set.half.block
-        .head.b Spellcasting
-        .small Shield, chain mail
+        .head.b Ranged Equipment
+        .small Shortbow, hide armor
         .ac
           .head.b AC
-          .value 18
+          .value 14
         .move
           .head.b Move
-          .value 30
-        .head.b Sacred Flame Cantrip
+          .value 35
+        .head.b Ranged Attack
         .attack.roll
           .b.bg Roll
-          .value Dex save
+          .value d20 + #{mods[:dex] + prof}
         .attack.damage
           .b.bg Damage
           .value
-            1d8
-            %span.small radiant
+            1d6 + #{mods[:dex]}
+            %span.small piercing
         .attack.range
           .b.bg Range
-          .value 60
-        %ul.small
-          %li Disadvantage on Dexterity (Stealth)
-      -#blessing-of-the-forge
-      .feature.block
-        .head
-          %span.b Blessing of the Forge
-          .uses.long-rest
-            .checkbox
-        .small
-          At the end of a long rest, you can touch one nonmagical suit of armor or weapon. The object becomes a magic item, granting +1 to AC if it's armor or +1 to attack and damage rolls if it's a weapon. The effect ends after your next long rest, or when you die.
-      .feature.block
-        .head.b Heavy Armor Master
-        %p.small
-          While you are wearing heavy armor, bludgeoning, piercing, and slashing damage that you take from non-magical weapons is reduced by 3.
-
+          .value 80 / 320
+      .half
+        .feature.block
+          .head.b Darkvision
+          %p.small
+            You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+        .feature.block
+          .head.b Mask of the Wild
+          %p.small
+            You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.
+      .half
+        .feature.block
+          .head.b Fey Ancestry
+          %p.small
+            You have advantage on saving throws against being charmed, and magic can't put you to sleep.
+        .feature.block
+          .head.b Trance
+          %p.small
+            You don't need to sleep. After 4 hours of meditation, you gain the same beefit that a human does from 8 hours of sleep.
 
     .flex.tall.column.narrow
       -#cleric-spellcasting
       .spellcasting.block
-        .head.b Cleric Spellcasting
+        .head.b Druid Spellcasting
         .stat.b
           Spellcasting Ability:
           .value Wis
@@ -153,48 +154,44 @@
       .feature.block
         .head.b Preparation
         %p.small
-          You always have
-          %span.spell identify
-          and
-          %span.spell searing smite
-          prepared. After a long rest, you can prepare any #{levels[:cleric] + mods[:wis]} spells from the cleric spell list.
+          After a long rest, you can prepare any #{levels[:druid] + mods[:wis]} spells from the druid spell list.
       .feature.block
         .head.b Ritual Casting
         %p.small
-          You can cast a prepared cleric spell with the ritual tag as a ritual.
+          You can cast a prepared druid spell with the ritual tag as a ritual.
 
   .new-page
 
   .inventory.grid.block
     .head.b Inventory
-    .item Chain mail
-    .item Holy Amulet
-    .item Smith's tools
-    .item Tinker's tools
-    .item Mace
-    .item Hemp Rope (50 ft.)
-    .item Torch (10)
-    .item
-    .item Shield
-    .item Tinderbox
-    .item
-    .item
-    .item
-    .item
-    .item Backpack
-    .item Bedroll
-    .item
-    .item
-    .item
-    .item
+    .item Hide armor
+    .item Shortsword
+    .item Shortbow
+    .item Arrow (20)
+    .item Sprig of mistletoe
     .item Waterskin
-    .item Hammer
-    .item
-    .item
-    .item
-    .item
-    .item Rations (10)
+    .item Healer's kit
+    .item Quiver
+    .item Herbalism kit
+    .item Fishing tackle
+    .item Backpack
+    .item Mess kit
+    .item Blanket
     .item Common clothes
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
     .item
     .item
     .item
@@ -205,7 +202,7 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp 10
+      .value.gp 5
       .value.sp
       .value.cp
 
@@ -215,31 +212,31 @@
       .spell
         .prepared
           .checkbox.checked
+        .title Druidcraft
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox.checked
         .title Guidance
         .level cantrip
         .keywords.b conc.
       .spell
         .prepared
-          .checkbox.checked
-        .title Sacred Flame
-        .level cantrip
+          .checkbox
+        .title Animal Friendship
+        .level 1<sup>st</sup>
         .keywords.b 
       .spell
         .prepared
           .checkbox
-        .title Bane
+        .title Beast Bond
         .level 1<sup>st</sup>
         .keywords.b conc.
       .spell
         .prepared
           .checkbox
-        .title Bless
-        .level 1<sup>st</sup>
-        .keywords.b conc.
-      .spell
-        .prepared
-          .checkbox
-        .title Command
+        .title Charm Person
         .level 1<sup>st</sup>
         .keywords.b 
       .spell
@@ -257,12 +254,6 @@
       .spell
         .prepared
           .checkbox
-        .title Detect Evil and Good
-        .level 1<sup>st</sup>
-        .keywords.b conc.
-      .spell
-        .prepared
-          .checkbox
         .title Detect Magic
         .level 1<sup>st</sup>
         .keywords.b conc., ritual
@@ -275,27 +266,69 @@
       .spell
         .prepared
           .checkbox
-        .title Guiding Bolt
+        .title Earth Tremor
         .level 1<sup>st</sup>
         .keywords.b 
       .spell
         .prepared
           .checkbox
-        .title Inflict Wounds
-        .level 1<sup>st</sup>
-        .keywords.b 
-      .spell
-        .prepared
-          .checkbox
-        .title Protection from Evil and Good
+        .title Entangle
         .level 1<sup>st</sup>
         .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Faerie Fire
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Fog Cloud
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Goodberry
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Ice Knife
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Jump
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Longstrider
+        .level 1<sup>st</sup>
+        .keywords.b 
       .spell
         .prepared
           .checkbox
         .title Purify Food and Drink
         .level 1<sup>st</sup>
         .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Speak with Animals
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Thunderwave
+        .level 1<sup>st</sup>
+        .keywords.b 
     .other-spells.column
       .head.b Bonus Actions
       .spell
@@ -304,64 +337,43 @@
         .title Healing Word
         .level 1<sup>st</sup>
         .keywords.b 
+      .head.b Reactions
       .spell
         .prepared
           .checkbox
-        .title Sanctuary
+        .title Absorb Elements
         .level 1<sup>st</sup>
         .keywords.b 
-      .spell
-        .prepared
-          .checkbox.checked
-        .title Searing Smite
-        .level 1<sup>st</sup>
-        .keywords.b conc.
-      .spell
-        .prepared
-          .checkbox
-        .title Shield of Faith
-        .level 1<sup>st</sup>
-        .keywords.b conc.
       .head.b Non-Combat Spells
       .spell
         .prepared
-          .checkbox.checked
-        .title Mending
-        .level cantrip
-        .keywords.b 
-      .spell
-        .prepared
           .checkbox
-        .title Ceremony
+        .title Snare
         .level 1<sup>st</sup>
-        .keywords.b ritual
-      .spell
-        .prepared
-          .checkbox.checked
-        .title Identify
-        .level 1<sup>st</sup>
-        .keywords.b ritual
+        .keywords.b 
 
   .flex.role-playing
     .column.wide.background
       .feature.block
-        .head.b Background: Clan Crafter
+        .head.b Background: Outlander
         %p.small
-          You have been trained in the ancient traditions of dwarven artisanship. For years you labored under a dwarf master of the craft, enduring long hours and dismissive, sour-tempered treatment in order ot gain the fine skills you possess today. Because you are not a dwarf yourself, you have taken a solemn oath never to take on an apprentice in the craft: it is not for non-dwarves to pass on the skills of Moradin's favored children.
+          You grew up in the wilds on the slops of Minhelras, far from civilization and the comforts of technology. You've survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles in any direction. The mountain is in your blood.
+        %p.small
+          You have an excellent memory for geography, and you can always recall the general layout of terrain, settlements, and other features around you. You can find food and fresh water for youreslf and up to five other people each day, provide the land offers berries, small game, water, and so forth.
     .column.narrow.personality
       .feature.block
         .head.b Personality Trait
         %p.small
-          I like to talk at length about my profession.
+          I have a lesson for every situation, drawn from observing nature.
       .feature.block
-        .head.b Ideal: Aspiration
+        .head.b Ideal: Change
         %p.small
-          I work hard to be the best there is at my craft.
+          Life is like the seasons, in constant change, and we must change with it.
       .feature.block
         .head.b Bond
         %p.small
-          I owe my clan a great debt for forging me into the person I am today.
+          An injury to the unspoiled wilderness of Minhelras is an injury to me.
       .feature.block
         .head.b Flaw
         %p.small
-          I'll do anything to get my hands on something rare or priceless.
+          I am slow to trust members of other races, tribes, and societies.
