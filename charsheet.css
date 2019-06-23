@@ -335,10 +335,10 @@ li:before {
       padding: 0.2rem;
       min-height: 3rem; }
 
-.spellcasting .stat, .ki .stat {
+.spellcasting .stat, .ki .stat, .combat-superiority .stat {
   padding: 0 0.3rem;
   line-height: 1.4; }
-  .spellcasting .stat .value, .ki .stat .value {
+  .spellcasting .stat .value, .ki .stat .value, .combat-superiority .stat .value {
     width: 2rem;
     text-align: center;
     float: right;
@@ -347,10 +347,10 @@ li:before {
 .slots.resource {
   line-height: 1.5; }
 
-.ki {
+.ki, .combat-superiority {
   border-bottom: 1px solid black;
   margin-bottom: 0.3rem; }
-  .ki .stat {
+  .ki .stat, .combat-superiority .stat {
     line-height: 2; }
 
 .spell-list .column > .spell:nth-child(odd) {

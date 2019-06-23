@@ -449,7 +449,7 @@ li:before {
 }
 
 //// Spellcasting
-.spellcasting,.ki {
+.spellcasting, .ki, .combat-superiority {
     .stat {
         padding: 0 0.3rem;
         line-height: 1.4;
@@ -464,7 +464,7 @@ li:before {
 .slots.resource {
     line-height: 1.5;
 }
-.ki {
+.ki, .combat-superiority {
     .stat {
         line-height: 2;
     }

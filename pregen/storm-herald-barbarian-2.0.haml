@@ -1,0 +1,236 @@
+- name = "Senshen Lanaxenanes"
+- levels = { barbarian: 2 }
+- hd = { barbarian: 'd12' }
+- ability_scores = {str: 16, dex: 14, con: 14, int: 8, wis: 13, cha: 10}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 12 + (levels[:barbarian] - 1) * 7 + mods[:con] * levels[:barbarian]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Dragonborn
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (300 / 900 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Con
+      .skill Athletics, Intimidation, Preception, Survival
+      .tool Musical instrument (drums)
+      .language Common, Draconic, Elvish
+      .weapon simple, martial
+      .armor light, medium, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small
+            Battleaxe, shield
+          .ac
+            .head.b AC
+            .value 16
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:str] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:str]}
+              %span.small slashing
+          .attack.range
+            .b.bg Range
+            .value 5
+        -#unarmored-defense
+        .feature.block
+          .head.b Unarmored Defense
+          %p.small
+            Your AC is #{10 + mods[:dex] + mods[:con]} while not wearing armor.
+        -#danger-sense
+        .feature.block
+          .head.b Danger Sense
+          %p.small
+            Advantage on Dex saves against effects that you can see, such as traps and spells. You must not be blinded, deafened, or incapacitated.
+      -#equip
+      .half
+        .equipment-set.block
+          .head.b Alternate Equipment
+          .small Javelin, shield
+          .ac
+            .head.b AC
+            .value 16
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:str] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d6 + #{mods[:str]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 30 / 120
+        -#damage-resistance
+        .feature.block
+          .head.b Damage Resistance
+          %p.small
+            You have resistance to poison damage.
+        -#reckless-attack
+        .feature.block
+          .head.b Reckless Attack
+          %p.small
+            When you make your first attack on your turn, you can gain advantage on melee weapon attack rolls during this turn, but attack rolls against you have advantage until your next turn.
+      -#breath-weapon
+      .feature.block
+        .head
+          %span.b Breath Weapon
+          .uses.short-rest
+            .checkbox
+        %p.small
+          %span.b Action.
+          Exhale a 15-foot cone of poison gas. Creatures in the cone take #{2 + (levels.values.sum - 1) / 5}d6 poison damage, or half that on a successful Con save.
+
+    .flex.tall.column.narrow
+      -#rage
+      .feature.block
+        .head
+          %span.b Rage
+          .uses
+            - 2.times do |i|
+              .checkbox
+        %p.small
+          %span.b Bonus Action.
+          You enter a rage that lasts for one minute, until you are knocked unconscious, or until you end your turn without attacking a hostile creature or taking damage since your last turn.
+        %p.small
+          While raging, if you aren't wearing armor, you gain the following benefits:
+        %ul.small
+          %li Advantage on Str checks and saves
+          %li +2 melee weapon damage
+          %li Resistance to bludgeoning, piercing, and slashing damage
+        .small
+          You recover expended uses of Rage when you finish a
+          %span.b long rest.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Battleaxe
+    .item Backpack
+    .item 50 ft. hemp rope
+    .item Traveler's clothes
+    .item Shield
+    .item Blanket
+    .item Tinderbox
+    .item Torch (10)
+    .item Javelin (4)
+    .item Waterskin
+    .item Rations (10)
+    .item Hunting trap
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 10
+      .value.sp
+      .value.cp
+
+
+  .flex.role-playing
+    .column.wide.background
+      .feature.block
+        .head.b Background: Outlander
+        %p.small
+          You grew up in the wilds, far from civilization and the comforts of town and technology. You've witnessed the migration of herds larger than forests, survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles in any direction. The wilds are in your blood.
+        %p.small
+          %span.b Origin.
+          Tribal nomad
+    .column.narrow.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I watch over my friends as if they were a litter of newborn pups.
+      .feature.block
+        .head.b Ideal: Glory
+        %p.small
+          I must earn glory in battle, for myself and my clan.
+      .feature.block
+        .head.b Bond
+        %p.small
+          My tribe is the most important thing in my life, eve when they are far from me.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          There's no room for caution in a life lived to the fullest.
