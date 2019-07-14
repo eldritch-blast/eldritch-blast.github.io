@@ -1,0 +1,200 @@
+- name = "左路/ Left Path"
+- levels = { monk: 1 }
+- hd = { monk: 'd8' }
+- ability_scores = {str: 12, dex: 16, con: 14, int: 8, wis: 16, cha: 8}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 8 + (levels[:monk] - 1) * 5 + mods[:con] * levels.values.sum
+- monk_damage_die = 4 + 2 * ((levels[:monk] + 1) / 6)
+- monk_speed_bonus = 5 + 5 * ((levels[:monk] + 2) / 4)
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Human
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (0 / 300 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Dex
+      .skill Acrobatics, Athletics, Insight, Perception, Stealth
+      .tool Musical instrument (&#xe8;rh&#xfa;), calligrapher's supplies
+      .language Common, Celestial, 雅音
+      .weapon simple, shortsword
+      .armor none
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.tall.narrow
+      -#equip
+      .equipment-set.block
+        .head.b Standard Equipment
+        .small Staff, unarmored
+        .ac
+          .head.b AC
+          .value=10 + mods[:dex] + mods[:wis]
+        .move
+          .head.b Move
+          .value=30
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d#{[8, monk_damage_die].max} + #{mods[:dex]}
+            %span.small bludgeoning
+        .attack.range
+          .b.bg Range
+          .value 5
+        .head.b Bonus Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d#{monk_damage_die} + #{mods[:dex]}
+            %span.small bludgeoning
+        .attack.range
+          .b.bg Range
+          .value 5
+        %ul.small
+          %li Must Attack with monk weapon or unarmed strike to use bonus action
+
+    .flex.column.wide
+      -#magic-initiate
+      .feature.block
+        .head.b Athlete
+        %ul.small
+          %li Standing up uses only 5 ft. of movement.
+          %li Climbing doesn't halve speed.
+          %li Can make a running jump after moving 5 ft. &mdash; long jump #{ability_scores[:str]} ft.; high jump #{3 + mods[:str]} ft.
+
+      -#martial-arts
+      .feature.block
+        .head.b Martial Arts
+        %p.small While not wearing armor or using a shield, if you are unarmed or wielding only monk weapons, you gain the following benefits. Monk weapons are simple weapons without the heavy or two-handed property, and shortswords.
+        %ul.small
+          %li You can use Dex instead of Str for melee attack and damage rolls.
+          %li You can roll 1d4 in place of your normal weapon damage.
+          %li You can make one unarmed strike as a bonus action when you take the Attack action with a monk weapon or unarmed strike.
+      -#unarmored-defense
+      .feature.block
+        .head.b Unarmored Defense
+        %p.small
+          While not wearing armor or using a shield, your AC is 10 + Dex + Wis.
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Quarterstaff
+    .item &#xe8;rh&#xfa;
+    .item 50 ft. hemp rope
+    .item Calligrapher's supplies
+    .item Backpack
+    .item Bedroll
+    .item Rations (10)
+    .item Waterskin
+    .item Traveler's clothes
+    .item Mess kit
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 5
+      .value.sp
+      .value.cp
+
+  .new-page
+
+  .flex.role-playing
+    .column.wide
+      .feature.block
+        .head.b Background: Far Traveler
+        %p.small
+          You are from the distant land of 中原. Your homeland is so remote that most residents of Skarvost have never heard of it, and those that have know merely the name and perhaps a few outrageous stories. You have come to the northwest marches area for your own reasons, which you might or might not choose to share.
+        %p.small
+          As a poor orphan, you were raised in a monastery. As a teenager, the monastery was attacked and destroyed. Baiqian led a contingent of soldiers to drive off the attackers, but it was too late; most of the monks were dead, and the monastery burned. She found you dying and healed you, and ever since you have been her devoted protector, guide, and translator.
+    .column.narrow
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I have a strong code of honor or sense of propriety that others don't comprehend.
+      .feature.block
+        .head.b Ideal: Reserved
+        %p.small
+          As someone new to these strange lands, I am cautious and respectful in my dealings.
+      .feature.block
+        .head.b Bond
+        %p.small
+          I'm fascinated by the beauty and wonder of this new land.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I consider the adherents of other gods to be deluded innocents at best, or ignorant fools at worst.
+
+
