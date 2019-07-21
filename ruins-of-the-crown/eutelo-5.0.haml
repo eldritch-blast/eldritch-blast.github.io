@@ -5,6 +5,7 @@
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.sum - 1) / 4 + 2)
 - hp = 8 + (levels[:cleric] - 1) * 5 + mods[:con] * levels[:cleric]
+- xp = 5655 + 1105
 !!!
 %head
   %title #{name}
@@ -14,7 +15,7 @@
   .info-bar
     %span.subrace Human
     %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
-    %span.xp (5,655 + ?? / 14,000 xp)
+    %span.xp (#{xp} / 14000 xp)
   .flex.atf
     -#ability scores
     .ability-scores.flex.tall
