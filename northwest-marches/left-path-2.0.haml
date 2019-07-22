@@ -7,6 +7,7 @@
 - hp = 8 + (levels[:monk] - 1) * 5 + mods[:con] * levels.values.sum
 - monk_damage_die = 4 + 2 * ((levels[:monk] + 1) / 6)
 - monk_speed_bonus = 5 + 5 * ((levels[:monk] + 2) / 4)
+- xp = 328
 !!!
 %head
   %title #{name}
@@ -16,7 +17,7 @@
   .info-bar
     %span.subrace Human
     %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
-    %span.xp (323 / 900 xp)
+    %span.xp (#{xp} / 900 xp)
   .flex.atf
     -#ability scores
     .ability-scores.flex.tall
