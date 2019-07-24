@@ -1,10 +1,8 @@
-#! /usr/bin/ruby
+#! /usr/bin/env ruby
 
-dirs = Dir["*"].select{|f| File.directory? f }
+dir = ARGV[0]
 
-dirs.each do |dir|
-  files = Dir["#{dir}/*"].each do |f|
-    next unless f.end_with?('.haml')
-    `haml #{f} #{f.sub(/\.haml$/, '.html')}`
-  end
+files = Dir["#{dir}/*"].each do |f|
+  next unless f.end_with?('.haml')
+  `haml #{f} #{f.sub(/\.haml$/, '.html')}`
 end
