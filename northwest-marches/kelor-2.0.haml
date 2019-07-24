@@ -5,6 +5,7 @@
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.sum - 1) / 4 + 2)
 - hp = 10 + (levels[:ranger] - 1) * 6 + mods[:con] * levels[:ranger]
+- xp = 420
 !!!
 %head
   %title #{name}
@@ -14,7 +15,7 @@
   .info-bar
     %span.subrace Mountain Dwarf
     %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
-    %span.xp (300 / 900 xp)
+    %span.xp (#{xp} / 900 xp)
   .flex.atf
     -#ability scores
     .ability-scores.flex.tall
@@ -233,7 +234,7 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp 10
+      .value.gp 35
       .value.sp
       .value.cp
 
