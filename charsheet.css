@@ -203,14 +203,24 @@ li:before {
   flex: 1; }
   .health > div {
     margin-bottom: 0.8rem; }
-  .health .hit-dice .d6:before {
-    content: "d6"; }
-  .health .hit-dice .d8:before {
-    content: "d8"; }
-  .health .hit-dice .d10:before {
-    content: "d10"; }
-  .health .hit-dice .d12:before {
-    content: "d12"; }
+  .health .hit-dice {
+    position: relative; }
+    .health .hit-dice .uses:before {
+      position: absolute;
+      left: 0;
+      width: 2rem;
+      text-align: center; }
+    .health .hit-dice .uses {
+      margin-left: 2rem;
+      text-align: left; }
+    .health .hit-dice .d6:before {
+      content: "d6"; }
+    .health .hit-dice .d8:before {
+      content: "d8"; }
+    .health .hit-dice .d10:before {
+      content: "d10"; }
+    .health .hit-dice .d12:before {
+      content: "d12"; }
   .health .death-saves .success:before {
     content: "\2764\fe0f"; }
   .health .death-saves .failure:before {
@@ -357,6 +367,8 @@ li:before {
   background-color: #ddd; }
 .spell-list .column > .head:not(:first-child) {
   margin-top: 0.5rem; }
+.spell-list .embedded {
+  width: 100%; }
 .spell-list .spell {
   font-size: 14px;
   font-style: normal; }

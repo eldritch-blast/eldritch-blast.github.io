@@ -262,6 +262,17 @@ li:before {
         margin-bottom: 0.8rem;
     }
     .hit-dice {
+        position: relative;
+        .uses:before {
+            position: absolute;
+            left: 0;
+            width: 2rem;
+            text-align: center;
+        }
+        .uses {
+            margin-left: 2rem;
+            text-align: left;
+        }
         .d6:before {
             content: "d6";
         }
@@ -449,7 +460,7 @@ li:before {
 }
 
 //// Spellcasting
-.spellcasting, .ki, .combat-superiority {
+.spellcasting, .ki, .combat-superiority, {
     .stat {
         padding: 0 0.3rem;
         line-height: 1.4;
@@ -481,6 +492,9 @@ li:before {
         > .head:not(:first-child) {
             margin-top: 0.5rem;
         }
+    }
+    .embedded {
+        width: 100%;
     }
     .spell {
         font-size: 14px;

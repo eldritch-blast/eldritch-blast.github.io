@@ -34,7 +34,7 @@ charsheets.group_by(&:character).each do |key, sheets|
   links << html
 end
 
-if dir =~ /^pregen/
+if dir =~ /^pregen|^old-school/
   # we want a different index for pregen characters
   links = []
   charsheets.group_by(&:character).each do |key, sheets|

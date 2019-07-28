@@ -1,0 +1,315 @@
+- name = "Pallandor"
+- levels = { fighter: 12 }
+- hd = { fighter: 'd10' }
+- ability_scores = {str: 10, dex: 20, con: 11, int: 17, wis: 12, cha: 8}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 + (levels[:fighter] - 1) * 7 + mods[:con] * levels[:fighter]
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
+- xp = next_level[levels.values.sum - 1]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace High Elf
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (#{xp} / #{next_level[levels.values.sum]} xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Con
+      .skill Athletics, Animal Handling, History, Nature, Perception, Survival
+      .tool Musical instrument (pan flute)
+      .language Common, Elvish, Orcish, Sylvan
+      .weapon simple, martial
+      .armor all armor, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small
+            Longbow, studded leather
+          .ac
+            .head.b AC
+            .value=12 + mods[:dex]
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{2 + mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 150/600
+      -#equip
+      .half
+        .equipment-set.block
+          .head.b Alternate Equipment
+          .small Shortsword, shield, studded leather
+          .ac
+            .head.b AC
+            .value=12 + 2 + mods[:dex]
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d6 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Reach
+            .value 5
+      -#second-wind
+      .feature.block
+        .head
+          %span.b Second Wind
+          .uses.short-rest
+            .checkbox
+        %p.small
+          %span.b Bonus Action.
+          Regain 1d10 + #{levels[:fighter]} hit points.
+      -#action-surge
+      .feature.block
+        .head
+          %span.b Action Surge
+          .uses.short-rest
+            .checkbox
+        %p.small
+          Take an additional action this turn.
+      -#indomitable
+      .feature.block
+        .head
+          %span.b Indomitable
+          .uses.long-rest
+            .checkbox
+        %p.small
+          Reroll a saving throw that you fail.
+      -#sharpshooter
+      .feature.block
+        .head.b Sharpshooter
+        %ul.small
+          %li Attacking at long range doesn't impose disadvantage.
+          %li Your ranged weapon attacks ignore &#xbd; cover and &#xbe; cover.
+          %li Before you make an attack with a ranged weapon, you can choose to take a -5 penalty to the attack roll to add +10 damage.
+      -#curving-shot
+      .feature.block
+        .head.b Curving Shot
+        %p.small
+          %span.b Bonus Action.
+          When you miss an attack roll with a magic arrow, reroll the attack against a different target within 60 ft. of the original target.
+      -#fey-teleportation
+      .feature.block
+        .head
+          %span.b Fey Teleportation
+          .uses.short-rest
+            .checkbox
+        %p.small
+          You can cast
+          %span.spell misty step
+          without expending a spell slot. Int is your spellcasting ability.
+
+    .flex.tall.column.narrow
+      -#fey-ancestry
+      .feature.block
+        .head.b Fey Ancestry
+        %p.small
+          You have advantage on saving throws against being charmed, and magic can't put you to sleep.
+      -#trance
+      .feature.block
+        .head.b Trance
+        %p.small
+          You don't need to sleep. After 4 hours of meditation, you gain the same beefit that a human does from 8 hours of sleep.
+      -#darkvision
+      .feature.block
+        .head.b Darkvision
+        %p.small
+          You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+      -#elven-accuracy
+      .feature.block
+        .head.b Elven Accuracy
+        %p.small
+          When you have advantage on a attack roll using Dex, Int, Wis, or Cha, you can reroll one of the dice once.
+      -#fighting-style
+      .feature.block
+        .head.b Fighting Style: Archery
+        %p.small
+          +2 to attack rolls with ranged weapons
+      -#extra-attack
+      .feature.block
+        .head.b Extra Attack
+        %p.small
+          Can attack three times with Attack action.
+      -#magic-arrow
+      .feature.block
+        .head.b Magic Arrow
+        %p.small
+          Your arrows count as magical for the purpose of overcoming resistance and immunity.
+
+
+      .spell-list.flex.block
+        .spell-actions.column.embedded
+          .head.b Spell Actions
+          .spell
+            .title Dancing Lights
+            .level cantrip
+            .keywords.b 
+          .spell
+            .title Druidcraft
+            .level cantrip
+            .keywords.b 
+
+
+
+  .new-page
+
+
+  .flex.btf
+    -#arcane-shot
+    .feature.block
+      .head
+        %span.b Arcane Shot
+        .uses.short-rest
+          - 2.times do |i|
+            .checkbox
+      .stat
+        %span.b Saving Throw DC:
+        %span.value=8 + prof + mods[:int]
+      .small.block
+        Once per turn when you fire an arrow, you can apply one Arcane Shot effect. You can choose to apply the effect after you hit the target, if it requires an attack roll.
+      .small.block
+        %span.title Grasping Arrow
+        %p Grasping, poisonous brambles wrap the target, which takes an extra 2d6 poison damage. Its speed is reduced by 10 feet, and it takes 2d6 slashing damage the first time on each turn it moves 1 foot or more without teleporting. The target or any creature that can reach it can use its action to remove the brambles with a Strength (Athletics) check vs your Arcane Shot DC.
+      .small.block
+        %span.title Piercing Arrow
+        %p You don't make an attack roll for this attack. The arrow shoots forward in a line 1 foot wide and 30 feet long before disappearing, passing harmlessly through objects and ignoring cover. Each creature in the line takes damage as if it were hit by the arrow, plus 1d6 piercing damage, with a Dex save for half damage.
+      .small.block
+        %span.title Seeking Arrow
+        %p Don't make an attack roll. Choose one creature you have seen in the past minute. The arrow hits the creature if it is within range and doesn't have full cover. It takes an extra 1d6 damage and you learn its location, unless it makes a Dex save. If it saves, it takes half damage and you don't learn its location.
+      .small.block
+        %span.title Banishing Arrow
+        %p The target is banished to the Feywild unless it succeeds on a Cha saving throw. It's speed is 0 and it's incapacitated. At the end of its next turn, it reappears in the space it vacated or the nearest unoccupied space.
+
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Longbow
+    .item Backpack
+    .item 50 ft. hemp rope
+    .item Arrow (20)
+    .item Studded leather
+    .item Traveler's clothes
+    .item Bedroll
+    .item Waterskin
+    .item Shortsword
+    .item Shield
+    .item Quiver
+    .item Rations (10)
+    .item Tinderbox
+    .item Mess kit
+    .item Staff
+    .item Hunting trap
+    .item Eagle feather necklace
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 10
+      .value.sp
+      .value.cp
+
+  .flex.role-playing
+    .column.wide.background
+      .feature.block
+        .head.b Background: Outlander
+        %p.small
+          You grew up in the wilds, far from civilization and the comforts of town and technology. You've witnessed the migration of herds larger than forests, survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles in any direction. The wilds are in your blood, whether you were a nomad, an explorer, a recluse, a hunter-gatherer, or even a marauder. Even in places where you don't know the specific features of the terrain, you know the ways of the wild.
+        %p.small
+          %span.b Origin:
+          Guide
+    .column.narrow.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I'm driven by a wanderlust that led me away from home.
+      .feature.block
+        .head.b Ideal: Change
+        %p.small
+          Life is like the seasons, in constant change, and we must change with it.
+      .feature.block
+        .head.b Bond
+        %p.small
+          An injury to the unspoiled wilderness of my home is an injury to me.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          There's no room for caution in a life lived to the fullest.
