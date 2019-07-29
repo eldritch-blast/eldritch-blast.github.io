@@ -1,0 +1,379 @@
+- name = "Angcollo"
+- levels = { druid: 1 }
+- hd = { druid: 'd8' }
+- ability_scores = {str: 8, dex: 16, con: 14, int: 8, wis: 16, cha: 12}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 8 + (levels[:druid] - 1) * 5 + mods[:con] * levels[:druid]
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
+- xp = next_level[levels.values.sum - 1]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Wood Elf
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (0 / 300 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Int, Wis
+      .skill Animal Handling, Insight, Perception, Sleight of Hand, Stealth
+      .tool Disguise kit, thieves' tools, herbalism kit
+      .language Common, Druidic, Elvish
+      .weapon shortsword, longsword, shortbow, longbow, club, dagger, dart, javelin, mace, quarterstaff, scimitar, sickle, sling, spear
+      .armor light, medium, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      -#equip
+      .equipment-set.half.block
+        .head.b Melee Equipment
+        .small Scimitar, leather armor
+        .ac
+          .head.b AC
+          .value=11 + mods[:dex]
+        .move
+          .head.b Move
+          .value 35
+        .head.b Attack Action
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:dex]}
+            %span.small slashing
+        .attack.range
+          .b.bg Reach
+          .value 5
+      -#equip
+      .equipment-set.half.block
+        .head.b Ranged Equipment
+        .small Shortbow, leather armor
+        .ac
+          .head.b AC
+          .value= 11 + mods[:dex]
+        .move
+          .head.b Move
+          .value 35
+        .head.b Ranged Attack
+        .attack.roll
+          .b.bg Roll
+          .value d20 + #{mods[:dex] + prof}
+        .attack.damage
+          .b.bg Damage
+          .value
+            1d6 + #{mods[:dex]}
+            %span.small piercing
+        .attack.range
+          .b.bg Range
+          .value 80 / 320
+      .half
+        .feature.block
+          .head.b Darkvision
+          %p.small
+            You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+        .feature.block
+          .head.b Mask of the Wild
+          %p.small
+            You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.
+      .half
+        .feature.block
+          .head.b Fey Ancestry
+          %p.small
+            You have advantage on saving throws against being charmed, and magic can't put you to sleep.
+        .feature.block
+          .head.b Trance
+          %p.small
+            You don't need to sleep. After 4 hours of meditation, you gain the same beefit that a human does from 8 hours of sleep.
+
+    .flex.tall.column.narrow
+      -#cleric-spellcasting
+      .spellcasting.block
+        .head.b Druid Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Wis
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:wis] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:wis]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 2.times do |i|
+              .checkbox
+      .scratch.block
+        .title.b Concentration
+        %div
+      .feature.block
+        .head.b Preparation
+        %p.small
+          After a long rest, you can prepare any #{levels[:druid] + mods[:wis]} spells from the druid spell list.
+      .feature.block
+        .head.b Ritual Casting
+        %p.small
+          You can cast a prepared druid spell with the ritual tag as a ritual.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Leather armor
+    .item Scimitar
+    .item Shortbow
+    .item Arrow (20)
+    .item Sprig of mistletoe
+    .item Waterskin
+    .item Backpack
+    .item Quiver
+    .item Bedroll
+    .item Tinderbox
+    .item Rations (10)
+    .item Mess kit
+    .item 50 ft. hemp rope
+    .item Common clothes
+    .item Pet mouse
+    .item Map of city
+    .item Small knife
+    .item Token of remembrance
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 10
+      .value.sp
+      .value.cp
+
+  .spell-list.flex
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Druidcraft
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Guidance
+        .level cantrip
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Animal Friendship
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Beast Bond
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Charm Person
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Create or Destroy Water
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Cure Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Magic
+        .level 1<sup>st</sup>
+        .keywords.b conc., ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Poison and Disease
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Earth Tremor
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Entangle
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Faerie Fire
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Fog Cloud
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Goodberry
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Ice Knife
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Jump
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Longstrider
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Purify Food and Drink
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Speak with Animals
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Thunderwave
+        .level 1<sup>st</sup>
+        .keywords.b 
+    .other-spells.column
+      .head.b Bonus Actions
+      .spell
+        .prepared
+          .checkbox
+        .title Healing Word
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .head.b Reactions
+      .spell
+        .prepared
+          .checkbox
+        .title Absorb Elements
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .head.b Non-Combat Spells
+      .spell
+        .prepared
+          .checkbox
+        .title Snare
+        .level 1<sup>st</sup>
+        .keywords.b 
+
+  .flex.role-playing
+    .column.wide.background
+      .feature.block
+        .head.b Background: Urchin
+        %p.small
+          You grew up on the streets alone, orphaned, and poor. You had no one to watch over you or to provide for you, so you learned to provide for yourself. You fought fiercely over food and kept a constant watch out for other desperate souls who might steal from you. You slept on rooftops and in alleyways, exposed to the elements, and endured sickness without the advantage of medicine or a place to recuperate. You've survived despite all odds, and did so through cunning, strength, speed, or some combination of each.
+    .column.narrow.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I don't like to bathe.
+      .feature.block
+        .head.b Ideal: People
+        %p.small
+          I help the people who help me&mdash;that's what keeps us alive.
+      .feature.block
+        .head.b Bond
+        %p.small
+          No one else should have to endure the hardships I've been through.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I'd rather kill someone in their sleep than fight fair.
