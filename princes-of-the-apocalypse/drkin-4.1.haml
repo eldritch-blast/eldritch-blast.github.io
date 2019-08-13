@@ -1,0 +1,370 @@
+- name = "Drkin McKirkin"
+- levels = { paladin: 3 }
+- hd = { paladin: 'd10' }
+- ability_scores = {str: 18, dex: 12, con: 16, int: 10, wis: 10, cha: 13}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 + (levels[:paladin] - 1) * 6 + mods[:con] * levels[:paladin]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Mountain Dwarf
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (2,798 / 6,500 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Wis, Cha
+      .skill Athletics, Medicine, Intimidation, Persuasion
+      .tool Gaming Set (dice), Vehicles (land), Brewer's Tools
+      .language Common, Dwarvish
+      .weapon simple, martial
+      .armor all armor, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small Warhammer, shield, chainmail
+          .ac
+            .head.b AC
+            .value 19
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:str] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:str]}
+              %span.small bludgeoning
+          .attack.range
+            .b.bg Range
+            .value 5
+
+        -#dwarven-resilience
+        .feature.block
+          .head.b Dwarven Resilience
+          %p.small
+            You have resistance to poison damage, and advantage on saving throws against poison.
+
+      .half
+        .feature.block
+          .head.b Darkvision
+          %p.small
+            You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+        -#fighting-style
+        .feature.block
+          .head.b Fighting Style: Defense
+          %p.small
+            +1 AC while wearing armor.
+        -#divine-health
+        .feature.block
+          .head.b Divine Health
+          %p.small
+            You are immune to disease.
+        -#stonecunning
+        .feature.block
+          .head.b Stonecunning
+          %p.small
+            Add double your proficiency bonus to Intelligence (History) checks related to the origin of stonework.
+
+      -#channel-divinity
+      .feature.block
+        .head
+          %span.b Channel Divinity
+          .uses.short-rest
+            - 1.times do |i|
+              .checkbox
+        .block.small
+          %span.title
+            Abjure Enemy
+          &#x2726;
+          %span.b Action
+          %p
+            Requires holy symbol and verbal prayer. Choose one visible creature within 60 ft. to make a Wisdom save. Fiends and undead have disadvatage on the save.
+          %p
+            On a failed save, the target is frightened for 1 minute or until it takes damage. While frightened, the creature's speed is 0.
+          %p
+            On a successful save, the target's speed is havled for 1 minute or until it takes damage.
+        .block.small
+          %span.title
+            Vow of Enmity
+          &#x2726;
+          %span.b Bonus Action
+          %p
+            Utter a vow against a visible creature within 10 ft. You have advantage on attack rolls agaist the creature for 1 minute, or until it drops to 0 hit points or falls unconscious.
+
+      -#divine-sense
+      .feature.block
+        .head
+          %span.b Divine Sense
+          .uses.long-rest
+            - (1 + mods[:cha]).times do |i|
+              .checkbox
+        %p.small
+          %span.b Action.
+          Until the end of your next turn, you know the locatoin of any celestial, fiend, or undead creature within 60 ft. that is not behind total cover. You also detect any place or object that has been consecrated or desecrated.
+
+
+
+    .flex.tall.column.narrow
+      -#paladin-spellcasting
+      .spellcasting.block
+        .head.b Paladin Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Cha
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:cha] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:cha]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 3.times do |i|
+              .checkbox
+
+        .slots.resource.half
+      .scratch.concentration.block
+        .title.b Concentration
+        %div
+      .feature.block
+        .head.b Preparation
+        %p.small
+          You always have
+          %span.spell bane
+          and
+          %span.spell hunter's mark
+          prepared. After a long rest, you can prepare any #{(levels[:paladin] / 2) + mods[:cha]} spells from the paladin spell list.
+      -#divine-smite
+      .feature.block
+        .head.b Divine Smite
+        %p.small
+          When you hit a creature with a melee attack, you can expend one spell slot for an extra 2d8 radiant damage, or 3d8 vs. undead and fiends.
+      -#lay-on-hands
+      .feature.block
+        .head.b Lay on Hands
+        .points
+          .scratch
+            .title
+              HP Pool:
+              %span.b=levels[:paladin] * 5
+            %div
+          %p.small
+            %span.b Action.
+            You touch a creature and draw power from a pool of hit points to heal the creature. Your pool replenishes after a long rest.
+          %p.small
+            Alternatively, you can cure diseases and neutralize poisons affecting the target by expending 5 hit points per disease or poison.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Warhammer
+    .item Off-brand Holy Amulet
+    .item 50 ft. hemp rope
+    .item Waterskin
+    .item Chainmail
+    .item Backpack
+    .item Bedroll
+    .item Rations (2)
+    .item Shield
+    .item Common clothes
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 92
+      .value.sp 3
+      .value.cp 5
+
+.spell-list.flex
+  .spell-actions.column
+    .head.b Spell Actions
+    .spell
+      .prepared
+        .checkbox.checked
+      .title Bane
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Bless
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Command
+      .level 1<sup>st</sup>
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Cure Wounds
+      .level 1<sup>st</sup>
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Detect Evil and Good
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Detect Magic
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Detect Poison and Disease
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Heroism
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Protection from Evil and Good
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Purify Food and Drink
+      .level 1<sup>st</sup>
+      .keywords.b
+  .other-spells.column
+    .head.b Bonus Actions
+    .spell
+      .prepared
+        .checkbox
+      .title Compelled Duel
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Divine Favor
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox.checked
+      .title Hunter’s Mark
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Searing Smite
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Shield of Faith
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Thunderous Smite
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Wrathful Smite
+      .level 1<sup>st</sup>
+      .keywords.b conc.
+    .head.b Non-Combat Spells
+    .spell
+      .prepared
+        .checkbox
+      .title Ceremony
+      .level 1<sup>st</sup>
+      .keywords.b
