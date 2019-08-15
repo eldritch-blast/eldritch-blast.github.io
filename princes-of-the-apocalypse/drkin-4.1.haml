@@ -1,10 +1,12 @@
 - name = "Drkin McKirkin"
-- levels = { paladin: 3 }
+- levels = { paladin: 4 }
 - hd = { paladin: 'd10' }
 - ability_scores = {str: 18, dex: 12, con: 16, int: 10, wis: 10, cha: 13}
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.sum - 1) / 4 + 2)
 - hp = 10 + (levels[:paladin] - 1) * 6 + mods[:con] * levels[:paladin]
+- xp = 2798
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
 !!!
 %head
   %title #{name}
@@ -14,7 +16,7 @@
   .info-bar
     %span.subrace Mountain Dwarf
     %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
-    %span.xp (2,798 / 6,500 xp)
+    %span.xp (#{xp} / #{next_level[levels.values.sum]} xp)
   .flex.atf
     -#ability scores
     .ability-scores.flex.tall
