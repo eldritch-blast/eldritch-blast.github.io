@@ -1,7 +1,7 @@
 - name = "Ed"
 - levels = { wizard: 4 }
 - hd = { wizard: 'd6' }
-- ability_scores = {str: 8, dex: 14, con: 16, int: 17, wis: 10, cha: 8}
+- ability_scores = {str: 8, dex: 14, con: 16, int: 18, wis: 10, cha: 8}
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.inject(&:sum) - 1) / 4 + 2)
 - hp = 6 + (levels[:wizard] - 1) * 4 + mods[:con] * levels.values.inject(&:sum)
@@ -106,11 +106,12 @@
           .head.b Artificer's Lore
           %p.small
             Add double your proficiency bonus to Intelligence (History) checks related to magic, alchemy, or technology.
-        -#transmutation-savant
+        -#observant
         .feature.block
-          .head.b Transmutation Savant
-          %p.small
-            Copying a transmutation spell into your spellbook takes &#xbd; the cost in time and money.
+          .head.b Observant
+          %ul.small
+            %li Can read lips
+            %li +5 to passive Wisdom (Perception) and Intelligence (Investigation)
 
       .half
         -#tinkering
@@ -136,6 +137,12 @@
             Transform one object composed entirely of wood, stone, iron, copper, or silver into a different one of those materials. You can transform up to 1 cubic foot of material for every 10 minutes spent performing the procedure. The transformation requires
             %span.b concentration
             to maintain, and lasts up to 1 hour.
+        -#transmutation-savant
+        .feature.block
+          .head.b Transmutation Savant
+          %p.small
+            Copying a transmutation spell into your spellbook takes &#xbd; the cost in time and money.
+
 
     .flex.tall.column.narrow
       -#wizard-spellcasting
@@ -254,6 +261,12 @@
       .keywords.b conc.
     .spell
       .prepared
+        .checkbox.checked
+      .title True Strike
+      .level cantrip
+      .keywords.b conc.
+    .spell
+      .prepared
         .checkbox
       .title Detect Magic
       .level 1<sup>st</sup>
@@ -291,6 +304,12 @@
     .spell
       .prepared
         .checkbox
+      .title Alter Self
+      .level 2<sup>nd</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
       .title Flaming Sphere
       .level 2<sup>nd</sup>
       .keywords.b conc.
@@ -298,6 +317,12 @@
       .prepared
         .checkbox
       .title Rope Trick
+      .level 2<sup>nd</sup>
+      .keywords.b
+    .spell
+      .prepared
+        .checkbox
+      .title Shatter
       .level 2<sup>nd</sup>
       .keywords.b
 
