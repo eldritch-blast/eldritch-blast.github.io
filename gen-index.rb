@@ -28,7 +28,7 @@ end
 links = []
 charsheets.group_by(&:character).each do |key, sheets|
   `cp #{sheets.sort_by(&:version).last.path} #{dir}/#{key.downcase.gsub(' ', '-')}.html`
-  html = "<h1><a href=\"#{key}.html\">#{key.capitalize}</a></h1>"
+  html = "<h1><a href=\"#{key.downcase.gsub(' ', '-')}.html\">#{key.capitalize}</a></h1>"
   html << "<h4>previous versions</h4>"
   html << sheets.sort_by(&:version).reverse.map { |sheet| "<p><a href=\"#{sheet.filename}\">#{sheet.version}\</a></p>" }.join
   links << html
