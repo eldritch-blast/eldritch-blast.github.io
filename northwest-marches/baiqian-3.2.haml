@@ -90,12 +90,6 @@
           %ul.small
             %li Disadvantage on Dexterity (Stealth)
 
-        -#celestial-radiance
-        .feature.block
-          .head.b Celestial Radiance
-          %p.small
-            You have resistance to radiant and necrotic damage.
-
       .half
         -#equip
         .equipment-set.block
@@ -122,12 +116,6 @@
           %ul.small
             %li Disadvantage on Dexterity (Stealth)
 
-        -#darkvision
-        .feature.block
-          .head.b Darkvision
-          %p.small
-            You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
-
 
       -#healing-hands
       .feature.block
@@ -141,6 +129,22 @@
           %span.b #{levels.values.sum + 2} hp.
           Includes +2 bonus from
           %span.magic ancestor amulet.
+
+      -#radiant-soul
+      .feature.block
+        .head
+          %span.b Radiant Soul
+          .uses.long-rest
+            .checkbox
+        %p.small
+          %span.b Action.
+          Unleash the divine energy within yourself, causing your eyes to glimmer and two angel wings made of light to sprout from your back. This effect lasts for 1 minute or until you end it as a bonus action.
+        %p.small
+          While transformed, you have a
+          %span.b flying speed of 30 feet,
+          and once on each of your turns, you can deal
+          %span.b #{levels.values.sum} extra radiant damage
+          to one target when you deal damage to it with a spell or an attack.
 
       -#channel-divinity
       .feature
@@ -167,7 +171,7 @@
             Present your holy symbol and restore #{levels[:cleric] * 5} hit points. Choose any creatures within 30 feet and divide those hit points among them. You can restore no more than half of a creature's maximum hit points this way.
 
 
-    .flex.tall.column.narrow
+    .flex.tall.column.narrow{style: 'margin-top: -1.4rem;'}
       -#cleric-spellcasting
       .spellcasting.block
         .head.b Cleric Spellcasting
@@ -216,6 +220,17 @@
         .head.b Disciple of Life
         %p.small
           Whenever you heal a creature with a spell, that creature regains additional hit points equal to 2 + the spell's level.
+      -#darkvision
+      .feature.block
+        .head.b Darkvision
+        %p.small
+          You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+      -#celestial-radiance
+      .feature.block
+        .head.b Celestial Radiance
+        %p.small
+          You have resistance to radiant and necrotic damage.
+
 
   .new-page
 
