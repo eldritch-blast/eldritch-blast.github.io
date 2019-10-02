@@ -29,9 +29,9 @@
       .head.b
         .bonus='%+d' % prof
       .save Wis, Cha
-      .skill Athletics, Insight, Persuasion, Religion
-      .tool
-      .language Common, Celestial, Infernal, Abyssal
+      .skill Athletics, Insight, Intimidation, Persuasion
+      .tool Gaming set (chess), vehicles (land)
+      .language Common, Celestial
       .weapon simple, martial
       .armor all armor, shields
     -#health
@@ -182,13 +182,13 @@
     .item Waterskin
     .item
     .item
-    .item Holy reliquary
-    .item Religious vestments
-    .item Prayer book
-    .item Incense (5)
-    .item
-    .item
+    .item Insignia of rank
+    .item Piece of enemy banner
+    .item Deck of cards
     .item Common clothes
+    .item
+    .item
+    .item
     .item
     .item
     .item
@@ -206,16 +206,45 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp 5
+      .value.gp 10
       .value.sp
       .value.cp
 
-.spell-list.flex
-  .spell-actions.column
-    .head.b Spell Actions
-    .spell
-      .prepared
-        .checkbox.checked
-      .title Light
-      .level cantrip
-      .keywords.b
+  .spell-list.flex
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Light
+        .level cantrip
+        .keywords.b
+
+  .new-page
+
+  .flex.role-playing
+    .column.wide.background
+      .feature.block
+        .head.b Background: Soldier
+        %p.small
+          War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You were a healer in a standing national army, keeping other soldiers alive and easing the suffering of those you couldn't.
+        %p.small
+          %span.b Speciality:
+          Healer
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I'm haunted by memories of war. I can't get the images of violence out of my mind.
+    .column.narrow.personality
+      .feature.block
+        .head.b Ideal: Greater Good
+        %p.small
+          Our lot is to lay down our lives in the defense of others.
+      .feature.block
+        .head.b Bond
+        %p.small
+          I would still lay down my life for the people I served with.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I obey my oath, even when it causes misery.
