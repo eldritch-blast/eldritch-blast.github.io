@@ -40,7 +40,7 @@ sup {
 .b {
   font-weight: bold; }
 
-.spell, .magic {
+.spell, .magic, .emph {
   font-style: italic; }
 
 .small {
