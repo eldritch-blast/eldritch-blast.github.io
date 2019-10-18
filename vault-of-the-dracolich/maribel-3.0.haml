@@ -1,0 +1,279 @@
+- name = "Maribel Marshmelon"
+- levels = { ranger: 3 }
+- hd = { ranger: 'd10' }
+- ability_scores = {str: 12, dex: 16, con: 16, int: 8, wis: 14, cha: 8}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 * levels[:ranger] + mods[:con] * levels[:ranger]
+- xp = 900
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Stout Halfling
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (#{xp} / #{next_level[levels.values.sum]} xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Dex
+      .skill Animal Handling, Athletics, Perception, Stealth, Survival
+      .tool Land vehicles, woodcarver's utensils
+      .language Common, Halfling
+      .weapon simple, martial
+      .armor all armor, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small
+            Rapier, shield, studded leather
+          .ac
+            .head.b AC
+            .value=12 + 2 + mods[:dex]
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Reach
+            .value 5
+      -#equip
+      .half
+        .equipment-set.block
+          .head.b Ranged Equipment
+          .small Light crossbow, scale mail
+          .ac
+            .head.b AC
+            .value=12 + mods[:dex]
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + 2 + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 80 / 320
+
+      .half
+        -#lucky
+        .feature.block
+          .head.b Lucky
+          %p.small Reroll 1s on attack rolls, ability checks, and saving throws.
+        -#brave
+        .feature.block
+          .head.b Brave
+          %p.small
+            You have advantage on saving throws against being frightened.
+        -#halfling-nimbleness
+        .feature.block
+          .head.b Halfling Nimbleness
+          %p.small
+            You can move through the space of creatures larger than you.
+        -#favored-enemy
+        .feature.block
+          .head.b Favored Enemy: Undead
+          %p.small
+            Advantage on Wisdom (Survival) checks to track your favored enemies and Intelligence checks to recall information about them.
+        -#detect-portal
+        .feature.block
+          .head
+            %span.b{style: "margin-left:-2em"} Detect Portal
+            .uses.short-rest
+              .checkbox
+          %p.small
+            %span.b Action.
+            Detect the distance and direction to the closest planar portal within 1 mile.
+
+
+      .half
+        -#fighting-style
+        .feature.block
+          .head.b Fighting Style: Archery
+          %p.small
+            +2 to attack rolls with ranged weapons.
+        -#stout-resilience
+        .feature.block
+          .head.b Stout Resilience
+          %p.small
+            Advantage on saving throws against poison, and resistance to poison damage.
+        -#favored-terrain
+        .feature.block
+          .head.b Favored Terrain: Swamp
+          %p.small
+            While traveling in your favored terrain, you gain the following benefits:
+          %ul.small
+            %li Difficult terrain doesn't slow your group's travel.
+            %li Your group can't become lost except by magical means.
+            %li You remain alert to danger even while engaged in another activity.
+            %li If you are traveling alone, you can move stealthily at a normal pace.
+            %li When you forage, you find twice as much food as normal.
+            %li While tracking creatures, you learn the number, sizes, and how long ago they passed.
+
+
+
+    .flex.tall.column.narrow
+      -#ranger-spellcasting
+      .spellcasting.block
+        .head.b Ranger Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Wis
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:wis] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:wis]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 3.times do |i|
+              .checkbox
+        .slots.resource.half
+      .scratch.concentration.block
+        .title.b Concentration
+        %div
+      -#primeval-awareness
+      .feature.block
+        .head.b Primeval Awareness
+        %p.small
+          %span.b Action.
+          Expend one ranger spell slot. For 1 minute per level of the expended slot, you can sense whether any aberrations, celestials, dragons, elementals, fey, or undead are within 1 mile (or up to 6 miles in your favored terrain). You don't learn their location or number.
+      -#planar-warrior
+      .feature.block
+        .head.b Planar Warrior
+        %p.small
+          %span.b Bonus Action.
+          Choose one creature you can see within 30 ft. The next time you hit that creature on this turn with a weapon attack, all damage dealth by the attack becomes force damage, and the creature takes an extra 1d8 force damage from the attack.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Rapier
+    .item Backpack
+    .item Light crossbow
+    .item Crossbow bolt (20)
+    .item Shield
+    .item Bedroll
+    .item Traveler's clothes
+    .item Hemp rope (50 ft.)
+    .item Scale mail
+    .item Waterskin
+    .item Rations (10)
+    .item Shovel
+    .item Tinderbox
+    .item.magic potion of healing
+    .item Lantern, hooded
+    .item Oil (5)
+    .item Grappling hook
+    .item Bag of caltrops (3)
+    .item Healer's kit
+    .item.magic potion of healing
+    .item Iron pot
+    .item Mess kit
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp=300 - 50 - 10 - 25 - 25 - 1 - 2 - 1 - 1 - 2 - 1 - 2 - 1 - 5 - 2 - 3 - 5 - 2
+      .value.sp=1
+      .value.cp
+
+  .spell-list.flex.block
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .title Cure Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .title Protection from Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b  conc.
+    .other-spells.column
+      .head.b Bonus Actions
+      .spell
+        .title Hunter's Mark
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .head.b Reactions
+      .spell
+        .title Absorb Elements
+        .level 1<sup>st</sup>
+        .keywords.b
