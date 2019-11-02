@@ -70,13 +70,15 @@ spells['action'].sort_by { |spell| [spell['text']['level'], spell['text']['name'
   haml << spell_to_haml(spell, extras.include?(spell['id']))
 end
 
+if spells.include?('bonus')
 haml << <<HAML
   .other-spells.column
     .head.b Bonus Actions
 HAML
 
-spells['bonus'].sort_by { |spell| [spell['text']['level'], spell['text']['name']] }.each do |spell|
-  haml << spell_to_haml(spell, extras.include?(spell['id']))
+  spells['bonus'].sort_by { |spell| [spell['text']['level'], spell['text']['name']] }.each do |spell|
+    haml << spell_to_haml(spell, extras.include?(spell['id']))
+  end
 end
 
 if spells.include?('reaction')
