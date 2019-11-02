@@ -72,7 +72,8 @@
         .equipment-set.block
           .head.b Standard Equipment
           .small
-            Rapier, shield, studded leather
+            .magic rapier +1,
+            shield, studded leather
           .ac
             .head.b AC
             .value=12 + 2 + mods[:dex]
@@ -82,11 +83,11 @@
           .head.b Attack Action
           .attack.roll
             .b.bg Roll
-            .value d20 + #{mods[:dex] + prof}
+            .value d20 + #{1 + mods[:dex] + prof}
           .attack.damage
             .b.bg Damage
             .value
-              1d8 + #{2 + mods[:dex]}
+              1d8 + #{2 + 1 + mods[:dex]}
               %span.small piercing
           .attack.range
             .b.bg Reach
@@ -95,7 +96,7 @@
       .half
         .equipment-set.block
           .head.b Ranged Equipment
-          .small Light crossbow, studded leather
+          .small light crossbow, studded leather
           .ac
             .head.b AC
             .value=12 + mods[:dex]
@@ -198,7 +199,7 @@
 
   .inventory.grid.block
     .head.b Inventory
-    .item Rapier
+    .item.magic Rapier +1
     .item Backpack
     .item Light crossbow
     .item Crossbow bolt (20)
@@ -236,6 +237,6 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp=300 - 45 - 10 - 25 - 25 - 1 - 2 - 1 - 1 - 2 - 1 - 2 - 1 - 5 - 2 - 3 - 5 - 2
+      .value.gp
       .value.sp=1
       .value.cp
