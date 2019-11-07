@@ -71,10 +71,10 @@
           .head.b Standard Equipment
           .small
             Rapier,
-            leather armor
+            studded leather
           .ac
             .head.b AC
-            .value=11 + mods[:dex]
+            .value=12 + mods[:dex]
           .move
             .head.b Move
             .value 30
@@ -91,7 +91,6 @@
             .b.bg Range
             .value 5
 
-      .half
         -#cunning-action
         .feature.block
           .head.b Cunning Action
@@ -107,6 +106,33 @@
             or
             %span.b thieves' tools
             proficiencies.
+
+
+      .half
+        -#equip
+        .equipment-set.half.block
+          .head.b Standard Equipment
+          .small
+            Light crossbow,
+            studded leather
+          .ac
+            .head.b AC
+            .value=12 + mods[:dex]
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 80/320
 
         -#sneak-attack
         .feature.block
@@ -201,6 +227,7 @@
         .title Fog Cloud
         .level 1<sup>st</sup>
         .keywords.b conc.
+    .other-spells.column{style: 'margin-top:1.5rem;'}
       .spell
         .title Sleep
         .level 1<sup>st</sup>
@@ -209,7 +236,6 @@
         .title Tasha's Hideous Laughter
         .level 1<sup>st</sup>
         .keywords.b conc.
-    .other-spells.column
       .head.b Reactions
       .spell
         .title Shield*
@@ -226,14 +252,14 @@
     .item Thieves' tools
     .item Rations (2)
     .item Waterskin
-    .item Leather armor
+    .item Studded leather armor
     .item Common clothes
     .item Backpack
     .item 50 ft. hemp rope
     .item Arcane focus (orb)
     .item Torch
     .item Light crossbow
-    .item Bolts (37)
+    .item Bolts (33)
     .item Savra's signet ring
     .item.magic potion of heroism
     .item
@@ -260,8 +286,8 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp 564
-      .value.sp 9
-      .value.cp 5
+      .value.gp=115
+      .value.sp=12
+      .value.cp=8
 
 

@@ -69,10 +69,10 @@
       -#equip
       .equipment-set.half.block
         .head.b Standard Equipment
-        .small Wand, hide armor
+        .small Wand, scale mail, shield
         .ac
           .head.b AC
-          .value=12 + [mods[:dex], 2].min
+          .value=14 + 2 + [mods[:dex], 2].min
         .move
           .head.b Move
           .value 30
@@ -91,10 +91,10 @@
       -#equip
       .equipment-set.half.block
         .head.b Alternate Equipment
-        .small Whip, wand, hide armor
+        .small Whip, scale mail, shield
         .ac
           .head.b AC
-          .value=12 + [mods[:dex], 2].min
+          .value=14 + 2 + [mods[:dex], 2].min
         .move
           .head.b Move
           .value 30
@@ -204,14 +204,14 @@
     .head.b Inventory
     .item Whip
     .item Wand
-    .item Rations (2)
+    .item Shield
     .item Backpack
-    .item Hide armor
+    .item Scale mail
     .item Common clothes
     .item Waterskin
     .item 50 ft. hemp rope
     .item.magic Book of shadows
-    .item
+    .item Rations (2)
     .item
     .item
     .item
@@ -240,9 +240,9 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp 84
-      .value.sp 5
-      .value.cp 5
+      .value.gp=84+56
+      .value.sp=5+3
+      .value.cp=5+3
 
   .spell-list.flex.block
     .spell-actions.column
