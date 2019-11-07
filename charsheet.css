@@ -445,7 +445,8 @@ li:before {
     border-bottom-left-radius: calc(2in + 5px);
     padding-left: 0.5in;
     padding-top: 0.2in;
-    font-size: 32px; }
+    font-size: 32px;
+    z-index: -1; }
   .spell-cards div, .spell-cards p {
     font-size: 14px; }
   .spell-cards p:first-of-type {
