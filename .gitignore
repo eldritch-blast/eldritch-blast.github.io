@@ -3,3 +3,4 @@ data/index.html
 unpublished/
 *spells.haml
 *.swp
+spell-cards-*.haml
