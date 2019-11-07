@@ -5,7 +5,7 @@
 - mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
 - prof = ((levels.values.inject(&:sum) - 1) / 4 + 2)
 - hp = 6 + (levels[:wizard] - 1) * 4 + mods[:con] * levels.values.inject(&:sum)
-- xp = 2306 + 870 + 216 + 570
+- xp = 2306 + 870 + 216 + 570 + 500
 - next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
 !!!
 %head
@@ -216,8 +216,6 @@
       scroll of
       %span.spell beast bond
     .item
-      scroll of
-      %span.spell skywrite
     .item
     .item
     .item
@@ -341,6 +339,13 @@
       .title Shatter
       .level 2<sup>nd</sup>
       .keywords.b
+    .spell
+      .prepared
+        .checkbox
+      .title Skywrite
+      .level 2<sup>nd</sup>
+      .keywords.b ritual
+
 
   .other-spells.column
     .head.b Reactions

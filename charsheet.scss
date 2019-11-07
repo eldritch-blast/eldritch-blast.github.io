@@ -13,6 +13,14 @@ $dark-grey: #777;
         margin-top: 0.25in;
         overflow: hidden;
     }
+    .blank-page {
+        page-break-before:always;
+        page-break-after:always;
+        height: 11in;
+        .half {
+            height: 5.5in;
+        }
+    }
 }
 @media screen {
     body {
@@ -21,6 +29,9 @@ $dark-grey: #777;
         width: 8in;
     }
     .new-page {
+        display: none;
+    }
+    .blank-page {
         display: none;
     }
 }
@@ -562,5 +573,79 @@ li:before {
         .senses:before {
             content: "Senses ";
         }
+    }
+}
+
+//// Spell Cards
+.spell-cards {
+    page-break-before:always;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: -.25in; // undo body margin
+    .card {
+        position: relative;
+        border: 1px dashed $light-grey;
+        padding: calc(0.3in - 2px);
+        height: 5.5in;
+        width: 50%;
+    }
+    .level {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1in;
+        height: 1in;
+        border-left: 5px solid $light-grey;
+        border-bottom-left-radius: calc(2in + 5px);
+        padding-left: 0.5in;
+        padding-top: 0.2in;
+        font-size: 32px;
+    }
+    div, p {
+        font-size: 14px;
+    }
+    p:first-of-type {
+        margin-top: 0.5em;
+        text-indent: 0;
+    }
+    h3 {
+        text-align: left;
+        font-variant: small-caps;
+        font-size: 18px;
+        margin: 0;
+    }
+    .school {
+        font-style: italic;
+        margin-bottom: 0.5em;
+    }
+    .casting-time, .range, .components, .duration {
+        padding-left: 1em;
+        text-indent: -1em;
+    }
+    .casting-time {
+        padding-right: 0.4in;
+    }
+    .casting-time:before {
+        font-weight: bold;
+        content: "Casting Time: "
+    }
+    .range:before {
+        font-weight: bold;
+        content: "Range: "
+    }
+    .components:before {
+        font-weight: bold;
+        content: "Components: "
+    }
+    .duration:before {
+        font-weight: bold;
+        content: "Duration: "
+    }
+    li:before {
+        position: relative;
+        left: -0.5rem;
+        content: "\2022";
     }
 }

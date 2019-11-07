@@ -7,7 +7,14 @@
   .new-page {
     page-break-before: always;
     margin-top: 0.25in;
-    overflow: hidden; } }
+    overflow: hidden; }
+
+  .blank-page {
+    page-break-before: always;
+    page-break-after: always;
+    height: 11in; }
+    .blank-page .half {
+      height: 5.5in; } }
 @media screen {
   body {
     font-family: Georgia, serif;
@@ -15,6 +22,9 @@
     width: 8in; }
 
   .new-page {
+    display: none; }
+
+  .blank-page {
     display: none; } }
 * {
   box-sizing: border-box; }
@@ -411,5 +421,64 @@ li:before {
   content: "Skills "; }
 .companion .other-stats .senses:before {
   content: "Senses "; }
+
+.spell-cards {
+  page-break-before: always;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: -.25in; }
+  .spell-cards .card {
+    position: relative;
+    border: 1px dashed #ddd;
+    padding: calc(0.3in - 2px);
+    height: 5.5in;
+    width: 50%; }
+  .spell-cards .level {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1in;
+    height: 1in;
+    border-left: 5px solid #ddd;
+    border-bottom-left-radius: calc(2in + 5px);
+    padding-left: 0.5in;
+    padding-top: 0.2in;
+    font-size: 32px; }
+  .spell-cards div, .spell-cards p {
+    font-size: 14px; }
+  .spell-cards p:first-of-type {
+    margin-top: 0.5em;
+    text-indent: 0; }
+  .spell-cards h3 {
+    text-align: left;
+    font-variant: small-caps;
+    font-size: 18px;
+    margin: 0; }
+  .spell-cards .school {
+    font-style: italic;
+    margin-bottom: 0.5em; }
+  .spell-cards .casting-time, .spell-cards .range, .spell-cards .components, .spell-cards .duration {
+    padding-left: 1em;
+    text-indent: -1em; }
+  .spell-cards .casting-time {
+    padding-right: 0.4in; }
+  .spell-cards .casting-time:before {
+    font-weight: bold;
+    content: "Casting Time: "; }
+  .spell-cards .range:before {
+    font-weight: bold;
+    content: "Range: "; }
+  .spell-cards .components:before {
+    font-weight: bold;
+    content: "Components: "; }
+  .spell-cards .duration:before {
+    font-weight: bold;
+    content: "Duration: "; }
+  .spell-cards li:before {
+    position: relative;
+    left: -0.5rem;
+    content: "\2022"; }
 
 /*# sourceMappingURL=charsheet.css.map */
