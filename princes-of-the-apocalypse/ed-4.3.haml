@@ -1,0 +1,370 @@
+- name = "Ed"
+- levels = { wizard: 4 }
+- hd = { wizard: 'd6' }
+- ability_scores = {str: 8, dex: 14, con: 16, int: 18, wis: 10, cha: 8}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.inject(&:sum) - 1) / 4 + 2)
+- hp = 6 + (levels[:wizard] - 1) * 4 + mods[:con] * levels.values.inject(&:sum)
+- xp = 2306 + 870 + 216 + 570 + 500 + 1000
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Human
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (#{xp} / #{next_level[levels.values.sum]} xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Int, Wis
+      .skill Arcana, History, Insight, Investigation
+      .tool Tinker's tools
+      .language Common, Gnomish, Dwarvish, Goblin
+      .weapon dagger, dart, sling, quarterstaff, light crossbow
+      .armor none
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small Dagger, unarmored
+          .ac
+            .head.b AC
+            .value 12
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d4 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 5
+          %ul.small
+            %li Can throw dagger, range 20/60
+
+        -#gnome-cunning
+        .feature.block
+          .head.b Gnome Cunning
+          %p.small
+            You have advantage on all Int, Wis, and Cha saves vs. magic.
+        -#darkvision
+        .feature.block
+          .head.b Darkvision
+          %p.small
+            You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+        -#artificers-lore
+        .feature.block
+          .head.b Artificer's Lore
+          %p.small
+            Add double your proficiency bonus to Intelligence (History) checks related to magic, alchemy, or technology.
+        -#observant
+        .feature.block
+          .head.b Observant
+          %ul.small
+            %li Can read lips
+            %li +5 to passive Wisdom (Perception) and Intelligence (Investigation)
+
+      .half
+        -#tinkering
+        .feature.block
+          .head.b Tinkering
+          %p.small
+            Use tinker's tools and 10 gp worth of materials over 1 hour to construct a tiny clockwork device (AC 5, 1 hp), which functions for 24 hours. You can use an action to dismantle it, recovering the parts used to create it. After 24 hours, you can spend an additional hour to repair it to add 24 hours duration. You can have up to three such devices at a time. Choose from the following:
+          %ul.small
+            %li
+              %span.spell Clockwork Toy:
+              Moves 5 ft. across the ground in a random direction each turn. Makes noises appropriate to the type of creature it represents.
+            %li
+              %span.spell Firestarter:
+              Produce a miniature flame as an action.
+            %li
+              %span.spell Music Box:
+              When opened, plays a song at moderate volume.
+
+        -#minor-alchemy
+        .feature.block
+          .head.b Minor Alchemy
+          %p.small
+            Transform one object composed entirely of wood, stone, iron, copper, or silver into a different one of those materials. You can transform up to 1 cubic foot of material for every 10 minutes spent performing the procedure. The transformation requires
+            %span.b concentration
+            to maintain, and lasts up to 1 hour.
+        -#transmutation-savant
+        .feature.block
+          .head.b Transmutation Savant
+          %p.small
+            Copying a transmutation spell into your spellbook takes &#xbd; the cost in time and money.
+
+
+    .flex.tall.column.narrow
+      -#wizard-spellcasting
+      .spellcasting.block
+        .head.b Wizard Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Int
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:int] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:int]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 4.times do |i|
+              .checkbox
+
+        .slots.resource.half
+          .label
+            2
+            %sup> nd
+          .uses
+            - 3.times do |i|
+              .checkbox
+      .scratch.block
+        .title.b Concentration
+        %div
+      .feature.block
+        .head
+          %span.b Arcane Recovery
+          .uses
+            .checkbox
+        %p.small
+          Once per day, when you finish a short rest, you can recover expended spell slots of 5<sup>th</sup> level or lower. These slots must have a combined level &#x2264; #{levels[:wizard] / 2 + (levels[:wizard] % 2)}.
+      .feature.block
+        .head.b Preparation
+        %p.small
+          After a long rest, you can prepare any #{levels[:wizard] + mods[:int]} spells from your spellbook.
+      .feature.block
+        .head.b Ritual Casting
+        %p.small
+          You can cast a wizard spell with the ritual tag as a ritual if it's in your spellbook.
+      .feature.block
+        .head.b Spellbook
+        %p.small
+          You have a spellbook. You may add two wizard spells to it for free whenever you gain a wizard level. If you find a wizard spell in your travels, you can add it to your spellbook by spending 2 hours and 50 gp worth of materials per spell level to copy it. You can only add spells of a level you can cast.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Spellbook
+    .item Bottle of ink (2)
+    .item Small knife (2)
+    .item Letter from a colleague
+    .item Dagger
+    .item Ink pen
+    .item Common clothes
+    .item Parchment (10 sheets)
+    .item Component pouch
+    .item Book of lore
+    .item Small bag of sand
+    .item
+      scroll of
+      %span.spell beast bond
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp=2+41+25
+      .value.sp=23+8
+      .value.cp=96+3
+
+%h2 Spellbook
+.spell-list.flex
+  .spell-actions.column
+    .head.b Spell Actions
+    .spell
+      .prepared
+        .checkbox.checked
+      .title Chill Touch
+      .level cantrip
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox.checked
+      .title Dancing Lights
+      .level cantrip
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox.checked
+      .title True Strike
+      .level cantrip
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Detect Magic
+      .level 1<sup>st</sup>
+      .keywords.b conc., ritual
+    .spell
+      .prepared
+        .checkbox
+      .title Grease
+      .level 1<sup>st</sup>
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Mage Armor
+      .level 1<sup>st</sup>
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Ray of Sickness
+      .level 1<sup>st</sup>
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Thunderwave
+      .level 1<sup>st</sup>
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Unseen Servant
+      .level 1<sup>st</sup>
+      .keywords.b ritual
+    .spell
+      .prepared
+        .checkbox
+      .title Alter Self
+      .level 2<sup>nd</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Earthbind
+      .level 2<sup>nd</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Flaming Sphere
+      .level 2<sup>nd</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Maximilian's Earthen Grasp
+      .level 2<sup>nd</sup>
+      .keywords.b conc.
+    .spell
+      .prepared
+        .checkbox
+      .title Rope Trick
+      .level 2<sup>nd</sup>
+      .keywords.b
+    .spell
+      .prepared
+        .checkbox
+      .title Shatter
+      .level 2<sup>nd</sup>
+      .keywords.b
+    .spell
+      .prepared
+        .checkbox
+      .title Skywrite
+      .level 2<sup>nd</sup>
+      .keywords.b ritual
+
+
+  .other-spells.column
+    .head.b Reactions
+    .spell
+      .prepared
+        .checkbox
+      .title Shield
+      .level 1<sup>st</sup>
+      .keywords.b
+    .head.b Non-Combat Spells
+    .spell
+      .prepared
+        .checkbox.checked
+      .title Mending
+      .level cantrip
+      .keywords.b 
+    .spell
+      .prepared
+        .checkbox
+      .title Identify
+      .level 1<sup>st</sup>
+      .keywords.b ritual

@@ -1,0 +1,240 @@
+- name = "Erric Underbough"
+- levels = { fighter: 4 }
+- hd = { fighter: 'd10' }
+- ability_scores = {str: 12, dex: 18, con: 14, int: 10, wis: 8, cha: 14}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 + (levels[:fighter] - 1) * 6 + mods[:con] * levels[:fighter]
+- superiority_die = 8
+- superiority_dice = 4 + (levels[:fighter] + 1) / 8
+- xp = 1150 + 870 + 216 + 570 + 550 + 1000
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Lightfoot Halfling
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (#{xp} / #{next_level[levels.values.sum]} xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Con
+      .skill Acrobatics, Animal Handling, Athletics, Survival
+      .tool Land vehicles, smith's tools
+      .language Common, Halfling
+      .weapon simple, martial
+      .armor all armor, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small
+            Shortsword, shield, breastplate
+          .ac
+            .head.b AC
+            .value=14 + 2 + [mods[:dex], 2].min
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d6 + #{2 + mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Reach
+            .value 5
+      -#equip
+      .half
+        .equipment-set.block
+          .head.b Ranged Equipment
+          .small Light crossbow, breastplate
+          .ac
+            .head.b AC
+            .value=14 + [mods[:dex], 2].min
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 80 / 320
+
+      .half
+        -#lucky
+        .feature.block
+          .head.b Lucky
+          %p.small Reroll 1s on attack rolls, ability checks, and saving throws.
+        -#naturally-stealthy
+        .feature.block
+          .head.b Naturally Stealthy
+          %p.small
+            You can attempt to hide when obscured by a creature larger than you.
+        -#fighting-style
+        .feature.block
+          .head.b Fighting Style: Dueling
+          %p.small
+            While wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.
+      .half
+        -#brave
+        .feature.block
+          .head.b Brave
+          %p.small
+            You have advantage on saving throws against being frightened.
+        -#halfling-nimbleness
+        .feature.block
+          .head.b Halfling Nimbleness
+          %p.small
+            You can move through the space of creatures larger than you.
+
+      -#second-wind
+      .feature.block
+        .head
+          %span.b Second Wind
+          .uses.short-rest
+            .checkbox
+        %p.small
+          %span.b Bonus Action.
+          Regain 1d10 + #{levels[:fighter]} hit points.
+      -#action-surge
+      .feature.block
+        .head
+          %span.b Action Surge
+          .uses.short-rest
+            .checkbox
+        %p.small
+          Take an additional action this turn.
+      -#secod-chance
+      .feature
+        .head
+          %span.b Second Chance
+          .uses
+            - 1.times do |i|
+              .checkbox
+        %p.small
+          %span.b Reaction.
+          When a creature you can see hits you with an attack roll, you can use your reaction to force that creature to reroll. Once you use this ability, you can't use it again until you roll initiative at the start of combat or until you finish a short or long rest.
+
+
+    .flex.tall.column.narrow
+      -#combat-superiority
+      .combat-superiority.block
+        .head.b Combat Superiority (d#{superiority_die})
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + [mods[:str], mods[:dex]].max
+      .small.block
+        You have a pool of #{superiority_dice}d#{superiority_die} combat superiority dice, which regenerates after a short or long rest. You can spend these on three different combat maneuvers (to be chosen).
+      .small.block
+        %span.title Parry
+        %p
+          When you are damaged by a melee attack, use your reaction to expend a superiority die and reduce the damage by 1d#{superiority_die} + #{mods[:dex]}.
+      .small.block
+        %span.title Precision Attack
+        %p
+          When you make a weapon attack, you may expend a superiority die to add 1d#{superiority_die} to the attack roll. You can use this maneuver before or after making the attack roll.
+      .small.block
+        %span.title Trip Attack
+        %p
+          When you hit with a weapon attack, you may expend a superiority die and add it to the damage roll. If the target is Large or smaller, it is knocked prone unless it succeeds on a Str saving throw.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Shortsword
+    .item Backpack
+    .item 50 ft. hemp rope
+    .item Common clothes
+    .item Breastplate
+    .item Bedroll
+    .item Waterskin
+    .item Rations (10)
+    .item Light crossbow
+    .item Crossbow bolts (29)
+    .item Tinderbox
+    .item Smith's tools
+    .item
+    .item
+    .item Torch (10)
+    .item Mess kit
+    .item Shovel
+    .item Iron pot
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp=94+91-21+25
+      .value.sp=5+8
+      .value.cp=5+3
