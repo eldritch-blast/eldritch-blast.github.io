@@ -1,7 +1,7 @@
 id = "haste"
 [metadata]
 action = "action"
-lists = ["sorcerer", "wizard"]
+lists = ["artificer", "sorcerer", "wizard"]
 src = "250  Players Handbook"
 [text]
 casting_time = "1 action"

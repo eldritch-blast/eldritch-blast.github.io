@@ -1,7 +1,7 @@
 id = "flame-arrows"
 [metadata]
 action = "action"
-lists = ["druid", "ranger", "sorcerer", "wizard"]
+lists = ["artificer", "druid", "ranger", "sorcerer", "wizard"]
 src = "18  from EE Players Companion"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 4th level or higher, the number of pieces of ammunition you can affect with this spell increases by two for each slot level above 3rd."]

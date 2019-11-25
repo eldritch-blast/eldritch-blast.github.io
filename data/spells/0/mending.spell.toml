@@ -1,7 +1,7 @@
 id = "mending"
 [metadata]
 action = "non-combat"
-lists = ["bard", "cleric", "druid", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "cleric", "druid", "sorcerer", "wizard"]
 src = "259  Players Handbook"
 [text]
 casting_time = "1 minute"

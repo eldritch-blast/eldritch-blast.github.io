@@ -1,7 +1,7 @@
 id = "sanctuary"
 [metadata]
 action = "bonus"
-lists = ["cleric"]
+lists = ["artificer", "cleric"]
 src = "272  Players Handbook"
 [text]
 casting_time = "1 bonus action"

@@ -1,7 +1,7 @@
 id = "snare"
 [metadata]
 action = "non-combat"
-lists = ["druid", "ranger", "wizard"]
+lists = ["artificer", "druid", "ranger", "wizard"]
 src = "165  from Xanathar's Guide To Everything"
 [text]
 casting_time = "1 minute"

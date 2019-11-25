@@ -1,7 +1,7 @@
 id = "rope-trick"
 [metadata]
 action = "action"
-lists = ["wizard"]
+lists = ["artificer", "wizard"]
 src = "272  Players Handbook"
 [text]
 casting_time = "1 action"

@@ -1,7 +1,7 @@
 id = "thunderclap"
 [metadata]
 action = "action"
-lists = ["bard", "sorcerer", "druid", "warlock", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "druid", "warlock", "wizard"]
 src = "22  from EE Players Companion"
 [text]
 casting_time = "1 action"

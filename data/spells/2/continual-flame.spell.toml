@@ -1,7 +1,7 @@
 id = "continual-flame"
 [metadata]
 action = "action"
-lists = ["cleric", "wizard"]
+lists = ["artificer", "cleric", "wizard"]
 src = "227  Players Handbook"
 [text]
 casting_time = "1 action"

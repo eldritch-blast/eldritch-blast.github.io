@@ -1,7 +1,7 @@
 id = "blur"
 [metadata]
 action = "action"
-lists = ["sorcerer", "wizard"]
+lists = ["artificer", "sorcerer", "wizard"]
 src = "219  Players Handbook"
 [text]
 casting_time = "1 action"

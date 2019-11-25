@@ -1,7 +1,7 @@
 id = "cure-wounds"
 [metadata]
 action = "action"
-lists = ["bard", "cleric", "druid", "paladin", "ranger"]
+lists = ["artificer", "bard", "cleric", "druid", "paladin", "ranger"]
 src = "230  Players Handbook"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st."]

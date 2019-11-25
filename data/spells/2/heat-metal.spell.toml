@@ -1,7 +1,7 @@
 id = "heat-metal"
 [metadata]
 action = "action"
-lists = ["bard", "druid"]
+lists = ["artificer", "bard", "druid"]
 src = "250  Players Handbook"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd."]

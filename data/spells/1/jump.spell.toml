@@ -1,7 +1,7 @@
 id = "jump"
 [metadata]
 action = "action"
-lists = ["druid", "ranger", "sorcerer", "wizard"]
+lists = ["artificer", "druid", "ranger", "sorcerer", "wizard"]
 src = "254  Players Handbook"
 [text]
 casting_time = "1 action"

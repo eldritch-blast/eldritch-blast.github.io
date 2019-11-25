@@ -1,7 +1,7 @@
 id = "mage-hand"
 [metadata]
 action = "action"
-lists = ["bard", "sorcerer", "warlock", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "warlock", "wizard"]
 src = "256  Players Handbook"
 [text]
 casting_time = "1 action"

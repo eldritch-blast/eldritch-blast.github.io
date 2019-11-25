@@ -1,7 +1,7 @@
 id = "poison-spray"
 [metadata]
 action = "action"
-lists = ["druid", "sorcerer", "warlock", "wizard"]
+lists = ["artificer", "druid", "sorcerer", "warlock", "wizard"]
 src = "266  Players Handbook"
 [text]
 casting_time = "1 action"

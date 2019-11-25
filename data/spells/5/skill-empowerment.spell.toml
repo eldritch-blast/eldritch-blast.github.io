@@ -1,7 +1,7 @@
 id = "skill-empowerment"
 [metadata]
 action = "action"
-lists = ["bard", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "wizard"]
 src = "165  from Xanathar's Guide To Everything"
 [text]
 casting_time = "1 action"

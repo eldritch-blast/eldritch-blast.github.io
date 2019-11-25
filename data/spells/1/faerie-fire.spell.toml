@@ -1,7 +1,7 @@
 id = "faerie-fire"
 [metadata]
 action = "action"
-lists = ["bard", "druid"]
+lists = ["artificer", "bard", "druid"]
 src = "239  Players Handbook"
 [text]
 casting_time = "1 action"

@@ -1,7 +1,7 @@
 id = "arcane-lock"
 [metadata]
 action = "action"
-lists = ["wizard"]
+lists = ["artificer", "wizard"]
 src = "215  Players Handbook"
 [text]
 casting_time = "1 action"

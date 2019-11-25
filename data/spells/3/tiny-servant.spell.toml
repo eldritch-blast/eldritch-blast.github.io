@@ -1,7 +1,7 @@
 id = "tiny-servant"
 [metadata]
 action = "non-combat"
-lists = ["wizard"]
+lists = ["artificer", "wizard"]
 src = "168  from Xanathar's Guide To Everything"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 4th level or higher, you can animate two additional objects for each slot level above 3rd."]

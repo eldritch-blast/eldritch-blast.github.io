@@ -1,7 +1,7 @@
 id = "freedom-of-movement"
 [metadata]
 action = "action"
-lists = ["bard", "cleric", "druid", "ranger"]
+lists = ["artificer", "bard", "cleric", "druid", "ranger"]
 src = "244  Players Handbook"
 [text]
 casting_time = "1 action"

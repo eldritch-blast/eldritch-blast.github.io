@@ -1,7 +1,7 @@
 id = "ray-of-frost"
 [metadata]
 action = "action"
-lists = ["sorcerer", "wizard"]
+lists = ["artificer", "sorcerer", "wizard"]
 src = "271  Players Handbook"
 [text]
 casting_time = "1 action"

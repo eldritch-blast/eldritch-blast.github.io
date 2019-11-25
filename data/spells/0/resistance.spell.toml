@@ -1,7 +1,7 @@
 id = "resistance"
 [metadata]
 action = "action"
-lists = ["cleric", "druid"]
+lists = ["artificer", "cleric", "druid"]
 src = "272  Players Handbook"
 [text]
 casting_time = "1 action"

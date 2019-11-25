@@ -1,7 +1,7 @@
 id = "magic-stone"
 [metadata]
 action = "bonus"
-lists = ["druid", "warlock"]
+lists = ["artificer", "druid", "warlock"]
 src = "20  from EE Players Companion"
 [text]
 casting_time = "1 bonus action"

@@ -1,7 +1,7 @@
 id = "mordenkainens-faithful-hound"
 [metadata]
 action = "action"
-lists = ["wizard"]
+lists = ["artificer", "wizard"]
 src = "261  Players Handbook"
 [text]
 casting_time = "1 action"

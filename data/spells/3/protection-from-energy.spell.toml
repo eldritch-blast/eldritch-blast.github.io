@@ -1,7 +1,7 @@
 id = "protection-from-energy"
 [metadata]
 action = "action"
-lists = ["cleric", "druid", "ranger", "sorcerer", "wizard"]
+lists = ["artificer", "cleric", "druid", "ranger", "sorcerer", "wizard"]
 src = "270  Players Handbook"
 [text]
 casting_time = "1 action"

@@ -1,7 +1,7 @@
 id = "thorn-whip"
 [metadata]
 action = "action"
-lists = ["druid"]
+lists = ["artificer", "druid"]
 src = "282  Players Handbook"
 [text]
 casting_time = "1 action"

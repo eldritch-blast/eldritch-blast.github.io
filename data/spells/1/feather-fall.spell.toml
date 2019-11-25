@@ -1,7 +1,7 @@
 id = "feather-fall"
 [metadata]
 action = "reaction"
-lists = ["bard", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "wizard"]
 src = "239  Players Handbook"
 [text]
 casting_time = "special"

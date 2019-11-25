@@ -1,7 +1,7 @@
 id = "light"
 [metadata]
 action = "action"
-lists = ["bard", "cleric", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "cleric", "sorcerer", "wizard"]
 src = "255  Players Handbook"
 [text]
 casting_time = "1 action"

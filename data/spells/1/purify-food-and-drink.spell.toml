@@ -1,7 +1,7 @@
 id = "purify-food-and-drink"
 [metadata]
 action = "action"
-lists = ["cleric", "druid", "paladin"]
+lists = ["artificer", "cleric", "druid", "paladin"]
 src = "270  Players Handbook"
 [text]
 casting_time = "1 action"

@@ -1,7 +1,7 @@
 id = "disguise-self"
 [metadata]
 action = "action"
-lists = ["bard", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "wizard"]
 src = "233  Players Handbook"
 [text]
 casting_time = "1 action"

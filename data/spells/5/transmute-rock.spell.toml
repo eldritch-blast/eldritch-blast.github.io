@@ -1,7 +1,7 @@
 id = "transmute-rock"
 [metadata]
 action = "action"
-lists = ["druid", "wizard"]
+lists = ["artificer", "druid", "wizard"]
 src = "22  from EE Players Companion"
 [text]
 casting_time = "1 action"

@@ -1,7 +1,7 @@
 id = "lesser-restoration"
 [metadata]
 action = "action"
-lists = ["bard", "cleric", "druid", "paladin", "ranger"]
+lists = ["artificer", "bard", "cleric", "druid", "paladin", "ranger"]
 src = "255  Players Handbook"
 [text]
 casting_time = "1 action"

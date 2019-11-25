@@ -1,7 +1,7 @@
 id = "identify"
 [metadata]
 action = "non-combat"
-lists = ["bard", "wizard"]
+lists = ["artificer", "bard", "wizard"]
 src = "252  Players Handbook"
 [text]
 casting_time = "1 minute"

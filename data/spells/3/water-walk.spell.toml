@@ -1,7 +1,7 @@
 id = "water-walk"
 [metadata]
 action = "action"
-lists = ["cleric", "druid", "ranger", "sorcerer"]
+lists = ["artificer", "cleric", "druid", "ranger", "sorcerer"]
 src = "287  Players Handbook"
 [text]
 casting_time = "1 action"

@@ -1,7 +1,7 @@
 id = "aid"
 [metadata]
 action = "action"
-lists = ["cleric", "paladin"]
+lists = ["artificer", "cleric", "paladin"]
 src = "211  Players Handbook"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 3rd level or higher, a target’s hit points increase by an additional 5 for each slot level above 2nd."]

@@ -1,7 +1,7 @@
 id = "skywrite"
 [metadata]
 action = "action"
-lists = ["bard", "druid", "wizard"]
+lists = ["artificer", "bard", "druid", "wizard"]
 src = "22  from EE Players Companion"
 [text]
 casting_time = "1 action"

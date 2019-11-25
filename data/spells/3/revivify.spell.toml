@@ -1,7 +1,7 @@
 id = "revivify"
 [metadata]
 action = "action"
-lists = ["cleric", "paladin"]
+lists = ["artificer", "cleric", "paladin"]
 src = "272  Players Handbook"
 [text]
 casting_time = "1 action"

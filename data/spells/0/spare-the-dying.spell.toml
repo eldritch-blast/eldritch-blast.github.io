@@ -1,7 +1,7 @@
 id = "spare-the-dying"
 [metadata]
 action = "action"
-lists = ["cleric"]
+lists = ["artificer", "cleric"]
 src = "277  Players Handbook"
 [text]
 casting_time = "1 action"

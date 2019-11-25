@@ -1,7 +1,7 @@
 id = "wall-of-stone"
 [metadata]
 action = "action"
-lists = ["druid", "sorcerer", "wizard"]
+lists = ["artificer", "druid", "sorcerer", "wizard"]
 src = "287  Players Handbook"
 [text]
 casting_time = "1 action"

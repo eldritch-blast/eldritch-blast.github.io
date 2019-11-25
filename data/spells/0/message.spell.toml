@@ -1,7 +1,7 @@
 id = "message"
 [metadata]
 action = "action"
-lists = ["bard", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "wizard"]
 src = "259  Players Handbook"
 [text]
 casting_time = "1 action"

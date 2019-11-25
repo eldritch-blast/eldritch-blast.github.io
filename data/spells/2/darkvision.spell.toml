@@ -1,7 +1,7 @@
 id = "darkvision"
 [metadata]
 action = "action"
-lists = ["sorcerer", "wizard", "druid", "ranger"]
+lists = ["artificer", "sorcerer", "wizard", "druid", "ranger"]
 src = "230  Players Handbook"
 [text]
 casting_time = "1 action"

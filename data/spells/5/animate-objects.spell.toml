@@ -1,7 +1,7 @@
 id = "animate-objects"
 [metadata]
 action = "action"
-lists = ["bard", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "sorcerer", "wizard"]
 src = "213  Players Handbook"
 [text]
 at_higher_levels = ["If you cast this spell using a spell slot of 6th level or higher, you can animate two additional objects for each slot level above 5th."]

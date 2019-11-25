@@ -1,7 +1,7 @@
 id = "greater-restoration"
 [metadata]
 action = "action"
-lists = ["bard", "cleric", "druid"]
+lists = ["artificer", "bard", "cleric", "druid"]
 src = "246  Players Handbook"
 [text]
 casting_time = "1 action"

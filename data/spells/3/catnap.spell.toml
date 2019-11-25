@@ -1,7 +1,7 @@
 id = "catnap"
 [metadata]
 action = "action"
-lists = ["wizard", "bard", "sorcerer"]
+lists = ["artificer", "wizard", "bard", "sorcerer"]
 src = "151  from Xanathar's Guide To Everything"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 4th level or higher, you can target one additional willing creature for each slot level above 3rd."]

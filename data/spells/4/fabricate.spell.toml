@@ -1,7 +1,7 @@
 id = "fabricate"
 [metadata]
 action = "non-combat"
-lists = ["wizard"]
+lists = ["artificer", "wizard"]
 src = "239  Players Handbook"
 [text]
 casting_time = "10 minutes"

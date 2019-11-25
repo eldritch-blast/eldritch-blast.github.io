@@ -1,7 +1,7 @@
 id = "magic-mouth"
 [metadata]
 action = "non-combat"
-lists = ["bard", "wizard"]
+lists = ["artificer", "bard", "wizard"]
 src = "257  Players Handbook"
 [text]
 casting_time = "1 minute"

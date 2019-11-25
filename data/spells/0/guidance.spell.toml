@@ -1,7 +1,7 @@
 id = "guidance"
 [metadata]
 action = "action"
-lists = ["cleric", "druid"]
+lists = ["artificer", "cleric", "druid"]
 src = "248  Players Handbook"
 [text]
 casting_time = "1 action"

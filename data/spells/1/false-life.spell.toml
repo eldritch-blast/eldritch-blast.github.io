@@ -1,7 +1,7 @@
 id = "false-life"
 [metadata]
 action = "action"
-lists = ["sorcerer", "wizard"]
+lists = ["artificer", "sorcerer", "wizard"]
 src = "239  Players Handbook"
 [text]
 at_higher_levels = ["When you cast this spell using a spell slot of 2nd level or higher, you gain 5 additional temporary hit points for each slot level above 1st."]

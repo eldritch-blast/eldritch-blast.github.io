@@ -1,7 +1,7 @@
 id = "water-breathing"
 [metadata]
 action = "action"
-lists = ["druid", "ranger", "sorcerer", "wizard"]
+lists = ["artificer", "druid", "ranger", "sorcerer", "wizard"]
 src = "287  Players Handbook"
 [text]
 casting_time = "1 action"

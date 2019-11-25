@@ -1,7 +1,7 @@
 id = "detect-magic"
 [metadata]
 action = "action"
-lists = ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "wizard"]
+lists = ["artificer", "bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "wizard"]
 src = "231  Players Handbook"
 [text]
 casting_time = "1 action"

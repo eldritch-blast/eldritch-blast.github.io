@@ -3,7 +3,7 @@ id = "acid-splash"
 [metadata]
 action = "action"
 concentration = false
-lists = ["sorcerer", "wizard"]
+lists = ["artificer", "sorcerer", "wizard"]
 src = "211  Players Handbook"
 [metadata.target]
 type = "creature"

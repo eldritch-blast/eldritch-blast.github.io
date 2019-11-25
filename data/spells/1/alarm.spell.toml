@@ -1,7 +1,7 @@
 id = "alarm"
 [metadata]
 action = "non-combat"
-lists = ["ranger", "wizard"]
+lists = ["artificer", "ranger", "wizard"]
 src = "211  Players Handbook"
 [text]
 casting_time = "1 minute"

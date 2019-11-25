@@ -1,7 +1,7 @@
 id = "create-bonfire"
 [metadata]
 action = "action"
-lists = ["druid", "sorcerer", "warlock", "wizard"]
+lists = ["artificer", "druid", "sorcerer", "warlock", "wizard"]
 src = "16  from EE Players Companion"
 [text]
 casting_time = "1 action"

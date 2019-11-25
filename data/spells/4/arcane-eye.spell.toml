@@ -1,7 +1,7 @@
 id = "arcane-eye"
 [metadata]
 action = "action"
-lists = ["wizard"]
+lists = ["artificer", "wizard"]
 src = "214  Players Handbook"
 [text]
 casting_time = "1 action"
