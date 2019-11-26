@@ -1,0 +1,232 @@
+- name = "Lokhan"
+- levels = { ranger: 1 }
+- hd = { ranger: 'd10' }
+- ability_scores = {str: 16, dex: 14, con: 14, int: 9, wis: 14, cha: 8}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 10 + (levels[:ranger] - 1) * 6 + mods[:con] * levels[:ranger]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Orc
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (0 / 300 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Str, Dex
+      .skill Animal Handling, Athletics, Insight, Investigation, Perception, Stealth, Survival
+      .tool Musical instrument (drum)
+      .language Common, Orc
+      .weapon simple, martial
+      .armor light, medium, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        .equipment-set.block
+          .head.b Standard Equipment
+          .small
+            Battleaxe, scale mail, shield
+          .ac
+            .head.b AC
+            .value=14 + 2 + [mods[:dex], 2].min
+          .move
+            .head.b Move
+            .value 30
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:str] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:str]}
+              %span.small slashing
+          .attack.range
+            .b.bg Reach
+            .value 5
+          %ul
+            %li Disadvantage on Stealth
+
+      .half
+        .equipment-set.block
+          .head.b Alternate Equipment
+          .small Javelin, scale mail, shield
+          .ac
+            .head.b AC
+            .value=14 + 2 + [mods[:dex], 2].min
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:str] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d6 + #{mods[:str]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 30/120
+          %ul
+            %li Disadvantage on Stealth
+
+      -#favored-terrain
+      .feature.block
+        .head.b Natural Explorer: Swamp
+        %p.small
+          Advantage on Intelligence and Wisdom checks related to your favored terrain. While traveling in your favored terrain, you gain the following benefits:
+        %ul.small
+          %li Difficult terrain doesn't slow your group's travel.
+          %li Your group can't become lost except by magical means.
+          %li You remain alert to danger even while engaged in another activity.
+          %li When traveling alone, you can move stealthily at a normal pace.
+          %li When foraging, you find twice as much food as normal.
+          %li While tracking creatures, you learn the number, sizes, and how long ago they passed.
+
+      -#favored-enemy
+      .feature.block
+        .head.b Favored Enemy: Aberrations
+        %p.small
+          Advantage on Wisdom (Survival) checks to track your favored enemies and Intelligence checks to recall information about them.
+
+    .flex.tall.column.narrow
+      -#darkvision
+      .feature.block
+        .head.b Darkvision
+        %p.small
+          You can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+
+      -#aggressive
+      .feature.block
+        .head.b Aggressive
+        %p.small
+          %span.b Bonus Action.
+          Move up to your speed toward an enemy of your choice that you can see or hear. You must end this move closer to the enemy than you started.
+
+      -#powerful-build
+      .feature.block
+        .head.b Powerful Build
+        %p.small
+          You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Battleaxe
+    .item Shield
+    .item Scale mail
+    .item Javelin (6)
+    .item Backpack
+    .item Bedroll
+    .item Waterskin
+    .item Mess kit
+    .item Traveler's clothes
+    .item Tinderbox
+    .item 10-ft. pole
+    .item Bucket
+    .item
+    .item
+    .item Component pouch
+    .item Hemp rope (50 ft.)
+    .item Healer's kit
+    .item Drum
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 9
+      .value.sp
+      .value.cp
+
+  .flex.role-playing
+    .column.half.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I place no stock in wealthy or well-mannered folk. Money and manners won't save you from a hungry owlbear.
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them.
+      .feature.block
+        .head.b Ideal: Glory
+        %p.small
+          I must earn glory in battle, for myself and my clan.
+      .feature.block
+        .head.b Bond
+        %p.small
+          I suffer awful visions of the return of a daelkyr and will do anything to prevent it.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I am slow to trust members of other races, tribes, and societies.
+    .column.half.background
+      .feature.block
+        .head.b Background: Outlander
+        %p.small
+          You grew up in the wilds of the Shadow Marches. You've survived weather more extreme than any city-dweller could comprehend, and enjoyed the solitude of being the only thinking creature for miles. The wilds are in your blood. You were a guide in the service of the Gatekeepers, helping to contain the daelkyr that lurks below the swamps. Even in places where you don't know the specific features of the terrain, you know the ways of the wild.
+      .feature.block
+        .head.b Wanderer
+        %p.small
+          You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth.
