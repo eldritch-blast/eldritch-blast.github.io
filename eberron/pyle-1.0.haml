@@ -135,11 +135,11 @@
           %span.spell.small comprehend languages
           .uses.short-rest
             .checkbox
-        .innate-spell
-          %span.spell.small magic mouth
-          .uses.long-rest
-            .checkbox
-
+        - if levels.values.sum > 2
+          .innate-spell
+            %span.spell.small magic mouth
+            .uses.long-rest
+              .checkbox
 
 
     .flex.tall.column.narrow
