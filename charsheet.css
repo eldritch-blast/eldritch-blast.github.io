@@ -284,12 +284,12 @@ li:before {
   width: 100%;
   display: flex;
   flex-direction: column; }
-  .feature .head {
+  .feature .head, .feature .innate-spell {
     position: relative; }
-  .feature .head .uses {
+  .feature .head .uses, .feature .innate-spell .uses {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 2px;
+    top: 2px;
     text-align: right; }
   .feature .uses.short-rest:before {
     font-size: 14px;
@@ -297,6 +297,17 @@ li:before {
   .feature .uses.long-rest:before {
     font-size: 14px;
     content: "long rest "; }
+  .feature .innate-spell:nth-child(even) {
+    border-top: 1px dashed #ddd; }
+  .feature .innate-spell {
+    padding-top: 2px; }
+  .feature .innate-spell:before {
+    position: relative;
+    top: 1px;
+    content: "\2727"; }
+  .feature .innate-spell .uses {
+    padding-left: 0.5em;
+    background-color: white; }
 
 .equipment-set {
   display: grid;
