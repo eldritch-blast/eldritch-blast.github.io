@@ -1,0 +1,246 @@
+- name = "Pyle Bewells"
+- levels = { rogue: 1 }
+- hd = { rogue: 'd8' }
+- ability_scores = {str: 8, dex: 14, con: 12, int: 15, wis: 14, cha: 12}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 8 + (levels[:rogue] - 1) * 5 + mods[:con] * levels[:rogue]
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace House Sivis
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (0 / 300 xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Dex, Int
+      .skill Insight, Investigation, Perception, Persuasion, Sleight of Hand, Stealth
+      .tool Calligrapher's tools, forgery kit, thieves' tools
+      .language Common, Gnome, Thieves' Cat
+      .weapon simple, hand crossbow, longsword, rapier, shortsword
+      .armor light
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf
+
+    .flex.column.wide
+      .half
+        .equipment-set.block
+          .head.b Melee Equipment
+          .small
+            rapier, leather armor
+          .ac
+            .head.b AC
+            .value=11 + mods[:dex]
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Reach
+            .value 5
+
+        -#gnome-cunning
+        .feature.block
+          .head.b Gnome Cunning
+          %p.small
+            Advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.
+
+
+      .half
+        .equipment-set.block
+          .head.b Ranged Equipment
+          .small
+            shortbow, leather armor
+          .ac
+            .head.b AC
+            .value=11 + mods[:dex]
+          .move
+            .head.b Move
+            .value 25
+          .head.b Attack Action
+          .attack.roll
+            .b.bg Roll
+            .value d20 + #{mods[:dex] + prof}
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d6 + #{mods[:dex]}
+              %span.small piercing
+          .attack.range
+            .b.bg Range
+            .value 80/320
+
+        -#darkvision
+        .feature.block
+          .head.b Darkvision
+          %p.small
+            Can see in dim light as though it were normal light, and darkness as though it were dim light, up to 60 ft. away.
+
+      -#scribes-insight
+      .feature.block
+        .head.b Scribe's Insight
+        %p.small
+          You know the
+          %span.spell message
+          cantrip, and you can cast the following spells using this trait. Intelligence is your spellcasting ability for these spells.
+        .innate-spell
+          %span.spell.small comprehend languages
+          .uses.short-rest
+            .checkbox
+        .innate-spell
+          %span.spell.small magic mouth
+          .uses.long-rest
+            .checkbox
+
+
+
+    .flex.tall.column.narrow
+      -#expertise
+      .feature.block
+        .head.b Expertise
+        %p.small
+          Double proficiency bonus on
+          %span.b Insight
+          and
+          %span.b Perception
+          checks.
+
+      -#gifted-scribe
+      .feature.block
+        .head.b Gifted Scribe
+        %p.small
+          Add 1d4 to Intelligence (History) checks and ability checks using calligrapher's supplies.
+
+      -#sneak-attack
+      .feature.block
+        .head.b Sneak Attack +#{(levels.values.sum - 1)/2 + 1}d6
+        %p.small
+          Once per turn, deal bonus damage on an attack with a finesse or ranged weapon. Requires advantage, or another enemy of the target within 5 ft. of it and no disadvantage.
+
+
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Rapier
+    .item Leather armor
+    .item Shortbow
+    .item Arrow (20)
+    .item House signet ring
+    .item Identification papers
+    .item Fine clothes
+    .item Thieves' tools
+    .item Dagger (2)
+    .item Backpack
+    .item Quiver
+    .item Ball bearings
+    .item
+    .item
+    .item String (10 ft.)
+    .item Bell
+    .item Candle (5)
+    .item Crowbar
+    .item
+    .item
+    .item Hammer
+    .item Pitons (10)
+    .item Hooded lantern
+    .item Oil (2)
+    .item
+    .item
+    .item Rations (5)
+    .item Tinderbox
+    .item Waterskin
+    .item Hemp Rope (50 ft.)
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp 20
+      .value.sp
+      .value.cp
+
+  .new-page
+
+  .flex.role-playing
+    .column.half.personality
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I'm critical of monarchies and limits on the houses.
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I love to share trivia about my house's business.
+      .feature.block
+        .head.b Ideal: Discovery
+        %p.small
+          I want to learn all I can, both for my house and for my own curiosity.
+      .feature.block
+        .head.b Bond
+        %p.small
+          I don't care about the house as a whole, but I would do anything for my old mentor.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I'm obsessed with conspiracy theories and worried about secret societies and hidden demons.
+    .column.half.background
+      .feature.block
+        .head.b Background: House Agent
+        %p.small
+          You have sworn fealty to House Sivis. You're a member of one of the house's influential families. Your main task is to serve as the eyes of your house, but you could be called on at any time to act as its hand.
+      .feature.block
+        .head.b House Connections
+        %p.small
+          As an agent of House Sivis, you can always get food and lodging for yourself and your friends at a house enclave. When the house assigns you a mission, it will usually provide you with the necessary supplies and transportation. Beyond this, you have many old friends, mentors, and rivals in your house, and you may encounter one of them when you interact with a house business. The degree to which such acquaintances are willing to help you depends on your current standing in your house.
