@@ -19,15 +19,15 @@
   font-style: italic; }
 @font-face {
   font-family: "Nodesto Caps Condensed";
-  src: url("./solbera-dnd-fonts/Nodesto Caps Condensed/Nodesto Caps Condensed Bold Italic.otf") format("opentype");
-  font-weight: normal; }
-@font-face {
-  font-family: "Scaly Sans";
-  src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
+  src: url("./solbera-dnd-fonts/Nodesto Caps Condensed/Nodesto Caps Condensed.otf") format("opentype");
   font-weight: normal; }
 @font-face {
   font-family: "Mr Eaves Small Caps";
   src: url("./solbera-dnd-fonts/Mr Eaves/Mr Eaves Small Caps.otf") format("opentype");
+  font-weight: normal; }
+@font-face {
+  font-family: "Scaly Sans";
+  src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
   font-weight: normal; }
 @font-face {
   font-family: "Scaly Sans Bold Italic";
@@ -40,8 +40,8 @@
   font-weight: bold;
   font-style: normal; }
 @font-face {
-  font-family: "Scaly Sans Caps";
-  src: url("./solbera-dnd-fonts/Scaly Sans Caps/Scaly Sans Caps.otf") format("opentype");
+  font-family: "Scaly Sans Caps Bold";
+  src: url("./solbera-dnd-fonts/Scaly Sans Caps/Scaly Sans Caps Bold.otf") format("opentype");
   font-weight: normal; }
 @font-face {
   font-family: "Solbera Imitation";
@@ -70,17 +70,22 @@
       content: counter(page); } } }
 @media screen {
   body {
-    color: #111; }
-
+    color: #111; } }
+@media only screen and (max-width: 500px) {
+  .chapter {
+    margin: 1em; } }
+@media only screen and (min-width: 501px) {
   .chapter {
     margin: 1.5cm;
+    columns: 2 auto;
     column-gap: 1cm;
-    columns: 2 calc(calc(11.25in - 4cm) / 2); } }
+    max-width: 11.25in; } }
 * {
   box-sizing: border-box; }
 
 body {
   font-family: 'Bookinsanity', serif;
+  text-rendering: optimizeLegibility;
   margin: 0;
   counter-reset: chapter; }
 
@@ -186,6 +191,14 @@ table {
   table .bold {
     font-family: 'Scaly Sans Bold', sans-serif;
     font-weight: bold; }
+  @media only screen and (max-width: 500px) {
+    table .columns {
+      columns: 2 auto;
+      column-gap: 10px; } }
+  @media only screen and (min-width: 501px) {
+    table .columns {
+      columns: 9.6em auto;
+      column-gap: 0.5em; } }
 
 table.striped > tbody:nth-of-type(odd) {
   background-color: #ddd; }
@@ -199,6 +212,65 @@ ul.simple {
   padding: 0 0 0.5em 1em;
   list-style: none;
   white-space: nowrap; }
+
+aside {
+  font-family: 'Scaly Sans', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  float: right;
+  margin: calc(1em + 16px) 0; }
+  aside .title {
+    font-family: 'Scaly Sans Caps Bold', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-variant: small-caps;
+    margin-bottom: 2px; }
+  aside .content {
+    padding: 5px 10px;
+    background-color: #ddd;
+    box-shadow: 1px 4px 14px #888; }
+    aside .content p {
+      line-height: 1.2; }
+  aside .border {
+    width: 100%; }
+  aside .top:before {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    border-top: 11px solid transparent;
+    border-right: 24px solid black;
+    border-bottom: 1px solid black;
+    content: ''; }
+  aside .top:after {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    border-top: 11px solid transparent;
+    border-left: 24px solid black;
+    border-bottom: 1px solid black;
+    content: ''; }
+  aside .top {
+    position: relative;
+    border-bottom: 3px solid black; }
+  aside .bottom:before {
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    border-top: 1px solid black;
+    border-right: 24px solid black;
+    border-bottom: 11px solid transparent;
+    content: ''; }
+  aside .bottom:after {
+    position: absolute;
+    bottom: -12px;
+    right: 1px;
+    border-top: 1px solid black;
+    border-left: 24px solid black;
+    border-bottom: 11px solid transparent;
+    content: ''; }
+  aside .bottom {
+    position: relative;
+    border-top: 3px solid black; }
 
 .wide {
   column-span: all; }

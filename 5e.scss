@@ -32,19 +32,19 @@ $black: #111;
 
 @font-face {
     font-family: "Nodesto Caps Condensed";
-    src: url("./solbera-dnd-fonts/Nodesto Caps Condensed/Nodesto Caps Condensed Bold Italic.otf") format("opentype");
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: "Scaly Sans";
-    src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Nodesto Caps Condensed/Nodesto Caps Condensed.otf") format("opentype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Mr Eaves Small Caps";
     src: url("./solbera-dnd-fonts/Mr Eaves/Mr Eaves Small Caps.otf") format("opentype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Scaly Sans";
+    src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
     font-weight: normal;
 }
 
@@ -63,8 +63,8 @@ $black: #111;
 }
 
 @font-face {
-    font-family: "Scaly Sans Caps";
-    src: url("./solbera-dnd-fonts/Scaly Sans Caps/Scaly Sans Caps.otf") format("opentype");
+    font-family: "Scaly Sans Caps Bold";
+    src: url("./solbera-dnd-fonts/Scaly Sans Caps/Scaly Sans Caps Bold.otf") format("opentype");
     font-weight: normal;
 }
 
@@ -118,11 +118,20 @@ $black: #111;
     body {
         color: $black;
     }
+}
 
+@media only screen and (max-width: 500px) {
+    .chapter {
+        margin: 1em;
+    }
+}
+
+@media only screen and (min-width:501px) {
     .chapter {
         margin: 1.5cm;
+        columns: 2 auto;
         column-gap: 1cm;
-        columns: 2 calc(calc(11.25in - 4cm) / 2);
+        max-width: 11.25in;
     }
 }
 
@@ -132,6 +141,7 @@ $black: #111;
 
 body {
     font-family: 'Bookinsanity', serif;
+    text-rendering: optimizeLegibility;
 
     margin: 0;
 
@@ -273,6 +283,20 @@ table {
         font-family: 'Scaly Sans Bold', sans-serif;
         font-weight: bold;
     }
+
+    @media only screen and (max-width: 500px) {
+        .columns {
+            columns: 2 auto;
+            column-gap: 10px;
+        }
+    }
+
+    @media only screen and (min-width: 501px) {
+        .columns {
+            columns: 9.6em auto;
+            column-gap: 0.5em;
+        }
+    }
 }
 
 table.striped {
@@ -292,6 +316,80 @@ ul.simple {
     padding: 0 0 0.5em 1em;
     list-style: none;
     white-space: nowrap;
+}
+
+aside {
+    font-family: 'Scaly Sans', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+
+    float: right;
+    margin: calc(1em + 16px) 0;
+
+    .title {
+        font-family: 'Scaly Sans Caps Bold', sans-serif;
+        font-weight: bold;
+        font-style: normal;
+        font-variant: small-caps;
+        margin-bottom: 2px;
+    }
+
+    .content {
+        padding: 5px 10px;
+        background-color: $light-grey;
+        box-shadow: 1px 4px 14px #888;
+        p {
+            line-height: 1.2;
+        }
+    }
+
+    .border {
+        width: 100%;
+    }
+    .top:before {
+        position: absolute;
+        top: -12px;
+        left: 0;
+        border-top: 11px solid transparent;
+        border-right: 24px solid black;
+        border-bottom: 1px solid black;
+        content: '';
+    }
+    .top:after {
+        position: absolute;
+        top: -12px;
+        right: 0;
+        border-top: 11px solid transparent;
+        border-left: 24px solid black;
+        border-bottom: 1px solid black;
+        content: '';
+    }
+    .top {
+        position: relative;
+        border-bottom: 3px solid black;
+    }
+    .bottom:before {
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        border-top: 1px solid black;
+        border-right: 24px solid black;
+        border-bottom: 11px solid transparent;
+        content: '';
+    }
+    .bottom:after {
+        position: absolute;
+        bottom: -12px;
+        right: 1px;
+        border-top: 1px solid black;
+        border-left: 24px solid black;
+        border-bottom: 11px solid transparent;
+        content: '';
+    }
+    .bottom {
+        position: relative;
+        border-top: 3px solid black;
+    }
 }
 
 .wide {

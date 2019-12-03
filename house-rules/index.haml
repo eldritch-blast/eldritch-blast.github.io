@@ -1,6 +1,7 @@
 !!!
 %head
   %title House Rules
+  %meta{name: 'viewport', content: 'width=device-width'}
   %link{rel: 'stylesheet', type: 'text/css', href: '../5e.css'}
 %body
   %main
@@ -98,7 +99,7 @@
           %tr
             %td.subhead Player's Handbook
           %tr
-            %td{style: 'columns: 8rem auto'}
+            %td.columns
               %div Dwarf
               %div Elf
               %div Halfling
@@ -111,14 +112,14 @@
           %tr
             %td.subhead Elemental Evil Player's Companion
           %tr
-            %td{style: 'columns: 8rem auto'}
+            %td.columns
               %div Aarakocra
               %div Genasi
               %div Goliath
           %tr
             %td.subhead Volo's Guide to Monsters
           %tr
-            %td{style: 'columns: 8rem auto'}
+            %td.columns
               %div Aasimar
               %div Firbolg
               %div Goliath
@@ -129,17 +130,17 @@
           %tr
             %td.subhead The Tortle Package
           %tr
-            %td{style: 'columns: 8rem auto'}
+            %td.columns
               %div Tortle
           %tr
             %td.subhead Mordenkainen's Tome of Foes
           %tr
-            %td{style: 'columns: 8rem auto'}
+            %td.columns
               %div Gith
           %tr
             %td.subhead Eberron: Rising From the Last War
           %tr
-            %td{style: 'columns: 8rem auto'}
+            %td.columns
               %div Bugbear
               %div Changeling
               %div Goblin
@@ -219,7 +220,7 @@
           %tr
             %td.subhead Dungeon Master's Guide
           %tr
-            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+            %td.columns
               .group
                 %span.bold Cleric Domains
                 %ul.simple
@@ -231,7 +232,7 @@
           %tr
             %td.subhead Sword Coast Adventurer's Guide
           %tr
-            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+            %td.columns
               .group
                 %span.bold Barbarian Paths
                 %ul.simple
@@ -263,7 +264,7 @@
           %tr
             %td.subhead Xanathar's Guide to Everything
           %tr
-            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+            %td.columns
               .group
                 %span.bold Barbarian Paths
                 %ul.simple
@@ -334,7 +335,7 @@
           %tr
             %td.subhead Guildmaster's Guide to Ravnica
           %tr
-            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+            %td.columns
               .group
                 %span.bold Cleric Domains
                 %ul.simple
@@ -346,7 +347,7 @@
           %tr
             %td.subhead Eberron: Rising From the Last War
           %tr
-            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+            %td.columns
               .group
                 %span.bold Artificer Specialists
                 %ul.simple
@@ -495,15 +496,18 @@
         The effects of a short or long rest are as described in the base rules.
 
       %aside#resting-rationale
-        .title Why Limit Long Rests?
-        %p
-          %span.sc Dungeons &amp; Dragons
-          is designed to be a game of attrition and resource management. Some characters have fewer or weaker resources that recharge after a short rest, and others have more powerful resources, or a greater number, that recharge after a long rest. If the party takes a long rest in between each encounter, then the balance between these two types of resources is skewed; characters with more powerful long rest resources will shine, and those with less powerful short rest resources will struggle. Alternatively, those with many long rest resources will find that they never have the opportunity to use them, while those with few short rest resources will still be able to use them to their full extent on each encounter. As a design goal, a DM is intended to design adventures that are broken up into "adventuring days" of 4&ndash;6 encounters, with short rests in between and long rests only at the end of the "day".
-        %p
-          However, with the rules as written in the
-          %span.book-title
-            Player's Handbook
-            %span.normal>,
-          certain types of adventures are very difficult to balance around the adventuring day concept. If the adventure spans many days of in-game calendar time, the characters are likely to have many long rests. This makes it hard to do wilderness exploration adventures. It can also be difficult to justify long rests in the middle of a dungeon, even though the dungeon is bigger than 4&ndash;6 encounters.
-        %p
-          By limiting long rests to be available only when the DM grants them, it becomes possible to design adventures around the "adventuring day", even if that abstract "day" in fact takes many days, or just a few hours.
+        .border.top
+        .content
+          .title Why Limit Long Rests?
+          %p
+            %span.sc Dungeons &amp; Dragons
+            is designed to be a game of attrition and resource management. Some characters have fewer or weaker resources that recharge after a short rest, and others have more powerful resources, or a greater number, that recharge after a long rest. If the party takes a long rest in between each encounter, then the balance between these two types of resources is skewed; characters with more powerful long rest resources will shine, and those with less powerful short rest resources will struggle. Alternatively, those with many long rest resources will find that they never have the opportunity to use them, while those with few short rest resources will still be able to use them to their full extent on each encounter. As a design goal, a DM is intended to design adventures that are broken up into "adventuring days" of 4&ndash;6 encounters, with short rests in between and long rests only at the end of the "day".
+          %p
+            However, with the rules as written in the
+            %span.book-title
+              Player's Handbook
+              %span.normal>,
+            certain types of adventures are very difficult to balance around the adventuring day concept. If the adventure spans many days of in-game calendar time, the characters are likely to have many long rests. This makes it hard to do wilderness exploration adventures. It can also be difficult to justify long rests in the middle of a dungeon, even though the dungeon is bigger than 4&ndash;6 encounters.
+          %p
+            By limiting long rests to be available only when the DM grants them, it becomes possible to design adventures around the "adventuring day", even if that abstract "day" in fact takes many days, or just a few hours.
+        .border.bottom
