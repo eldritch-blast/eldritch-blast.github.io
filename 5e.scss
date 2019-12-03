@@ -5,76 +5,85 @@ $black: #111;
 
 @font-face {
     font-family: "Bookinsanity";
-    src: url("./fonts/Bookinsanity/Bookinsanity.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Bookinsanity/Bookinsanity.otf") format("opentype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Bookinsanity Bold Italic";
-    src: url("./fonts/Bookinsanity/Bookinsanity Bold Italic.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Bookinsanity/Bookinsanity Bold Italic.otf") format("opentype");
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: "Bookinsanity Bold";
-    src: url("./fonts/Bookinsanity/Bookinsanity Bold.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Bookinsanity/Bookinsanity Bold.otf") format("opentype");
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Bookinsanity Italic";
-    src: url("./fonts/Bookinsanity/Bookinsanity Italic.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Bookinsanity/Bookinsanity Italic.otf") format("opentype");
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: "Nodesto Caps Condensed";
-    src: url("./fonts/Nodesto Caps Condensed/Nodesto Caps Condensed Bold Italic.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Nodesto Caps Condensed/Nodesto Caps Condensed Bold Italic.otf") format("opentype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Scaly Sans";
-    src: url("./fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans.otf") format("opentype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Mr Eaves Small Caps";
-    src: url("./fonts/Mr Eaves/Mr Eaves Small Caps.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Mr Eaves/Mr Eaves Small Caps.otf") format("opentype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Scaly Sans Bold Italic";
-    src: url("./fonts/Scaly Sans/Scaly Sans Bold Italic.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans Bold Italic.otf") format("opentype");
     font-weight: bold;
     font-style: italic;
 }
 
 @font-face {
     font-family: "Scaly Sans Bold";
-    src: url("./fonts/Scaly Sans/Scaly Sans Bold.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Scaly Sans/Scaly Sans Bold.otf") format("opentype");
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Scaly Sans Caps";
-    src: url("./fonts/Scaly Sans Caps/Scaly Sans Caps.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Scaly Sans Caps/Scaly Sans Caps.otf") format("opentype");
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Solbera Imitation";
-    src: url("./fonts/Solbera Imitation/Solbera Imitation.otf") format("opentype");
+    src: url("./solbera-dnd-fonts/Solbera Imitation/Solbera Imitation.otf") format("opentype");
     font-weight: normal;
 }
 
 @media print {
+    body {
+        color: black;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
     .chapter {
         margin: 1.5cm;
         column-gap: 1cm;
@@ -106,6 +115,10 @@ $black: #111;
 }
 
 @media screen {
+    body {
+        color: $black;
+    }
+
     .chapter {
         margin: 1.5cm;
         column-gap: 1cm;
@@ -119,7 +132,6 @@ $black: #111;
 
 body {
     font-family: 'Bookinsanity', serif;
-    color: $black;
 
     margin: 0;
 
@@ -169,16 +181,17 @@ h5 {
 
 p {
     line-height: 1.4;
+    margin: 0;
 }
 
-table, figure {
-    page-break-inside: avoid;
-    font-family: 'Scaly Sans', sans-serif;
+p + p {
+    text-indent: 1em;
 }
 
 h2 + p {
     position: relative;
     margin: auto;
+    min-height: 7.125em;
 }
 
 h2 + p::first-letter {
@@ -194,6 +207,7 @@ h2 + p::first-line {
     font-family: 'Mr Eaves Small Caps', serif;
     font-variant: small-caps;
     font-size: 20px;
+    line-height: 1;
 }
 
 // This would be h6 with display: run-in if it had browser support
@@ -207,6 +221,79 @@ span.subhead:after {
     content: '.';
 }
 
+table {
+    width: 100%;
+    page-break-inside: avoid;
+    font-family: 'Scaly Sans', sans-serif;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    float: left;
+
+    caption {
+        font-family: 'Scaly Sans Bold', sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    td, th {
+        padding: 2px 0.4rem;
+    }
+
+    .bg {
+        background-color: $light-grey;
+    }
+
+    .left {
+        text-align: left;
+    }
+    .center {
+        text-align: center;
+    }
+    .right {
+        text-align: right;
+    }
+    .top {
+        vertical-align: top;
+    }
+    .middle {
+        vertical-align: center;
+    }
+    .bottom {
+        vertical-align: bottom;
+    }
+
+    .subhead {
+        font-family: 'Scaly Sans Bold Italic', sans-serif;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    .bold {
+        font-family: 'Scaly Sans Bold', sans-serif;
+        font-weight: bold;
+    }
+}
+
+table.striped {
+    > tbody:nth-of-type(odd) {
+        background-color: $light-grey;
+    }
+    > tbody:only-of-type {
+        background-color: transparent;
+        tr:nth-child(odd) {
+            background-color: $light-grey;
+        }
+    }
+}
+
+ul.simple {
+    margin: 0;
+    padding: 0 0 0.5em 1em;
+    list-style: none;
+    white-space: nowrap;
+}
+
 .wide {
     column-span: all;
 }
@@ -218,9 +305,31 @@ span.subhead:after {
 }
 
 .term {
+    font-family: 'Bookinsanity Bold', serif;
     font-weight: bold;
+}
+
+.spell, .magic-item {
+    font-family: 'Bookinsanity Italic', serif;
+    font-style: italic;
 }
 
 .book-title {
     font-style: italic;
+}
+
+.sc {
+    font-family: 'Mr Eaves Small Caps', serif;
+    font-variant: small-caps;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.hang-indent {
+    text-indent: -1em;
+    padding-left: 1em;
+}
+
+.group {
+    page-break-inside: avoid;
 }

@@ -5,25 +5,505 @@
 %body
   %main
     %section.chapter
-      %h2 Character Creation
+      %h2#intro Introduction
       %p
-        The following rules supercede or supplement the rules for step-by-step character creation in chapter one of the
-        %span.book-title
-          Player's Handbook
-          %span.normal> .
-        The house rules here are designed to make character creation possible with no dice rolls (and hence no DM oversight), as well as to provide flexibility for players to choose character concepts that play against stereotype. Each section is marked as either an
+        This document explains the variant rules, optional rules, and house rules I use when running
+        %span.sc Dungeons &amp; Dragons
+        5e. The document assumes the
+        %span.book-title Player's Handbook
+        as a baseline, but may also refer to other rules texts published by Wizards of the Coast.
+      %p
+        The Rules and Options table lists each rule in this document as either an
         %span.term
           option
         or a
         %span.term
           rule
           %span.normal> ;
-        players who aren't interested in additional flexibility can safely ignore those marked as options.
+        players who aren't interested in additional flexibility can safely ignore those marked as options, but every player should know the rules.
 
-      %h4 Option: List of Races and Subraces
+      %table.striped
+        %caption Rules and Options
+        %tbody
+          %tr.left
+            %th Rules
+        %tbody
+          %tr
+            %td
+              %a{href: '#recent-wins'} Recent Wins
+          %tr
+            %td
+              %a{href: '#no-rolling-for-ability-scores'} No Rolling for Ability Scores
+          %tr
+            %td
+              %a{href: '#no-alignment'} No Alignment
+          %tr
+            %td
+              %a{href: '#average-starting-wealth'} Average Starting Wealth
+          %tr
+            %td
+              %a{href: '#average-starting-wealth'} Average Hit Points
+
+        %tbody
+          %tr.left
+            %th Options
+        %tbody
+          %tr
+            %td
+              %a{href: '#expanded-character-races'} Expanded Character Races
+          %tr
+            %td
+              %a{href: '#subraces-and-variants'} Subraces and Variants
+          %tr
+            %td
+              %a{href: '#flexible-asi'} Flexible Ability Score Increase
+          %tr
+            %td
+              %a{href: '#artificers-allowed'} Artificers Allowed
+          %tr
+            %td
+              %a{href: '#subclass-options'} Expanded Subclass Options
+          %tr
+            %td
+              %a{href: '#multiclassing'} Multiclassing Allowed
+          %tr
+            %td
+              %a{href: '#feats'} Feats Allowed
+          %tr
+            %td
+              %a{href: '#spells'} Expanded Spell Lists
+
+      %h4#recent-winds Recent Wins
       %p
-        When selecting a race and subrace, you may choose from any of the options shown in the Race and Subrace Options table.
-      %table.wide
+        One general rule applies to all of the following: when a character option, spell, or other piece of rules text appears in multiple sourcebooks, the most recently published version is the one you should use. In most cases the text is the same, but in case of a discrepancy the more recent text is correct.
+
+
+
+
+    %section.chapter
+      %h2#character Character Creation and Advancement
+      %p
+        The following rules supercede or supplement the rules for step-by-step character creation in chapter one of the
+        %span.book-title
+          Player's Handbook
+          %span.normal> .
+        The house rules here are designed to make character creation possible with no dice rolls (and hence no DM oversight), as well as to provide flexibility for players to build the character they want to play.
+
+      %h4#expanded-character-races Expanded Character Races
+      %p
+        When selecting a race, you may choose any of the options shown in the Race Options by Source table.
+      %table.striped
+        %caption Race Options by Source
+        %tbody
+          %tr
+            %td.subhead Player's Handbook
+          %tr
+            %td{style: 'columns: 8rem auto'}
+              %div Dwarf
+              %div Elf
+              %div Halfling
+              %div Human
+              %div Dragonborn
+              %div Gnome
+              %div Half-elf
+              %div Half-orc
+              %div Tiefling
+          %tr
+            %td.subhead Elemental Evil Player's Companion
+          %tr
+            %td{style: 'columns: 8rem auto'}
+              %div Aarakocra
+              %div Genasi
+              %div Goliath
+          %tr
+            %td.subhead Volo's Guide to Monsters
+          %tr
+            %td{style: 'columns: 8rem auto'}
+              %div Aasimar
+              %div Firbolg
+              %div Goliath
+              %div Kenku
+              %div Lizardfolk
+              %div Tabaxi
+              %div Triton
+          %tr
+            %td.subhead The Tortle Package
+          %tr
+            %td{style: 'columns: 8rem auto'}
+              %div Tortle
+          %tr
+            %td.subhead Mordenkainen's Tome of Foes
+          %tr
+            %td{style: 'columns: 8rem auto'}
+              %div Gith
+          %tr
+            %td.subhead Eberron: Rising From the Last War
+          %tr
+            %td{style: 'columns: 8rem auto'}
+              %div Bugbear
+              %div Changeling
+              %div Goblin
+              %div Hobgoblin
+              %div Kalashtar
+              %div Orc
+              %div Shifter
+              %div Warforged
+
+      %h4#subraces-and-variants Subraces and Variants
+      %p
+        For each of the races listed in the table above, you may use any variant or subrace in any of these sources:
+        %ul.book-title
+          %li Player's Handbook
+          %li Elemental Evil Player's Companion
+          %li Sword Coast Adventurer's Guide
+          %li Volo's Guide to Monsters
+          %li The Tortle Package
+          %li Mordenkainen's Tome of Foes
+          %li Eberron: Rising from the Last War
+      %p
+        This includes subraces from texts other than the one that introduced the race. For example, gnomes are introduced in the
+        %span.book-title
+          Player's Handbook
+          %span.normal>,
+        but you are free to choose the deep gnome subrace from
+        %span.book-title
+          Mordenkainen's Tome of Foes
+          %span.normal>.
+        Similarly, variant half-elves as described in the
+        %span.book-title
+          Sword Coast Adventurer's Guide
+        are allowed, as are dragonmarked variants described in 
+        %span.book-title
+          Eberron: Rising From the Last War
+          %span.normal>.
+
+      %h4#flexible-asi Flexible Ability Score Increase
+      %p
+        Want to play a duergar bard, a halfling barbarian, or an aasimar wizard? Some players feel restricted in their creativity by the "need" to have a +3 modifier in their primary ability score.
+      %p
+        If your character's race grants an Ability Score Increase feature with a +2 to any ability score, you may choose to give up one +2 increase in exchange for a +1 increase to one other ability score. The ability score you increase in this way cannot be one that your race or subrace already modifies. Characters with more than one +2 increase, such as mountain dwarves, can only make this swap once.
+      %p
+        For example, if you select lightfoot halfling, your Ability Score Increase feature grants +2 to Dexterity and +1 to Charisma. You could exchange the +2 to Dexterity for a +1 to Strength, Constitution, Intelligence, or Wisdom.
+
+      %h4#no-rolling-for-ability-scores No Rolling for Ability Scores
+      %p
+        The
+        %span.book-title Player's Handbook
+        contains rules for rolling dice to randomly generate your character's ability scores. On page 13, it also presents a variant rule for customizing ability scores by purchasing them with points instead of rolling randomly. This variant point-buy method is required.
+
+      %h4#artificers-allowed Artificers Allowed
+      %p
+        When choosing a class, you may choose the artificer class from
+        %span.book-title
+          Eberron: Rising From the Last War
+          %span.normal>.
+
+      %h4#subclass-options Expanded Subclass Options
+      %p
+        All subclass options published in an official
+        %span.sc Dungeons &amp; Dragons
+        5e sourcebook are allowed. The complete list of approved options is shown in the Subclass Options by Source table. Subclasses from the
+        %span.book-title Player's Handbook
+        are allowed, but the table omits them for brevity.
+      %p
+        Path of the Totem Warrior barbarians may choose from the elk and tiger options from the
+        %span.book-title Sword Coast Adventurer's Guide
+        when gaining a primal path feature, in addition to the options in the
+        %span.book-title
+          Player's Handbook
+          %span.normal>.
+
+      %table.striped{style: 'margin-bottom: 0'}
+        %caption Subclass Options by Source
+        %tbody
+          %tr
+            %td.subhead Dungeon Master's Guide
+          %tr
+            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+              .group
+                %span.bold Cleric Domains
+                %ul.simple
+                  %li Death
+              .group
+                %span.bold Paladin Oaths
+                %ul.simple
+                  %li Oathbreaker
+          %tr
+            %td.subhead Sword Coast Adventurer's Guide
+          %tr
+            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+              .group
+                %span.bold Barbarian Paths
+                %ul.simple
+                  %li Battlerager
+              .group
+                %span.bold Cleric Domains
+                %ul.simple
+                  %li Arcana
+              .group
+                %span.bold Fighter Archetypes
+                %ul.simple
+                  %li Purple Dragon Knight
+              .group
+                %span.bold Monk Traditions
+                %ul.simple
+                  %li Long Death
+              .group
+                %span.bold Paladin Oaths
+                %ul.simple
+                  %li Crown
+              .group
+                %span.bold Warlock Patrons
+                %ul.simple
+                  %li The Undying
+              .group
+                %span.bold Wizard Traditions
+                %ul.simple
+                  %li Bladesinging
+          %tr
+            %td.subhead Xanathar's Guide to Everything
+          %tr
+            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+              .group
+                %span.bold Barbarian Paths
+                %ul.simple
+                  %li Ancestral Guardian
+                  %li Storm Herald
+                  %li Zealot
+              .group
+                %span.bold Bard Colleges
+                %ul.simple
+                  %li Glamour
+                  %li Swords
+                  %li Whispers
+              .group
+                %span.bold Cleric Domains
+                %ul.simple
+                  %li Forge
+                  %li Grave
+              .group
+                %span.bold Druid Circles
+                %ul.simple
+                  %li Dreams
+                  %li Shepherd
+              .group
+                %span.bold Fighter Archetypes
+                %ul.simple
+                  %li Arcane Archer
+                  %li Cavalier
+                  %li Samurai
+              .group
+                %span.bold Monk Traditions
+                %ul.simple
+                  %li Drunken Master
+                  %li Kensei
+                  %li Sun Soul
+              .group
+                %span.bold Paladin Oaths
+                %ul.simple
+                  %li Conquest
+                  %li Redemption
+              .group
+                %span.bold Ranger Archetypes
+                %ul.simple
+                  %li Gloom Stalker
+                  %li Horizon Walker
+                  %li Monster Slayer
+              .group
+                %span.bold Rogue Archetypes
+                %ul.simple
+                  %li Inquisitive
+                  %li Mastermind
+                  %li Scout
+                  %li Swashbuckler
+              .group
+                %span.bold Sorcerer Origins
+                %ul.simple
+                  %li Divine Soul
+                  %li Shadow Magic
+                  %li Storm Sorcery
+              .group
+                %span.bold Warlock Patrons
+                %ul.simple
+                  %li Celestial
+                  %li Hexblade
+              .group
+                %span.bold Wizard Traditions
+                %ul.simple
+                  %li War Magic
+          %tr
+            %td.subhead Guildmaster's Guide to Ravnica
+          %tr
+            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+              .group
+                %span.bold Cleric Domains
+                %ul.simple
+                  %li Order
+              .group
+                %span.bold Druid Circles
+                %ul.simple
+                  %li Spores
+          %tr
+            %td.subhead Eberron: Rising From the Last War
+          %tr
+            %td{style: 'columns: 9.6rem auto; column-gap: 0.5em;'}
+              .group
+                %span.bold Artificer Specialists
+                %ul.simple
+                  %li Alchemist
+                  %li Artillerist
+                  %li Battle Smith
+ 
+
+      %h4#no-alignment No Alignment
+      %p
+        %span.sc Dungeons &amp; Dragons
+        5e has essentially done away with alignment as a game mechanic. Spells like
+        %span.spell detect good and evil
+        don't refer to alignment except in the name. This rule makes it official: there is no such thing as alignment. You can describe yourself as "chaotic good" if you like, but it won't matter except as a role-playing guide. You are not required to choose an alignmet during character creation.
+
+      %h4#average-starting-wealth Average Starting Wealth
+      %p
+        The
+        %span.book-title
+          Player's Handbook
+        presents two options for determining your characters starting equipment. You may either choose the package granted by your class and background, or purchase equipment from the tables in chapter 5. If you take the latter option, the amount you have to spend is shown on the Starting Wealth by Class table, which supercedes the table of the same name in the
+        %span.book-title
+          Player's Handbook
+          %span.normal>.
+      %p
+        Starting equipment for levels 2&ndash;4 is the same as at level 1. Starting equipment beyond level 4 will be determined on a case-by-case basis.
+      %table.striped
+        %caption Starting Wealth by Class
+        %thead
+          %tr
+            %th.left Class
+            %th.right{style: 'padding-right: 3em;'} Funds
+        %tbody
+          %tr
+            %td Artificer
+            %td.right{style: 'padding-right: 3em;'} 125 gp
+          %tr
+            %td Barbarian
+            %td.right{style: 'padding-right: 3em;'} 50 gp
+          %tr
+            %td Bard
+            %td.right{style: 'padding-right: 3em;'} 125 gp
+          %tr
+            %td Cleric
+            %td.right{style: 'padding-right: 3em;'} 125 gp
+          %tr
+            %td Druid
+            %td.right{style: 'padding-right: 3em;'} 50 gp
+          %tr
+            %td Fighter
+            %td.right{style: 'padding-right: 3em;'} 125 gp
+          %tr
+            %td Monk
+            %td.right{style: 'padding-right: 3em;'} 12 gp, 5 sp
+          %tr
+            %td Paladin
+            %td.right{style: 'padding-right: 3em;'} 125 gp
+          %tr
+            %td Ranger
+            %td.right{style: 'padding-right: 3em;'} 125 gp
+          %tr
+            %td Rogue
+            %td.right{style: 'padding-right: 3em;'} 100 gp
+          %tr
+            %td Sorcerer
+            %td.right{style: 'padding-right: 3em;'} 75 gp
+          %tr
+            %td Warlock
+            %td.right{style: 'padding-right: 3em;'} 100 gp
+          %tr
+            %td Wizard
+            %td.right{style: 'padding-right: 3em;'} 100 gp
+
+      %h4#average-hit-points Average Hit Points
+      %p
+        When you gain a level, the
+        %span.book-title Player's Handbook
+        directs you to roll your new Hit Die to determine how much your hit point maximum increases by. Instead, you must use the alternative rule: your hit point maximum increases by the fixed value shown in your class entry, which is the average result of a Hit Die roll (rounded up).
+
+      %h4#multiclassing Multiclassing Allowed
+      %p
+        Chapter 6 of the
+        %span.book-title Player's Handbook
+        describes optional multiclassing rules. You are allowed to multiclass using these rules, subject to DM veto. Inform your DM of your multiclassing plans before leveling up.
+
+      %h4#feats Feats Allowed
+      %p
+        Chapter 6 of the
+        %span.book-title Player's Handbook
+        describes an optional rule that permits trading an Ability Score Adjustment class feature for one of the feats listed in that chapter. This optional rule is in effect.
+      %p
+        The list of feats is also expanded. Feats from other official sourcebooks are allowed, including but not limited to the racial feats from
+        %span.book-title
+          Xanathar's Guide to Everything
+          %span.normal>,
+        the optional Deep Gnome Magic feat from
+        %span.book-title
+          Mordenkainen's Tome of Foes
+          %span.normal>,
+        and the Aberrant Dragonmark and Revenant Blade feats from
+        %span.book-title
+          Eberron: Rising from the Last War
+          %span.normal>.
+
+      %h4#spells Expanded Spell Lists
+      %p
+        Your class's spell list includes all the spells on that list from the
+        %span.book-title Player's Handbook
+        as well as those added by
+        %span.book-title Sword Coast Adventurer's Guide
+        and
+        %span.book-title
+          Xanathar's Guide to Everything
+          %span.normal>.
+      %p
+        Artificers use the spell list from
+        %span.book-title
+          Eberron: Rising From the Last War
+          %span.normal>.
 
     %section.chapter
       %h2 Adventuring
+      %p
+        Exploration and social interaction are described in the
+        %span.book-title Player's Handbook
+        as two of the three pillars of a
+        %span.sc Dungeons &amp; Dragons
+        adventure. This section describes house rules relevant to those aspects of the game.
+
+      %h4#resting Resting
+      %p
+        Most players think of short rests as requiring 1 hour of downtime, and long rests as requiring 8 hours, although the
+        %span.book-title Dungeon Master's Guide
+        describes variant rules for resting. The house rule presented here is not equivalent to any of those variants.
+      %p
+        Instead of differentiating short and long rests by duration, this rule differentiates them by the conditions that trigger them in gameplay.
+      %p
+        A short rest is something that the players can take&mdash;unless the DM interrupts the rest or forbids it for some reason, players should assume that they can take a short rest in most situations, so long as there are no immediate distractions or demands.
+      %p
+        By contrast, a long rest is something that the DM awards to the players. Players may not take a long rest until the DM says so, no matter how much time is available to their characters.
+      %p
+        Of course, the DM should not withhold long rests without reason. As a guideline, the DM should award long rests when the party is between adventures and in a safe and secure location. The DM may well choose not to award long rests for many calendar days of game time, if the party is traveling through dangerous terrain for the duration or the party is otherwise under pressure.
+      %p
+        At the DM's discretion, the party may long rest even in the middle of a dungeon or adventure, so long as the circumstances warrant it. For example, the party may discover an area that is guarded by powerful enchantments that prevent conflict, or they may otherwise secure an area well enough for a long enough time that the DM decides a long rest is well-deserved.
+      %p
+        The effects of a short or long rest are as described in the base rules.
+
+      %aside#resting-rationale
+        .title Why Limit Long Rests?
+        %p
+          %span.sc Dungeons &amp; Dragons
+          is designed to be a game of attrition and resource management. Some characters have fewer or weaker resources that recharge after a short rest, and others have more powerful resources, or a greater number, that recharge after a long rest. If the party takes a long rest in between each encounter, then the balance between these two types of resources is skewed; characters with more powerful long rest resources will shine, and those with less powerful short rest resources will struggle. Alternatively, those with many long rest resources will find that they never have the opportunity to use them, while those with few short rest resources will still be able to use them to their full extent on each encounter. As a design goal, a DM is intended to design adventures that are broken up into "adventuring days" of 4&ndash;6 encounters, with short rests in between and long rests only at the end of the "day".
+        %p
+          However, with the rules as written in the
+          %span.book-title
+            Player's Handbook
+            %span.normal>,
+          certain types of adventures are very difficult to balance around the adventuring day concept. If the adventure spans many days of in-game calendar time, the characters are likely to have many long rests. This makes it hard to do wilderness exploration adventures. It can also be difficult to justify long rests in the middle of a dungeon, even though the dungeon is bigger than 4&ndash;6 encounters.
+        %p
+          By limiting long rests to be available only when the DM grants them, it becomes possible to design adventures around the "adventuring day", even if that abstract "day" in fact takes many days, or just a few hours.
