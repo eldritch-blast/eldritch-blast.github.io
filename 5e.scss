@@ -129,7 +129,7 @@ $black: #111;
 @media only screen and (min-width:501px) {
     .chapter {
         margin: 1.5cm;
-        columns: 2 auto;
+        columns: 2 300px;
         column-gap: 1cm;
         max-width: 11.25in;
     }
@@ -187,6 +187,7 @@ h4 {
 h5 {
     font-size: 18px;
     margin-top: 1rem;
+    margin-bottom: 2px;
 }
 
 p {
@@ -237,7 +238,7 @@ table {
     font-family: 'Scaly Sans', sans-serif;
     border-collapse: collapse;
     margin: 1rem 0;
-    float: left;
+    float: right;
 
     caption {
         font-family: 'Scaly Sans Bold', sans-serif;
@@ -287,7 +288,7 @@ table {
     @media only screen and (max-width: 500px) {
         .columns {
             columns: 2 auto;
-            column-gap: 10px;
+            column-gap: 0.5em;
         }
     }
 
@@ -331,7 +332,7 @@ aside {
         font-weight: bold;
         font-style: normal;
         font-variant: small-caps;
-        margin-bottom: 2px;
+        margin-top: 0;
     }
 
     .content {
