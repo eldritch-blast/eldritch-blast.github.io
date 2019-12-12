@@ -1,0 +1,387 @@
+- name = "Va'elis"
+- levels = { cleric: 1 }
+- hd = { cleric: 'd8' }
+- ability_scores = {str: 10, dex: 12, con: 14, int: 10, wis: 16, cha: 14}
+- mods = Hash[ability_scores.map { |k, v| [k, (v - 10) / 2] }]
+- prof = ((levels.values.sum - 1) / 4 + 2)
+- hp = 8 + (levels[:cleric] - 1) * 5 + mods[:con] * levels[:cleric]
+- xp = 0
+- next_level = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, '&#x221e;']
+!!!
+%head
+  %title #{name}
+  %link{rel: 'stylesheet', type: 'text/css', href: '../charsheet.css'}
+%body
+  %h1 #{name}
+  .info-bar
+    %span.subrace Kalashtar
+    %span.class-level=levels.map { |k, v| "#{k.capitalize} #{v}"}.join('/')
+    %span.xp (#{xp} / #{next_level.find{|t| t > xp}} xp)
+  .flex.atf
+    -#ability scores
+    .ability-scores.flex.tall
+      - ability_scores.each do |k, v|
+        %div{class: k}
+          .score=v
+          .mod='%+d' % mods[k]
+    -#proficiencies
+    .proficiencies
+      .head.b
+        .bonus='%+d' % prof
+      .save Wis, Cha
+      .skill Insight, Medicine, Persuasion, Religion
+      .tool
+      .language Common, Quori, Celestial, Draconic, Infernal
+      .weapon simple
+      .armor light, medium, shields
+    -#health
+    .health
+      .head
+        Max HP:
+        %span.b=hp
+      .hit-dice.resource
+        .head Hit Dice
+        - levels.each do |k, v|
+          %div{class: "uses #{hd[k]}"}
+            - levels[k].times do |i|
+              .checkbox
+      .death-saves.resource
+        .head Death Saves
+        .success.uses
+          - 3.times do |i|
+            .checkbox
+        .failure.uses
+          - 3.times do |i|
+            .checkbox
+    -#hp
+    .hp
+      .scratch
+        .title Current HP
+        %div
+      .scratch
+        .title Temp HP
+        %div
+
+  .flex.btf 
+    .flex.column.wide
+      .half
+        -#equip
+        .equipment-set.block
+          .head.b Spellcasting Equipment
+          .small
+            Shield, scale mail, divine focus
+          .ac
+            .head.b AC
+            .value=14 + 2 + [2, mods[:dex]].min
+          .move
+            .head.b Move
+            .value 30
+          .head.b Sacred Flame Cantrip
+          .attack.roll
+            .b.bg Roll
+            .value Dex save
+          .attack.damage
+            .b.bg Damage
+            .value
+              1d8
+              %span.small radiant
+          .attack.range
+            .b.bg Range
+            .value 60
+          %ul.small
+            %li Disadvantage on Dexterity (Stealth)
+
+      .half
+        -#dual-mind
+        .feature.block
+          .head.b Dual Mind
+          %p.small
+            Advantage on Wisdom saving throws.
+
+        -#mental-discipline
+        .feature.block
+          .head.b Mental Discipline
+          %p.small
+            Resistance to psychic damage.
+
+        -#severed-from-dreams
+        .feature.block
+          .head.b Severed From Dreams
+          %p.small
+            You sleep but do not connect to the plane of dreams. You are immune to spells and effects that require you to dream, but not spells or effects that put you to sleep.
+
+      -#mind-link
+      .feature.block
+        .head.b Mind Link
+        %p.small
+          You can speak telepathically to a creature you can see within #{levels.values.sum * 10} ft. You don't need to share a language, but the creature must understand at least one language.
+        %p.small
+          While using this trait, as an action you can give that creature the ability to speak telepathically with you for 1 hour, or until you end the effect as an action. To use this ability, the creatue must be able to see and hear you and must be within #{levels.values.sum * 10}. You can give this ability to only one creature at a time; giving it to a creature takes it away from another creature who has it.
+
+      -#warding-flare
+      .feature
+        .head
+          %span.b Warding Flare
+          .uses.long-rest
+            - [mods[:wis], 1].max.times do |i|
+              .checkbox
+        %p.small
+          %span.b Reaction.
+          When attacked by a creature you can see within 30 ft., impose disadvantage on the attack roll by causing light to flare before the attacking creature. Creatures that cannot be blinded are immune.
+
+    .flex.tall.column.narrow
+      -#cleric-spellcasting
+      .spellcasting.block
+        .head.b Cleric Spellcasting
+        .stat.b
+          Spellcasting Ability:
+          .value Wis
+        .stat.b
+          Spell Attack Modifier:
+          .value='%+d' % (mods[:wis] + prof)
+        .stat.b
+          Saving Throw DC:
+          .value=8 + prof + mods[:wis]
+      .flex.block
+        .head.b Spell Slots
+        .slots.resource.half
+          .label
+            1
+            %sup> st
+          .uses
+            - 2.times do |i|
+              .checkbox
+      .scratch.block
+        .title.b Concentration
+        %div
+      .feature.block
+        .head.b Preparation
+        %p.small
+          You always have
+          %span.spell burning hands
+          and
+          %span.spell faerie fire
+          prepared. After a long rest, you can prepare any #{levels[:cleric] + mods[:wis]} spells from the cleric spell list.
+      .feature.block
+        .head.b Ritual Casting
+        %p.small
+          You can cast a prepared cleric spell with the ritual tag as a ritual.
+
+  .new-page
+
+  .inventory.grid.block
+    .head.b Inventory
+    .item Scale mail
+    .item Holy Amulet (2)
+    .item Light crossbow
+    .item Crossbow bolts (20)
+    .item Mace
+    .item Backpack
+    .item Blanket
+    .item Tinderbox
+    .item Shield
+    .item Candle (10)
+    .item Alms box
+    .item Incense (7)
+    .item
+    .item
+    .item Censer
+    .item Vestments (2)
+    .item Rations (2)
+    .item Waterskin
+    .item
+    .item
+    .item Prayer book
+    .item Common clothes
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .item
+    .money
+      .label.b.bg pp
+      .label.b.bg gp
+      .label.b.bg sp
+      .label.b.bg cp
+      .value.pp
+      .value.gp=15
+      .value.sp
+      .value.cp
+
+
+  .spell-list.flex
+    .spell-actions.column
+      .head.b Spell Actions
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Guidance
+        .level cantrip
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Light
+        .level cantrip
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Sacred Flame
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Thaumaturgy
+        .level cantrip
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Bane
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Bless
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Burning Hands
+        .level 1<sup>st</sup>
+        .keywords.b
+      .spell
+        .prepared
+          .checkbox
+        .title Command
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Create or Destroy Water
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Cure Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Magic
+        .level 1<sup>st</sup>
+        .keywords.b conc., ritual
+      .spell
+        .prepared
+          .checkbox
+        .title Detect Poison and Disease
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox.checked
+        .title Faerie Fire
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Guiding Bolt
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Inflict Wounds
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Protection from Evil and Good
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+      .spell
+        .prepared
+          .checkbox
+        .title Purify Food and Drink
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+
+    .column
+      .head.b Bonus Actions
+      .spell
+        .prepared
+          .checkbox
+        .title Healing Word
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Sanctuary
+        .level 1<sup>st</sup>
+        .keywords.b 
+      .spell
+        .prepared
+          .checkbox
+        .title Shield of Faith
+        .level 1<sup>st</sup>
+        .keywords.b conc.
+
+      .head.b Non-Combat Spells
+      .spell
+        .prepared
+          .checkbox
+        .title Ceremony
+        .level 1<sup>st</sup>
+        .keywords.b ritual
+
+  .flex.role-playing
+    .column.half
+      .feature.block
+        .head.b Background: Acolyte
+        %p.small
+          You have spent your life in the service of the Silver Flame. You act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine.
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I see omens in every event and action. The gods try to speak to us, we just need to listen.
+      .feature.block
+        .head.b Personality Trait
+        %p.small
+          I am tolerant of other faiths and respect the worship of other gods.
+    .column.half
+      .feature.block
+        .head.b Kalashtar Quirk
+        %p.small
+          You are obsessed with Dreaming Dark conspiracies.
+
+      .feature.block
+        .head.b Ideal: Faith
+        %p.small
+          I trust that the silver flame will guide my actions. I have faith that if I work hard, things will go well.
+      .feature.block
+        .head.b Bond
+        %p.small
+          I will do anything to protect the temple where I served.
+      .feature.block
+        .head.b Flaw
+        %p.small
+          I put too much trust in those who wield power within my temple's hierarchy.
