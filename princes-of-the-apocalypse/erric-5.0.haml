@@ -184,7 +184,11 @@
           Saving Throw DC:
           .value=8 + prof + [mods[:str], mods[:dex]].max
       .small.block
-        You have a pool of #{superiority_dice}d#{superiority_die} combat superiority dice, which regenerates after a short or long rest. You can spend these on three different combat maneuvers (to be chosen).
+        You have a pool of #{superiority_dice}d#{superiority_die} combat superiority dice, which regenerates after a short or long rest. You can spend these on three different combat maneuvers.
+      .resource.block
+        .uses
+          - 4.times do |i|
+            .checkbox
       .small.block
         %span.title Parry
         %p
@@ -240,6 +244,6 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp=94+91-21+25
+      .value.gp=94+91-21+25+248
       .value.sp=5+8
       .value.cp=5+3

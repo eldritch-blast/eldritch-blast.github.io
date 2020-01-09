@@ -111,7 +111,7 @@
         -#spell-sniper
         .feature.block
           .head.b Spell Sniper
-          %ul.small
+          %ul.small{style: 'margin-top: 0;'}
             %li When you cast a spell that requires an attack roll, its range is doubled.
             %li Your ranged spell attacks ignore &#xbd; cover and &#xbe; cover.
         -#agonizing-blast
@@ -121,12 +121,25 @@
             Add your Charisma modifier to your
             %span.spell eldritch blast
             damage.
+
       .half
         -#hex-warrior
         .feature.block
           .head.b Hex Warrior
           %p.small
             After a long rest, you can choose any one-handed weapon you can touch. Until your next long rest, you can use your Charisma modifier for attack and damage rolls with that weapon.
+
+      -#maddening-hex
+      .feature.block
+        .head
+          %span.b Maddening Hex
+        %p.small
+          %span.b Bonus Action.
+          Choose a creature you can see within 30 feet of you who is cursed by the
+          %span.spell hex
+          spell or your Hexblade's Curse. The target and each creature of of your choice that you can see within 5 feet of it takes 
+          %span.b #{[mods[:cha], 1].max} psychic
+          damage.
 
       -#hexblades-curse
       .feature.block
@@ -237,7 +250,7 @@
       .label.b.bg sp
       .label.b.bg cp
       .value.pp
-      .value.gp=84+56+25
+      .value.gp=84+56+25+248
       .value.sp=5+3
       .value.cp=5+3
 
@@ -269,10 +282,6 @@
         .level cantrip
         .keywords.b 
       .spell
-        .title Arms of Hadar
-        .level 1<sup>st</sup>
-        .keywords.b 
-      .spell
         .title Hold Person
         .level 2<sup>nd</sup>
         .keywords.b conc.
@@ -280,6 +289,14 @@
         .title Shatter
         .level 2<sup>nd</sup>
         .keywords.b 
+      .spell
+        .title Hunger of Hadar
+        .level 3<sup>rd</sup>
+        .keywords.b conc.
+      .spell
+        .title Hypnotic Pattern
+        .level 3<sup>rd</sup>
+        .keywords.b conc.
     .other-spells.column
       .head.b Bonus Actions
       .spell
