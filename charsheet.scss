@@ -622,6 +622,9 @@ li:before {
     div, p {
         font-size: 14px;
     }
+    .card.small-text p {
+        font-size: 12px;
+    }
     p:first-of-type {
         margin-top: 0.5em;
         text-indent: 0;

@@ -460,6 +460,8 @@ li:before {
     z-index: -1; }
   .spell-cards div, .spell-cards p {
     font-size: 14px; }
+  .spell-cards .card.small-text p {
+    font-size: 12px; }
   .spell-cards p:first-of-type {
     margin-top: 0.5em;
     text-indent: 0; }
