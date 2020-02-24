@@ -1,0 +1,501 @@
+@font-face {
+  font-family: "Bookinsanity";
+  src: url("/fonts/5e/Bookinsanity/Bookinsanity.otf") format("opentype");
+  font-weight: normal; }
+
+@font-face {
+  font-family: "Bookinsanity Bold Italic";
+  src: url("/fonts/5e/Bookinsanity/Bookinsanity Bold Italic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic; }
+
+@font-face {
+  font-family: "Bookinsanity Bold";
+  src: url("/fonts/5e/Bookinsanity/Bookinsanity Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Bookinsanity Italic";
+  src: url("/fonts/5e/Bookinsanity/Bookinsanity Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: "Nodesto Caps Condensed";
+  src: url("/fonts/5e/Nodesto Caps Condensed/Nodesto Caps Condensed.otf") format("opentype");
+  font-weight: normal; }
+
+@font-face {
+  font-family: "Nodesto Caps Condensed Bold";
+  src: url("/fonts/5e/Nodesto Caps Condensed/Nodesto Caps Condensed.otf") format("opentype");
+  font-weight: bold; }
+
+@font-face {
+  font-family: "Mr Eaves Small Caps";
+  src: url("/fonts/5e/Mr Eaves/Mr Eaves Small Caps.otf") format("opentype");
+  font-weight: normal; }
+
+@font-face {
+  font-family: "Scaly Sans";
+  src: url("/fonts/5e/Scaly Sans/Scaly Sans.otf") format("opentype");
+  font-weight: normal; }
+
+@font-face {
+  font-family: "Scaly Sans Italic";
+  src: url("/fonts/5e/Scaly Sans/Scaly Sans Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: "Scaly Sans Bold Italic";
+  src: url("/fonts/5e/Scaly Sans/Scaly Sans Bold Italic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic; }
+
+@font-face {
+  font-family: "Scaly Sans Bold";
+  src: url("/fonts/5e/Scaly Sans/Scaly Sans Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Scaly Sans Caps Bold";
+  src: url("/fonts/5e/Scaly Sans Caps/Scaly Sans Caps Bold.otf") format("opentype");
+  font-weight: normal; }
+
+@font-face {
+  font-family: "Solbera Imitation";
+  src: url("/fonts/5e/Solbera Imitation/Solbera Imitation.otf") format("opentype");
+  font-weight: normal; }
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap; }
+  .flex > div {
+    width: 100%; }
+  .flex .half {
+    width: calc(50% - 0.4rem); }
+  .flex .narrow {
+    width: calc(33.33333% - 0.4rem); }
+  .flex .wide {
+    width: calc(66.66666% - 0.4rem); }
+
+.flex.tall {
+  flex-direction: column; }
+
+@media screen and (min-width: 720px) {
+  .columns {
+    -webkit-columns: 2 auto;
+       -moz-columns: 2 auto;
+            columns: 2 auto; }
+    .columns .span-all {
+      -webkit-column-span: all;
+         -moz-column-span: all;
+              column-span: all; } }
+
+@media print {
+  .columns {
+    -webkit-columns: 2 auto;
+       -moz-columns: 2 auto;
+            columns: 2 auto; }
+    .columns .span-all {
+      -webkit-column-span: all;
+         -moz-column-span: all;
+              column-span: all; } }
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+@media screen {
+  body {
+    color: #111;
+    margin: auto;
+    padding: 1em;
+    font-size: 18px;
+    font-family: 'Bookinsanity', serif;
+    max-width: 980px; } }
+
+@media screen {
+  .divider {
+    width: 0;
+    height: 0;
+    border: 180px solid transparent;
+    border-bottom: 3px solid #ffd862;
+    position: relative;
+    top: -150px;
+    margin: auto;
+    margin-bottom: -120px; }
+  .divider:after {
+    position: absolute;
+    left: -180px;
+    top: 3px;
+    width: 0;
+    height: 0;
+    border: 180px solid transparent;
+    border-top: 3px solid #ffd862;
+    content: ''; } }
+
+@media print {
+  body {
+    color: #111;
+    margin: 0;
+    font-size: 18px;
+    font-family: 'Bookinsanity', serif;
+    width: 8.5in; }
+  @page {
+    margin: 0.75in; }
+  @page :left {
+    margin-right: 3cm; }
+  @page :right {
+    margin-left: 3cm; }
+  section {
+    height: 10.5in;
+    page-break-before: always; }
+  section.one-sided {
+    margin-right: 1cm; }
+  .divider {
+    display: none; } }
+
+h2, h3, h4, h5 {
+  color: #b18400;
+  font-family: 'Mr Eaves Small Caps', serif;
+  font-variant: small-caps; }
+
+h2 {
+  font-size: 48px;
+  margin-top: 0;
+  margin-bottom: 1rem; }
+
+h2 + p::first-letter {
+  font-family: 'Solbera Imitation', serif;
+  color: #b18400;
+  float: left;
+  font-size: 6em;
+  line-height: 0.8;
+  padding-right: 0.3rem; }
+
+h2 + p::first-line {
+  font-family: 'Mr Eaves Small Caps', serif;
+  font-variant: small-caps;
+  font-size: 20px;
+  line-height: 1; }
+
+h3 {
+  font-size: 40px;
+  margin-top: 1rem;
+  margin-bottom: 6px; }
+
+h4 {
+  font-size: 32px;
+  border-bottom: 2px solid #b18400;
+  margin-top: 1rem;
+  margin-bottom: 2px; }
+
+h5 {
+  font-size: 24px;
+  margin-top: 1rem;
+  margin-bottom: 2px; }
+
+h3 + .group > h5, h3 + h5 {
+  margin-top: 0; }
+
+section > h2:first-child, section > h3:first-child, section > h4:first-child {
+  margin-top: 0; }
+
+p {
+  margin: 0; }
+
+p + p {
+  text-indent: 1em; }
+
+ul {
+  margin: 0;
+  padding-left: 1.2em; }
+
+ul.simple {
+  margin: 0;
+  padding: 0 0 0.5em 1em;
+  list-style: none;
+  white-space: nowrap; }
+
+ul.checklist {
+  list-style: none;
+  padding: 0 0 0 2px; }
+  ul.checklist li:before {
+    content: " ";
+    display: inline-block;
+    border: 1px solid #ffce3b;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    width: 0.8rem;
+    height: 0.8rem; }
+
+table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  font-family: 'Scaly Sans', sans-serif;
+  page-break-inside: avoid;
+  min-width: 50%; }
+  table caption {
+    font-family: 'Scaly Sans Caps Bold', sans-serif;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-align: left; }
+  table th {
+    font-weight: bold;
+    text-align: left; }
+  table th, table td {
+    padding: 0 4px;
+    font-size: 16px;
+    line-height: 1.4; }
+  table tbody:only-of-type tr:nth-child(even) {
+    background-color: #ffe69d; }
+  table tbody:nth-child(even) {
+    background-color: #ffe69d; }
+  table .spell, table .magic, table .reference, table .elvish {
+    font-family: 'Scaly Sans Italic', sans-serif;
+    font-style: italic; }
+  table tfoot td {
+    font-size: 14px;
+    line-height: normal; }
+
+table + h3, table + h4 {
+  margin-top: 0; }
+
+aside {
+  font-family: 'Scaly Sans', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  float: right;
+  margin: calc(1em + 16px) 0; }
+  aside .title {
+    font-family: 'Scaly Sans Caps Bold', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-variant: small-caps;
+    margin-top: 0; }
+  aside .content {
+    padding: 5px 10px;
+    background-color: #ffe69d;
+    -webkit-box-shadow: 1px 4px 14px #888;
+            box-shadow: 1px 4px 14px #888; }
+    aside .content p {
+      line-height: 1.2; }
+  aside .border {
+    width: 100%; }
+  aside .top:before {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    border-top: 11px solid transparent;
+    border-right: 24px solid black;
+    border-bottom: 1px solid black;
+    content: ''; }
+  aside .top:after {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    border-top: 11px solid transparent;
+    border-left: 24px solid black;
+    border-bottom: 1px solid black;
+    content: ''; }
+  aside .top {
+    position: relative;
+    border-bottom: 3px solid black; }
+  aside .bottom:before {
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    border-top: 1px solid black;
+    border-right: 24px solid black;
+    border-bottom: 11px solid transparent;
+    content: ''; }
+  aside .bottom:after {
+    position: absolute;
+    bottom: -12px;
+    right: 1px;
+    border-top: 1px solid black;
+    border-left: 24px solid black;
+    border-bottom: 11px solid transparent;
+    content: ''; }
+  aside .bottom {
+    position: relative;
+    border-top: 3px solid black; }
+
+.subhead {
+  font-family: 'Bookinsanity Bold Italic', serif;
+  font-weight: bold;
+  font-style: italic; }
+
+.blockquote {
+  font-family: 'Bookinsanity Italic', serif;
+  font-style: italic;
+  margin-bottom: 1rem; }
+  .blockquote p:first-child:first-line {
+    font-family: 'Mr Eaves Small Caps', serif;
+    font-variant: small-caps;
+    font-style: normal; }
+  .blockquote .attribution {
+    text-align: right;
+    font-family: 'Bookinsanity', serif;
+    font-style: normal; }
+
+.read-aloud {
+  position: relative;
+  background-color: #ffe69d;
+  margin: 0.8rem 3px;
+  padding: 0.8rem;
+  border-left: 3px solid #ffce3b;
+  border-right: 3px solid #ffce3b; }
+  .read-aloud .circle {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    background-color: #ffce3b;
+    border-radius: 50%;
+    z-index: 8; }
+  .read-aloud .top {
+    top: -1.5px; }
+  .read-aloud .bottom {
+    bottom: -1.5px; }
+  .read-aloud .left {
+    left: -4.5px; }
+  .read-aloud .right {
+    right: -4.5px; }
+
+.stat-block {
+  font-size: 14px;
+  padding: 0.4em;
+  font-family: 'Scaly Sans', sans-serif;
+  page-break-inside: avoid; }
+  .stat-block .bar {
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 32em solid #ffce3b;
+    margin: 3px 0; }
+  .stat-block .bar.narrow {
+    border-left: 32em solid #ffce3b; }
+  .stat-block .ability_scores {
+    text-align: center; }
+    .stat-block .ability_scores .ability {
+      font-weight: bolder;
+      width: 15%; }
+    .stat-block .ability_scores .score {
+      font-weight: normal; }
+  .stat-block .type, .stat-block .spell, .stat-block .magic, .stat-block .i {
+    font-family: 'Scaly Sans Italic', sans-serif;
+    font-style: italic; }
+  .stat-block .subhead {
+    font-family: 'Scaly Sans Bold Italic', sans-serif;
+    font-style: italic;
+    font-weight: bold; }
+  .stat-block .features .feature {
+    margin-top: 0.8rem; }
+  .stat-block .actions {
+    margin-top: 0.8rem; }
+    .stat-block .actions h6 {
+      font-family: 'Scaly Sans Caps Bold', sans-serif;
+      font-weight: bold;
+      font-variant: small-caps;
+      border-bottom: 1px solid #ffce3b;
+      color: #ffce3b;
+      width: 98%;
+      font-size: 18px;
+      text-align: left;
+      margin: 0; }
+    .stat-block .actions p {
+      text-indent: 1em; }
+    .stat-block .actions .action:not(:last-of-type) {
+      margin-bottom: 1em; }
+
+.encounter .initiative-tracker {
+  display: flex;
+  flex-direction: column;
+  width: 19%;
+  border-radius: 5px;
+  border: 1px solid #ffce3b;
+  margin-right: 0.8rem; }
+  .encounter .initiative-tracker .initiative {
+    line-height: 1.5;
+    height: 2em; }
+  .encounter .initiative-tracker .initiative:not(:last-child) {
+    border-bottom: 1px dotted #111; }
+
+.encounter > div:not(.initiative-tracker) {
+  width: 80%; }
+
+.encounter .content > div {
+  margin-bottom: 0.8rem; }
+  .encounter .content > div h5 {
+    margin: 0; }
+
+.encounter .stats .head {
+  text-align: center;
+  border-bottom: 1px solid #ffce3b; }
+
+.encounter .stats .health {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  .encounter .stats .health .enemy {
+    font-size: 14px;
+    min-width: 11em;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem; }
+
+.encounter .stat-block .bar {
+  border-left: 25em solid #ffce3b; }
+
+.magic-item {
+  margin-right: 1cm; }
+  .magic-item .heading > * {
+    margin: 0; }
+  .magic-item .heading {
+    margin-bottom: 0.5rem; }
+
+.magic-item + .magic-item {
+  margin-top: 1.5in; }
+
+.bg {
+  background-color: #ffd862; }
+
+.bg.light {
+  background-color: #ffe69d; }
+
+.bg.dark {
+  background-color: #ffce3b; }
+
+.small {
+  font-size: 14px; }
+
+.emph, .strong, .b {
+  font-weight: bolder; }
+
+.spell, .magic, .reference, .elvish, .i {
+  font-family: 'Bookinsanity Italic', serif;
+  font-style: italic; }
+
+.box {
+  border-radius: 3px;
+  border: 1px solid #ffce3b;
+  padding: 3px; }
+
+.pull-up {
+  margin-top: 0; }
+
+.space-above {
+  margin-top: 1cm; }
+
+.hang {
+  text-indent: -1em;
+  padding-left: 1em; }
+
+.group {
+  page-break-inside: avoid; }
