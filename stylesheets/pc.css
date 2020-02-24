@@ -213,7 +213,7 @@ sup {
     width: calc(50% - 0.4rem); }
   .spell-actions .head:not(:first-of-type) {
     margin-top: 6px; }
-  .spell-actions .spell:nth-child(odd) {
+  .spell-actions .spell:nth-child(even) {
     background-color: #ddd; }
   .spell-actions .spell {
     page-break-inside: avoid;
