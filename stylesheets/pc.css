@@ -15,6 +15,26 @@
 .flex.tall {
   flex-direction: column; }
 
+@media screen and (min-width: 720px) {
+  .columns {
+    -webkit-columns: 2 auto;
+       -moz-columns: 2 auto;
+            columns: 2 auto; }
+    .columns .span-all {
+      -webkit-column-span: all;
+         -moz-column-span: all;
+              column-span: all; } }
+
+@media print {
+  .columns {
+    -webkit-columns: 2 auto;
+       -moz-columns: 2 auto;
+            columns: 2 auto; }
+    .columns .span-all {
+      -webkit-column-span: all;
+         -moz-column-span: all;
+              column-span: all; } }
+
 @media print {
   @page {
     margin: 0.25in; }
@@ -61,14 +81,37 @@ p:first-of-type {
 
 ul {
   list-style: none;
-  text-indent: -0.55rem;
-  padding-left: 1.2rem;
   margin: 0.2rem 0; }
 
-li:before {
-  position: relative;
-  left: -0.5rem;
-  content: "\2727"; }
+ul:not(.checklist) {
+  text-indent: -0.55rem;
+  padding-left: 1.2rem; }
+  ul:not(.checklist) li:before {
+    position: relative;
+    left: -0.5rem;
+    content: "\2727"; }
+
+ul.checklist.right {
+  list-style: none;
+  padding: 0; }
+  ul.checklist.right li {
+    padding: 1px 0.2rem;
+    position: relative; }
+  ul.checklist.right li:after {
+    content: " ";
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    display: inline-block;
+    border: 1px solid #999;
+    border-radius: 2px;
+    width: 0.9rem;
+    height: 0.9rem;
+    vertical-align: middle;
+    background-color: white; }
+
+ul.striped li:nth-of-type(odd) {
+  background-color: #ddd; }
 
 sup {
   font-size: 10px; }
@@ -141,9 +184,8 @@ sup {
 .checkbox.checked:after {
   content: "\2714";
   font-size: 16px;
-  position: absolute;
-  bottom: -2px;
-  left: 2px; }
+  position: relative;
+  bottom: 2px; }
 
 .resource {
   display: -ms-grid;
@@ -199,53 +241,52 @@ sup {
 .spellcasting .stat:nth-of-type(2n+1), .ki .stat:nth-of-type(2n+1), .combat-superiority .stat:nth-of-type(2n+1) {
   background-color: #ddd; }
 
-.spell-actions {
-  -webkit-columns: auto 2;
-     -moz-columns: auto 2;
-          columns: auto 2;
-  -webkit-column-gap: 0.8rem;
-     -moz-column-gap: 0.8rem;
-          column-gap: 0.8rem; }
-  .spell-actions .head:first-of-type {
-    -webkit-column-span: all;
-       -moz-column-span: all;
-            column-span: all;
-    width: calc(50% - 0.4rem); }
-  .spell-actions .head:not(:first-of-type) {
-    margin-top: 6px; }
-  .spell-actions .spell:nth-child(even) {
-    background-color: #ddd; }
-  .spell-actions .spell {
-    page-break-inside: avoid;
-    font-size: 14px;
-    font-style: normal;
-    height: 20px; }
-    .spell-actions .spell > div {
-      display: inline-block; }
-    .spell-actions .spell > .title {
-      width: 52%;
-      padding-left: 0.2rem; }
-    .spell-actions .spell > .prepared {
-      margin-left: 2px; }
-    .spell-actions .spell > .level:before, .spell-actions .spell .level:after {
-      content: "\1f7c4";
-      padding: 0 0.2rem; }
-  .spell-actions .checkbox {
-    margin-top: -2px; }
+.spell-actions > div:first-child > .head.span-all {
+  width: calc(50% - 0.4rem); }
+
+.spell-actions > div:not(:last-child) {
+  margin-bottom: 6px; }
+
+.spell-actions .spell:nth-child(even) {
+  background-color: #ddd; }
+
+.spell-actions .spell {
+  -webkit-column-break-inside: avoid;
+     -moz-column-break-inside: avoid;
+          break-inside: avoid;
+  font-size: 14px;
+  font-style: normal;
+  height: 20px; }
+  .spell-actions .spell > div {
+    display: inline-block; }
+  .spell-actions .spell > .title {
+    width: 52%;
+    padding-left: 0.2rem; }
+  .spell-actions .spell > .prepared {
+    margin-left: 2px; }
+  .spell-actions .spell > .level:before, .spell-actions .spell .level:after {
+    content: "\1f7c4";
+    padding: 0 0.2rem; }
+
+.spell-actions .checkbox {
+  margin-top: -2px; }
 
 .feature .head {
   position: relative; }
-  .feature .head .uses {
-    position: absolute;
-    right: 2px;
-    top: 2px;
-    text-align: right; }
-  .feature .head .uses.short-rest:before {
-    font-size: 14px;
-    content: "short rest "; }
-  .feature .head .uses.long-rest:before {
-    font-size: 14px;
-    content: "long rest "; }
+
+.feature .uses {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  text-align: right; }
+
+.feature .uses.short-rest:before {
+  font-size: 14px;
+  content: "short rest "; }
+
+.feature .uses.long-rest:before {
+  font-size: 14px;
+  content: "long rest "; }
 
 .equipment-set span.item:not(:last-of-type):after {
   content: ", "; }
@@ -390,5 +431,7 @@ div.block {
   font-weight: bold; }
 
 .group {
-  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+     -moz-column-break-inside: avoid;
+          break-inside: avoid;
   white-space: nowrap; }
