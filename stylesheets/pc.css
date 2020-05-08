@@ -261,7 +261,8 @@ sup {
     display: inline-block; }
   .spell-actions .spell > .title {
     width: 52%;
-    padding-left: 0.2rem; }
+    padding-left: 0.2rem;
+    white-space: nowrap; }
   .spell-actions .spell > .prepared {
     margin-left: 2px; }
   .spell-actions .spell > .level:before, .spell-actions .spell .level:after {
